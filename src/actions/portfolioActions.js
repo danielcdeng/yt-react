@@ -1,10 +1,17 @@
 import * as actionTypes from './actionTypes';
-import portfolioApi from '../api/portfolioApi';
-import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
+//import portfolioApi from '../api/portfolioApi';
 
 /***** Local Functions *****/
 
 /***** Exported Functions *****/
+
+export function ajaxCallError() {
+  return {type: actionTypes.AJAX_CALL_ERROR};
+}
+
+export function beginAjaxCall() {
+  return {type: actionTypes.BEGIN_AJAX_CALL};
+}
 
 export function loadPortfolioSuccess(source) {
   const action = {type: actionTypes.LOAD_PORTFOLIO_SUCCESS, source};
@@ -54,14 +61,14 @@ export function onTickerLowestNetPerSort(target) {
 
 /***** Thunk APIs *****/
 
-export function loadPortfolioThunk() {
-  return dispatch => {
-    dispatch(beginAjaxCall());
-    return portfolioApi.getPortfolio().then(portfolio => {
-      dispatch(loadPortfolioSuccess(portfolio));
-    }).catch(error => {
-      throw(error);
-    });
-  };
-}
+// export function loadPortfolioThunk() {
+//   return dispatch => {
+//     dispatch(beginAjaxCall());
+//     return portfolioApi.getPortfolio().then(portfolio => {
+//       dispatch(loadPortfolioSuccess(portfolio));
+//     }).catch(error => {
+//       throw(error);
+//     });
+//   };
+// }
 

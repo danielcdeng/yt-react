@@ -3,7 +3,6 @@
   "description": "Re-design my YouTiming.com site by React/Redux/Thunk",
   "license": "MIT",
   "name": "yt-react",
-  "proxy": "http://localhost:3000",
   "version": "1.0.0",
   "dependencies": {
     "axios": "^0.18.0",

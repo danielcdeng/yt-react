@@ -1,3 +1,4 @@
+const data =
 [
 {
     "tick": {
@@ -1373,4 +1374,6 @@
         }
     }
 }
-]
+];
+
+export default data;

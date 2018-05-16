@@ -4,6 +4,7 @@ import initStoreState from './initStoreState';
 export default function portfolioReducer(state = initStoreState.portfolio, action) {
 
   let resState = {
+    ajaxCallsInProgress: 0,
     source: Object.assign([], state.source),
     filter: Object.assign([], state.filter),
     target: Object.assign([], state.target)
@@ -11,6 +12,16 @@ export default function portfolioReducer(state = initStoreState.portfolio, actio
   let tickers = [];
 
   switch (action.type) {
+
+    case actionTypes.AJAX_CALL_ERROR:
+      resState.ajaxCallsInProgress -= 1;
+      console.log('resState.ajaxCallsInProgress = ', resState.ajaxCallsInProgress);
+      break;
+
+    case actionTypes.BEGIN_AJAX_CALL:
+      resState.ajaxCallsInProgress += 1;
+      console.log('resState.ajaxCallsInProgress = ', resState.ajaxCallsInProgress);
+      break;
 
     case actionTypes.LOAD_PORTFOLIO_SUCCESS:
       resState.source = Object.assign([], action.source);

@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {browserHistory} from 'react-router';
-import axios from 'axios';
 import * as portfolioActions from '../../actions/portfolioActions';
 import TickerRow from './TickerRow';
+import portfolioData from '../../data/active';
 
 class PortfolioPage extends React.Component {
 
@@ -14,24 +14,15 @@ class PortfolioPage extends React.Component {
     this.restorePortfolio = this.restorePortfolio.bind(this);
     this.sortActions = this.sortActions.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
-  }
-
-  componentDidMount() {
-    const ax = axios.create({baseURL: 'http://localhost:3000/data'});
-    ax.get('active.json').then(res => {
-      console.log('axios res = ', res);
-    });
-    // fetch('/data/active.json')
-    // .then(res => {
-    //   console.log('res = ', res);
-    //   res.json();
-    // })
-    // .then(json => {
-    //   console.log('json = ', json);
-    // })
-    // .catch(err => {
-    //   console.log("err when fetching active.json = ", err);
-    // });
+    this.state = {
+      portfolio: {
+        source: portfolioData,
+        target: Object.assign([], portfolioData),
+        filter: []
+      }
+    };
+    //props.actions.beginAjaxCall();
+    //setTimeout(props.actions.ajaxCallError, 200);
   }
 
   //-----------------------------------------
@@ -101,7 +92,10 @@ class PortfolioPage extends React.Component {
   //-----------------------------------------
 
   render() {
-    const {actions, portfolio} = this.props;
+    let {actions, portfolio} = this.props;
+    if (!portfolio || !portfolio.source || portfolio.source.length == 0) {
+      portfolio = this.state.portfolio;
+    }
     return(
       <div>
         <br/>
@@ -170,6 +164,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
+  //console.log('ownProps = ', ownProps);
   return {
     portfolio: state.portfolio
   };
