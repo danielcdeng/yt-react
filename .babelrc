@@ -1,0 +1,12 @@
+{
+  // Two presets:
+  "presets": ["react", "es2015"],
+
+  "env": {
+    "development": {
+      // Run react-hmre babel preset for development.
+      // In package.json, included devDependency on "babel-preset-react-hmre": "1.1.1"
+      "presets": ["react-hmre"]
+    }
+  }
+}

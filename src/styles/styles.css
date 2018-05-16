@@ -1,0 +1,86 @@
+/* Not much here because we rely mostly on bootstrap. Here is my simple extension. */
+
+/*** HTML IDs ***/
+
+#app {
+  color: #4d4d4d;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 10px;
+  max-width: 1220px;
+  min-width: 830px;
+}
+
+/*** HTML tags ***/
+
+a.active {
+  color: orange;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a.noGrab:hover {
+  cursor: default;
+  text-decoration: none;
+}
+
+nav {
+  padding-top: 20px;
+}
+
+/*** My classes ***/
+
+.colorBlue {
+  color: blue;
+}
+.colorDarkBlue {
+  color: darkblue;
+}
+.colorOrange {
+  color: orange;
+}
+
+.fontSize14px {
+  font-size: 14px;
+}
+.fontSize16px {
+  font-size: 16px;
+}
+.fontSize28px {
+  font-size: 28px;
+}
+
+.margin10px {
+  margin: 10px;
+}
+.marginBottom5px {
+  margin-bottom: 5px;
+}
+.marginRight10px {
+  margin-right: 10px;
+}
+.marginTop6px {
+  margin-top: 6px;
+}
+
+.yangrowbackground {
+  background-color: #e2ffeb;
+}
+.yinrowbackground {
+  background-color: #fff3f1;
+}
+
+
+
+/***
+
+.fontSizeSmall {
+  font-size: small;
+}
+
+.marginRight10px {
+  margin-right: 10px;
+}
+
+***/
