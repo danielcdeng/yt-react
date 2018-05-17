@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
 import AppTitle from './common/AppTitle';
+// import LoadingDots from './common/LoadingDots'
 
 class App extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <Header loading={this.props.loading}/>
         <AppTitle />
+        {/*{this.props.loading && <LoadingDots interval={30} dots={25}/>}*/}
         {this.props.children}
       </div>
     );

@@ -61,6 +61,6 @@ export default function portfolioReducer(state = initReducerState.portfolio, act
 
   }
 
-  console.log('resState = ', resState);
+  //console.log('resState = ', resState);
   return resState;
 }
