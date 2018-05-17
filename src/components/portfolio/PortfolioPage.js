@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import {browserHistory} from 'react-router';
 import * as portfolioActions from '../../actions/portfolioActions';
 import TickerRow from './TickerRow';
-import portfolioData from '../../data/active';
 
 class PortfolioPage extends React.Component {
 
@@ -14,15 +13,6 @@ class PortfolioPage extends React.Component {
     this.restorePortfolio = this.restorePortfolio.bind(this);
     this.sortActions = this.sortActions.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
-    this.state = {
-      portfolio: {
-        source: portfolioData,
-        target: Object.assign([], portfolioData),
-        filter: []
-      }
-    };
-    //props.actions.beginAjaxCall();
-    //setTimeout(props.actions.ajaxCallError, 200);
   }
 
   //-----------------------------------------
@@ -92,10 +82,7 @@ class PortfolioPage extends React.Component {
   //-----------------------------------------
 
   render() {
-    let {actions, portfolio} = this.props;
-    if (!portfolio || !portfolio.source || portfolio.source.length == 0) {
-      portfolio = this.state.portfolio;
-    }
+    const {actions, portfolio} = this.props;
     return(
       <div>
         <br/>
@@ -164,7 +151,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
-  //console.log('ownProps = ', ownProps);
   return {
     portfolio: state.portfolio
   };

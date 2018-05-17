@@ -10,13 +10,12 @@ import { Provider } from 'react-redux';
 
 import routes from './routes';
 import './styles/styles.css';
-//import { loadPortfolioThunk } from "./actions/portfolioActions";
+import { loadPortfolioThunk } from "./actions/portfolioActions";
 import configureStore from './store/configureStore';
 
-const store = configureStore(); // to create the store
-
-//const portfolioThunk = loadPortfolioThunk();
-//store.dispatch(portfolioThunk);
+const store = configureStore();
+const portfolioThunk = loadPortfolioThunk();
+store.dispatch(portfolioThunk);
 
 render(
   <Provider store={store}>

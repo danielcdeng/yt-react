@@ -4,6 +4,7 @@ import LoadingDots from './LoadingDots';
 
 // JSX property "activeClassName" means to apply CSS class "active" when the link is selected/activated by user.
 const Header = ({loading}) => {
+  console.log('loading = ', {loading});
   return(
     <nav className="fontSize16px">
       <IndexLink to="/"     activeClassName="active">Home</IndexLink>{" | "}
