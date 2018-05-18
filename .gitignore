@@ -22,3 +22,4 @@ yarn-error.log*
 
 # default ones created by FB
 .idea
+package-lock.json
