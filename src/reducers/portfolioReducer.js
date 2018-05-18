@@ -8,7 +8,6 @@ export default function portfolioReducer(state = initReducerState.portfolio, act
     filter: Object.assign([], state.filter),
     target: Object.assign([], state.target)
   };
-  let tickers = [];
 
   switch (action.type) {
 
@@ -26,34 +25,64 @@ export default function portfolioReducer(state = initReducerState.portfolio, act
       break;
 
     case actionTypes.ON_TICKER_BEGIN_DATE_SORT:
-      resState.target = Object.assign([], action.target);         // otherwise sort would mutate the state
-      resState.target.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = Object.assign([], action.filter); // otherwise sort would mutate the state
+        resState.filter.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
+      } else {
+        resState.target = Object.assign([], action.target); // otherwise sort would mutate the state
+        resState.target.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
+      }
       break;
 
     case actionTypes.ON_TICKER_CYCLE_SORT:
       // .filter (and .map) makes a new array, so no need of Object.assign().
-      resState.target = action.target.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
-      resState.target = resState.target.concat(action.target.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = action.filter.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
+        resState.filter = resState.filter.concat(action.filter.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
+      } else {
+        resState.target = action.target.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
+        resState.target = resState.target.concat(action.target.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
+      }
       break;
 
     case actionTypes.ON_TICKER_HIGHEST_DATE_SORT:
-      resState.target = Object.assign([], action.target);
-      resState.target.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = Object.assign([], action.filter);
+        resState.filter.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
+      } else {
+        resState.target = Object.assign([], action.target);
+        resState.target.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
+      }
       break;
 
     case actionTypes.ON_TICKER_HIGHEST_NETPER_SORT:
-      resState.target = Object.assign([], action.target);
-      resState.target.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = Object.assign([], action.filter);
+        resState.filter.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
+      } else {
+        resState.target = Object.assign([], action.target);
+        resState.target.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
+      }
       break;
 
     case actionTypes.ON_TICKER_LOWEST_DATE_SORT:
-      resState.target = Object.assign([], action.target);
-      resState.target.sort((a, b) => b.sess.dat3 >= a.sess.dat3 ? 1 : -1);
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = Object.assign([], action.filter);
+        resState.filter.sort((a, b) => b.sess.dat3 >= a.sess.dat3 ? 1 : -1);
+      } else {
+        resState.target = Object.assign([], action.target);
+        resState.target.sort((a, b) => b.sess.dat3 >= a.sess.dat3 ? 1 : -1);
+      }
       break;
 
     case actionTypes.ON_TICKER_LOWEST_NETPER_SORT:
-      resState.target = Object.assign([], action.target);
-      resState.target.sort((a, b) => parseFloat(b.sess.afnp) >= parseFloat(a.sess.afnp) ? -1 : 1);
+      if (action.filter && action.filter.length > 0) {
+        resState.filter = Object.assign([], action.filter);
+        resState.filter.sort((a, b) => parseFloat(b.sess.afnp) >= parseFloat(a.sess.afnp) ? -1 : 1);
+      } else {
+        resState.target = Object.assign([], action.target);
+        resState.target.sort((a, b) => parseFloat(b.sess.afnp) >= parseFloat(a.sess.afnp) ? -1 : 1);
+      }
       break;
 
     default:

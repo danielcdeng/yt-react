@@ -37,8 +37,15 @@ nav {
 .colorDarkBlue {
   color: darkblue;
 }
+.colorDeepPink {
+  color: deeppink;
+}
 .colorOrange {
   color: orange;
+}
+
+.displayInLineBlock {
+  display: inline-block;
 }
 
 .fontSize14px {
@@ -50,6 +57,14 @@ nav {
 .fontSize28px {
   font-size: 28px;
 }
+.fontSizeSmall {
+  font-size: small
+}
+
+.google-ad-container {
+  width: 95%;
+  margin:0px auto 0px auto;
+}
 
 .margin10px {
   margin: 10px;
@@ -59,6 +74,12 @@ nav {
 }
 .marginRight10px {
   margin-right: 10px;
+}
+.marginRight-22px {
+  margin-right: -22px;
+}
+.marginTop10px {
+  margin-top: 10px;
 }
 .marginTop6px {
   margin-top: 6px;
@@ -71,7 +92,17 @@ nav {
   background-color: #fff3f1;
 }
 
-
+.yt-display-center {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  /* vertical-align:middle !important; */
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+.yt-section-main {
+  margin: 20px auto;
+}
 
 /***
 

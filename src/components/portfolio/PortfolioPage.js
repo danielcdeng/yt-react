@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {browserHistory} from 'react-router';
+//import {browserHistory} from 'react-router';
 import * as portfolioActions from '../../actions/portfolioActions';
 import TickerRow from './TickerRow';
 
@@ -13,6 +13,10 @@ class PortfolioPage extends React.Component {
     this.restorePortfolio = this.restorePortfolio.bind(this);
     this.sortActions = this.sortActions.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
+    this.state = {
+      reload: context.location.pathname
+    };
+    console.log('path: ', context.location.pathname);
   }
 
   //-----------------------------------------
@@ -26,15 +30,18 @@ class PortfolioPage extends React.Component {
 
   sortActions(userClickOn, actions, portfolio) {
 
+    const filter = portfolio.filter;
+    const target = portfolio.target;
+
     switch (userClickOn) {
 
       case 'BeginDate':
-        return(event => actions.onTickerBeginDateSort(portfolio.target));
+        return(event => actions.onTickerBeginDateSort(filter, target));
 
       case 'Cycle':
-        return(event => actions.onTickerCycleSort(portfolio.target));
+        return(event => actions.onTickerCycleSort(filter, target));
 
-      case 'Filter':
+      case 'Filter': // inputs
         return event => {
           event.target.value = event.target.value.toUpperCase();
           let tickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
@@ -58,16 +65,24 @@ class PortfolioPage extends React.Component {
         };
 
       case 'HighestDate':
-        return(event => actions.onTickerHighestDateSort(portfolio.target));
+        return(event => {
+          actions.onTickerHighestDateSort(filter, target);
+        });
 
       case 'HighestNetPer':
-        return(event => actions.onTickerHighestNetPerSort(portfolio.target));
+        return(event => {
+          actions.onTickerHighestNetPerSort(filter, target);
+        });
 
       case 'LowestDate':
-        return(event => actions.onTickerLowestDateSort(portfolio.target));
+        return(event => {
+          actions.onTickerLowestDateSort(filter, target);
+        });
 
       case 'LowestNetPer':
-        return(event => actions.onTickerLowestNetPerSort(portfolio.target));
+        return(event => {
+          actions.onTickerLowestNetPerSort(filter, target);
+        });
     }
   }
 
@@ -94,14 +109,19 @@ class PortfolioPage extends React.Component {
             onChange={this.sortActions("Filter", actions, portfolio)}
             style={{textTransform: "uppercase"}}/>
         </div>
+
         <h2>
-          <span className="marginRight10px">Portfolio</span>
-          <span className="fontSize14px">
-            Clicks each <a className="noGrab">Title</a> to sort the list.&nbsp;
-            Suggests to firstly click <a className="noGrab">Date</a> or <a className="noGrab">%</a> followed by <a className="noGrab">Cycle</a>.
-          </span>
-          <button className="btn btn-sm btn-primary marginTop6px pull-right" onClick={this.restorePortfolio(actions, portfolio)}>Restore Portfolio</button>
+
+        <span className="marginRight10px">Portfolio</span>
+        <span className="fontSize14px">
+          Clicks each <a className="noGrab">Title</a> below to sort the list.&nbsp;
+          Suggests to firstly click <a className="noGrab">Date</a> or <a className="noGrab">%</a> followed by <a className="noGrab">Cycle</a>.
+        </span>
+        <button className="btn btn-sm btn-primary marginTop6px pull-right"
+          onClick={this.restorePortfolio(actions, portfolio)}>Restore Portfolio</button>
+
         </h2>
+
         <table className="table">
           <thead>
           <tr>
@@ -134,10 +154,15 @@ class PortfolioPage extends React.Component {
           }
           </tbody>
         </table>
+
       </div>
     );
   }
 }
+
+PortfolioPage.contextTypes = {
+  location: PropTypes.object
+};
 
 PortfolioPage.propTypes = {
   actions: PropTypes.object.isRequired,

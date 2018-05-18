@@ -22,34 +22,38 @@ export function onRestorePortfolio() {
   return action;
 }
 
-export function onTickerBeginDateSort(target) {
-  const action = {type: actionTypes.ON_TICKER_BEGIN_DATE_SORT, target};
-  return action;
+// In below, parameter target could be also from portfolio.filter if filterFlag is true.
+
+export function onTickerBeginDateSort(filter, target) {
+  return(filter.length > 0 ? {type: actionTypes.ON_TICKER_BEGIN_DATE_SORT, filter} : {type: actionTypes.ON_TICKER_BEGIN_DATE_SORT, target});
 }
 
-export function onTickerCycleSort(target) {
-  const action = {type: actionTypes.ON_TICKER_CYCLE_SORT, target};
-  return action;
+export function onTickerCycleSort(filter, target) {
+  return(filter.length > 0 ? {type: actionTypes.ON_TICKER_CYCLE_SORT, filter} : {type: actionTypes.ON_TICKER_CYCLE_SORT, target});
 }
 
-export function onTickerHighestDateSort(target) {
-  const action = {type: actionTypes.ON_TICKER_HIGHEST_DATE_SORT, target};
-  return action;
+export function onTickerHighestDateSort(filter, target) {
+  return filter.length > 0 ?
+    {type: actionTypes.ON_TICKER_HIGHEST_DATE_SORT, filter} :
+    {type: actionTypes.ON_TICKER_HIGHEST_DATE_SORT, target};
 }
 
-export function onTickerHighestNetPerSort(target) {
-  const action = {type: actionTypes.ON_TICKER_HIGHEST_NETPER_SORT, target};
-  return action;
+export function onTickerHighestNetPerSort(filter, target) {
+  return filter.length > 0 ?
+    {type: actionTypes.ON_TICKER_HIGHEST_NETPER_SORT, filter} :
+    {type: actionTypes.ON_TICKER_HIGHEST_NETPER_SORT, target};
 }
 
-export function onTickerLowestDateSort(target) {
-  const action = {type: actionTypes.ON_TICKER_LOWEST_DATE_SORT, target};
-  return action;
+export function onTickerLowestDateSort(filter, target) {
+  return filter.length > 0 ?
+    {type: actionTypes.ON_TICKER_LOWEST_DATE_SORT, filter} :
+    {type: actionTypes.ON_TICKER_LOWEST_DATE_SORT, target};
 }
 
-export function onTickerLowestNetPerSort(target) {
-  const action = {type: actionTypes.ON_TICKER_LOWEST_NETPER_SORT, target};
-  return action;
+export function onTickerLowestNetPerSort(filter, target) {
+  return filter.length > 0 ?
+    {type: actionTypes.ON_TICKER_LOWEST_NETPER_SORT, filter} :
+    {type: actionTypes.ON_TICKER_LOWEST_NETPER_SORT, target};
 }
 
 /***** Thunk APIs *****/

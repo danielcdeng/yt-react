@@ -52,7 +52,7 @@ const TickerRow = ({ticker}) => {
     <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
       <td>{ticker.door.type == "yang" ? "I yang" : "II yin"}</td>
       <td title={ticker.tick.titl}>{ticker.tick.name}</td>
-      <td>{ticker.door.fore}</td>
+      <td><a>{ticker.door.fore}</a></td>
       <td>{ticker.door.dat1}<br/>{ticker.door.pri1}</td>
       <td>{ticker.sess.dat2}<br/>{ticker.sess.pri2}<br/>{addPlusSignIfPositive(ticker.sess.netp)+"%"}</td>
       <td>{ticker.sess.dat3}<br/>{ticker.sess.pri3}<br/>{addPlusSignIfPositive(ticker.sess.afnp)+"%"}</td>
