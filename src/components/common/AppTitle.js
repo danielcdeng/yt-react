@@ -1,13 +1,12 @@
 import React, {PropTypes} from 'react';
 import * as appConstants from './AppConstants';
+import wdates from '../../data/weeklyDates';
 
 const AppTitle = () => {
     return (
-      <div>
-        <h1 className="text-center colorDarkBlue">
-          <i>{appConstants.ENUS_TITLE}</i><br/>
-          {/*<span className="fontSize28px">{appConstants.ZHTW_TITLE}</span>*/}
-        </h1>
+      <div className="text-center">
+        <h1 className="colorDarkBlue"><i>{appConstants.ENUS_TITLE}</i></h1>
+        <h3>{wdates.fdate}&nbsp;-&nbsp;{wdates.tdate}</h3><br/>
       </div>
     );
 };

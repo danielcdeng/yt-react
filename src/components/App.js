@@ -21,14 +21,14 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('location.pathname = ', location.pathname);
+    //console.log('location.pathname = ', location.pathname);
     return(
       <div className="container-fluid">
         <Header loading={this.props.loading} locale={this.props.locale}/>
         <AppTitle />
         <div className="fontSizeSmall colorDeepPink">
           <i>
-            {(location.pathname == "/portfolio")?"Note: The portfolio State Code view, the text switch between enUS and zhTW locales, and the server-side rendering feature are yet to be implemented." : ""}
+            {(location.pathname == "/portfolio")?"Note: The portfolio State Code view and the language switch between en and ch are yet to be implemented." : ""}
           </i>
         </div>
         {/*{this.props.loading && <LoadingDots interval={30} dots={25}/>}*/}
