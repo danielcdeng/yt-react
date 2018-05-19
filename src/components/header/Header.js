@@ -56,6 +56,7 @@ class Header extends React.Component {
 
   render() {
     const {actions, loading, locale} = this.props;
+    // console.log('Header, render(), loading = ', loading); // console shows twice when loading = 0
     return (
       <div>
         <nav className="fontSize16px">
@@ -68,11 +69,11 @@ class Header extends React.Component {
           <Link to="/about" onClick={this.onLinkClick("about")}
             activeClassName={(this.state.reload == "/about" || this.state.about) ? "active" : "inactive"}>About</Link>
           &nbsp;&nbsp;
-          {loading && <LoadingDots interval={30} dots={30}/>} {/* Show dot q.30ms, up to 30 dots */}
+          {loading > 0 && <LoadingDots interval={30} dots={30}/>} {/* Show dot q.30ms, up to 30 dots */}
           &nbsp;&nbsp;
           <span className="btn-group pull-right">
-            <button className={'btn btn-xs '+(locale == 'en-us'?'btn-info':'btn-default')} onClick={this.onLocaleENUS(actions)}>enUS</button>
-            <button className={'btn btn-xs '+(locale == 'zh-tw'?'btn-info':'btn-default')} onClick={this.onLocaleZHTW(actions)}>zhTW</button>
+            <button className={'btn btn-xs '+(locale == 'en-us'?'btn-info':'btn-default')} onClick={this.onLocaleENUS(actions)}>en</button>
+            <button className={'btn btn-xs '+(locale == 'zh-tw'?'btn-info':'btn-default')} onClick={this.onLocaleZHTW(actions)}>ch</button>
           </span>
         </nav>
       </div>
@@ -86,7 +87,7 @@ Header.contextTypes = {
 
 Header.propTypes = {
   actions: PropTypes.object.isRequired,
-  loading: PropTypes.bool,
+  loading: PropTypes.number,
   locale:  PropTypes.string.isRequired
 };
 
@@ -98,7 +99,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    loading: state.loading,
+    loading: state.ajaxCallsInProgress,
     locale:  state.locale
   };
 }

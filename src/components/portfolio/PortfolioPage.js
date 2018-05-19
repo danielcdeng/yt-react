@@ -16,7 +16,7 @@ class PortfolioPage extends React.Component {
     this.state = {
       reload: context.location.pathname
     };
-    console.log('path: ', context.location.pathname);
+    //console.log('path: ', context.location.pathname);
   }
 
   //-----------------------------------------

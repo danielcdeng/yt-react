@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('location.pathname = ', location.pathname);
+    //console.log('location.pathname = ', location.pathname);
     return(
       <div className="container-fluid">
         <Header loading={this.props.loading} locale={this.props.locale}/>

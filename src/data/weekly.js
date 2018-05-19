@@ -1,6 +1,9 @@
+const weekly =
 [
 	{
 		"this_week_ldate": "2018-05-11",
 		"this_week_fdate": "2018-05-05"
 	}
-]
+];
+
+export default weekly;
