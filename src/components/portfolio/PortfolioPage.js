@@ -1,31 +1,42 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import * as actionTypes from '../../actions/actionTypes';
 import { bindActionCreators } from 'redux';
-//import {browserHistory} from 'react-router';
 import * as portfolioActions from '../../actions/portfolioActions';
 import TickerRow from './TickerRow';
+import {TAB_PORTFOLIO} from "../../actions/actionTypes";
 
 class PortfolioPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    //this.redirectToCustomizePortfolioPage = this.redirectToCustomizePortfolioPage.bind(this);
     this.restorePortfolio = this.restorePortfolio.bind(this);
     this.sortActions = this.sortActions.bind(this);
+    this.getTabName = this.getTabName.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
     this.state = {
       reload: context.location.pathname
     };
-    //console.log('path: ', context.location.pathname);
   }
 
   //-----------------------------------------
 
+  getTabName(cat) {
+    switch (cat) {
+      case actionTypes.TAB_INDICES: return actionTypes.TAB_INDICES.charAt(0).toUpperCase() + actionTypes.TAB_INDICES.slice(1);
+      case actionTypes.TAB_HIGHTECH: return actionTypes.TAB_HIGHTECH.charAt(0).toUpperCase() + actionTypes.TAB_HIGHTECH.slice(1);
+      case actionTypes.TAB_FINANCIAL: return actionTypes.TAB_FINANCIAL.charAt(0).toUpperCase() + actionTypes.TAB_FINANCIAL.slice(1);
+      case actionTypes.TAB_ASSET: return actionTypes.TAB_ASSET.charAt(0).toUpperCase() + actionTypes.TAB_ASSET.slice(1);
+      case actionTypes.TAB_CRYPTO: return actionTypes.TAB_CRYPTO.charAt(0).toUpperCase() + actionTypes.TAB_CRYPTO.slice(1);
+      default: return actionTypes.TAB_PORTFOLIO.charAt(0).toUpperCase() + actionTypes.TAB_PORTFOLIO.slice(1);
+    }
+  }
+
   restorePortfolio(actions) {
-    return(event => {
+    return event => {
       document.getElementById('filterinput').value = '';
       actions.onRestorePortfolio();
-    });
+    };
   }
 
   sortActions(userClickOn, actions, portfolio) {
@@ -35,12 +46,7 @@ class PortfolioPage extends React.Component {
 
     switch (userClickOn) {
 
-      case 'BeginDate':
-        return(event => actions.onTickerBeginDateSort(filter, target));
-
-      case 'Cycle':
-        return(event => actions.onTickerCycleSort(filter, target));
-
+      // For filtering:
       case 'Filter': // inputs
         return event => {
           event.target.value = event.target.value.toUpperCase();
@@ -57,68 +63,52 @@ class PortfolioPage extends React.Component {
             }
             return false;
           });
-          if (prefilter.length > 0) {
-            actions.onPortfolioFilter(prefilter); // firing
-          } else {
-            actions.onPortfolioFilter([]);
-          }
+          if (prefilter.length > 0) actions.onPortfolioFilter(prefilter);
+          else actions.onPortfolioFilter([]);
         };
 
-      case 'HighestDate':
-        return(event => {
-          actions.onTickerHighestDateSort(filter, target);
-        });
-
-      case 'HighestNetPer':
-        return(event => {
-          actions.onTickerHighestNetPerSort(filter, target);
-        });
-
-      case 'LowestDate':
-        return(event => {
-          actions.onTickerLowestDateSort(filter, target);
-        });
-
-      case 'LowestNetPer':
-        return(event => {
-          actions.onTickerLowestNetPerSort(filter, target);
-        });
+      // For column sorting:
+      case 'BeginDate':     return(event => { actions.onTickerBeginDateSort(filter, target); });
+      case 'Cycle':         return(event => { actions.onTickerCycleSort(filter, target); });
+      case 'HighestDate':   return(event => { actions.onTickerHighestDateSort(filter, target); });
+      case 'HighestNetPer': return(event => { actions.onTickerHighestNetPerSort(filter, target); });
+      case 'LowestDate':    return(event => { actions.onTickerLowestDateSort(filter, target); });
+      case 'LowestNetPer':  return(event => { actions.onTickerLowestNetPerSort(filter, target); });
     }
   }
 
   uniqBy(a, key) {
     let seen = {};
-    return a.filter(item => {
-      let k = key(item);
-      return seen.hasOwnProperty(k) ? false : (seen[k] = true);
-    });
+    return a.filter(item => { let k = key(item); return seen.hasOwnProperty(k) ? false : (seen[k] = true); });
   }
 
   //-----------------------------------------
 
   render() {
-    const {actions, portfolio} = this.props;
+    const {cat, porActions, portfolio} = this.props;
     return(
       <div>
         <br/>
-        <div className="marginBottom5px">
-          <b>Portfolio Filter</b> (separates each ticker by a space)
-        </div>
-        <div>
-          <input className="form-control" id="filterinput" type="text"
-            onChange={this.sortActions("Filter", actions, portfolio)}
-            style={{textTransform: "uppercase"}}/>
+        <div style={{display: portfolio.target.length > 3 ? "block" : "none"}}>
+          <div className="marginBottom5px">
+            <b>Filter</b> (separates each ticker by a space)
+          </div>
+          <div>
+            <input className="form-control" id="filterinput" type="text"
+              onChange={this.sortActions("Filter", porActions, portfolio)}
+              style={{textTransform: "uppercase"}}/>
+          </div>
         </div>
 
         <h2>
 
-        <span className="marginRight10px">Portfolio</span>
+        <span className="marginRight10px">{this.getTabName(cat)}</span> {/* "Portfolio" */}
         <span className="fontSize14px">
           Clicks each <a className="noGrab">Title</a> below to sort the list.&nbsp;
           Suggests to firstly click <a className="noGrab">Date</a> or <a className="noGrab">%</a> followed by <a className="noGrab">Cycle</a>.
         </span>
         <button className="btn btn-sm btn-primary marginTop6px pull-right"
-          onClick={this.restorePortfolio(actions, portfolio)}>Restore Portfolio</button>
+          onClick={this.restorePortfolio(porActions, portfolio)}>{"Restore " + this.getTabName(cat)}</button>
 
         </h2>
 
@@ -126,22 +116,22 @@ class PortfolioPage extends React.Component {
           <thead>
           <tr>
             <th width="10%">
-              <a onClick={this.sortActions("Cycle", actions, portfolio)}>Cycle</a>
+              <a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle</a>
             </th>
             <th width="10%">Ticker</th>
             <th width="10%">State</th>
             <th width="15%">
-              <a onClick={this.sortActions("BeginDate", actions, portfolio)}>Date</a>, Price
+              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a>, Price
             </th>
             <th width="15%">
               Highest&nbsp;
-              <a onClick={this.sortActions("HighestDate",   actions, portfolio)}>Date</a>,&nbsp;
-              <a onClick={this.sortActions("HighestNetPer", actions, portfolio)}>%</a>
+              <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Date</a>,&nbsp;
+              <a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>%</a>
             </th>
             <th width="15%">
               Lowest&nbsp;
-              <a onClick={this.sortActions("LowestDate",   actions, portfolio)}>Date</a>,&nbsp;
-              <a onClick={this.sortActions("LowestNetPer", actions, portfolio)}>%</a></th>
+              <a onClick={this.sortActions("LowestDate", porActions, portfolio)}>Date</a>,&nbsp;
+              <a onClick={this.sortActions("LowestNetPer", porActions, portfolio)}>%</a></th>
             <th width="15%">Last Close</th>
             <th width="10%">Stock</th>
           </tr>
@@ -161,22 +151,26 @@ class PortfolioPage extends React.Component {
 }
 
 PortfolioPage.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
+  router: PropTypes.object
 };
 
 PortfolioPage.propTypes = {
-  actions: PropTypes.object.isRequired,
+  cat: PropTypes.string, // category
+  porActions: PropTypes.object.isRequired,
   portfolio: PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(portfolioActions, dispatch)
+    porActions: bindActionCreators(portfolioActions, dispatch)
   };
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log('PortfolioPage, mapStateToProps, state = ', state);
   return {
+    cat: ownProps.params.cat,
     portfolio: state.portfolio
   };
 }

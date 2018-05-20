@@ -1,15 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
 
-export default {
-  // 1. For Header.js:
-  ajaxCallsInProgress: 0,
-  // 2. For Locales.js:
-  locale: actionTypes.LOCALE_ENUS,
-  // 3. For PortfolioPage.js:
-  portfolio: {
+const initReducerState = {
+    ajax: 0, // for Header.js
+    cat: '', // category
+    locale: actionTypes.LOCALE_ENUS, // for Locale.js
+    //------------------------------------------
     source: [], // the original source portfolio
-    //--------------------------------------------
-    filter: [], // working portfolio for filtering
-    target: []  // working portfolio for sorting
-  }
+    filter: [], // working portfolio on original or category (Indices...Crypto) for filtering
+    filbak: [], // backup of the above filter when working on the category
+    target: [], // working portfolio on original or category (Indices...Crypto) for sorting
+    tarbak: []  // backup of the above target when working on the category
 };
+
+export default initReducerState;

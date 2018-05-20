@@ -6,6 +6,12 @@ import {ajaxCallError, ajaxCallSuccess, beginAjaxCall} from './ajaxStatusActions
 
 /***** Exported Functions *****/
 
+export function getCatIndices(portfolio) {
+  const action = {type: actionTypes.TAB_INDICES, portfolio};
+  console.log('action = ', action);
+  return action;
+}
+
 export function loadPortfolioSuccess(source) {
   const action = {type: actionTypes.LOAD_PORTFOLIO_SUCCESS, source};
   return action;

@@ -50,13 +50,33 @@ const TickerRow = ({ticker}) => {
 
   return(
     <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
-      <td>{ticker.door.type == "yang" ? "I yang" : "II yin"}</td>
-      <td title={ticker.tick.titl}>{ticker.tick.name}</td>
-      <td><a>{ticker.door.fore}</a></td>
-      <td>{ticker.door.dat1}<br/>{ticker.door.pri1}</td>
-      <td>{ticker.sess.dat2}<br/>{ticker.sess.pri2}<br/>{addPlusSignIfPositive(ticker.sess.netp)+"%"}</td>
-      <td>{ticker.sess.dat3}<br/>{ticker.sess.pri3}<br/>{addPlusSignIfPositive(ticker.sess.afnp)+"%"}</td>
-      <td>{ticker.door.ldat}<br/>{ticker.door.lpri}</td>
+      <td>
+        {ticker.door.type == "yang" ? "I yang" : "II yin"}
+      </td>
+      <td title={ticker.tick.titl}>
+        {ticker.tick.name}
+      </td>
+      <td>
+        <a>{ticker.door.fore}</a>
+      </td>
+      <td>
+        {ticker.door.dat1}<br/>
+        {ticker.door.pri1}
+      </td>
+      <td>
+        {ticker.door.type == "yang" ? ticker.sess.dat2 : ""}<br/>
+        {ticker.door.type == "yang" ? ticker.sess.pri2 : ""}<br/>
+        {ticker.door.type == "yang" ? addPlusSignIfPositive(ticker.sess.netp)+"%" : ""}
+      </td>
+      <td>
+        {ticker.door.type == "yin" ? ticker.sess.dat2 : ""}<br/>
+        {ticker.door.type == "yin" ? ticker.sess.pri2 : ""}<br/>
+        {ticker.door.type == "yin" ? ticker.sess.netp+"%" : ""}
+      </td>
+      <td>
+        {ticker.door.ldat}<br/>
+        {ticker.door.lpri}
+      </td>
       <td><a href={renderStockChart(ticker.tick.name)} target="_blank">Chart</a></td>
     </tr>
   );

@@ -8,9 +8,7 @@ class App extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    // this.state = {
-    //   location: context.location
-    // };
+    // this.state = { location: context.location };
   }
 
   // Mainly for Header:
@@ -51,9 +49,10 @@ App.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+  console.log('App, mapStateToProps, state = ', state);
   return {
-    loading: state.ajaxCallsInProgress > 0,
-    locale: state.locale
+    loading: state.portfolio.ajax > 0,
+    locale: state.portfolio.locale
   };
 }
 
