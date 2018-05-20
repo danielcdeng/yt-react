@@ -4,7 +4,6 @@ import * as actionTypes from '../../actions/actionTypes';
 import { bindActionCreators } from 'redux';
 import * as portfolioActions from '../../actions/portfolioActions';
 import TickerRow from './TickerRow';
-import {TAB_PORTFOLIO} from "../../actions/actionTypes";
 
 class PortfolioPage extends React.Component {
 
