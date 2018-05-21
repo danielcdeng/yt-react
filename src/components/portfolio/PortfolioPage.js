@@ -128,9 +128,11 @@ class PortfolioPage extends React.Component {
               <a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>%</a>
             </th>
             <th width="15%">
-              Lowest&nbsp;
-              <a onClick={this.sortActions("LowestDate", porActions, portfolio)}>Date</a>,&nbsp;
-              <a onClick={this.sortActions("LowestNetPer", porActions, portfolio)}>%</a></th>
+              Lowest Date, %
+              {/*Lowest&nbsp;*/}
+              {/*<a onClick={this.sortActions("LowestDate", porActions, portfolio)}>Date</a>,&nbsp;*/}
+              {/*<a onClick={this.sortActions("LowestNetPer", porActions, portfolio)}>%</a>*/}
+            </th>
             <th width="15%">Last Close</th>
             <th width="10%">Stock</th>
           </tr>
