@@ -100,15 +100,11 @@ class PortfolioPage extends React.Component {
         </div>
 
         <h2>
-
-        <span className="marginRight10px">{this.getTabName(cat)}</span> {/* "Portfolio" */}
-        <span className="fontSize14px">
-          Clicks each <a className="noGrab">Title</a> below to sort the list.&nbsp;
-          Suggests to firstly click <a className="noGrab">Date</a> or <a className="noGrab">%</a> followed by <a className="noGrab">Cycle</a>.
-        </span>
-        <button className="btn btn-sm btn-primary marginTop6px pull-right"
-          onClick={this.restorePortfolio(porActions, portfolio)}>{"Restore " + this.getTabName(cat)}</button>
-
+          <span className="marginRight10px">{this.getTabName(cat)}</span> {/* "Portfolio" */}
+          <span className="fontSize14px">This type of <a className="noGrab">Title</a> is clickable for sorting.</span>
+          <button style={{display: portfolio.target.length > 3 ? "block" : "none"}}
+            className="btn btn-sm btn-primary marginTop6px pull-right"
+            onClick={this.restorePortfolio(porActions, portfolio)}>{"Reset " + this.getTabName(cat)}</button>
         </h2>
 
         <table className="table">
@@ -120,7 +116,7 @@ class PortfolioPage extends React.Component {
             <th width="10%">Ticker</th>
             <th width="10%">State</th>
             <th width="15%">
-              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a>, Price
+              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a>, Begin
             </th>
             <th width="15%">
               Highest&nbsp;
@@ -145,6 +141,8 @@ class PortfolioPage extends React.Component {
           }
           </tbody>
         </table>
+        <div className="fontSizeSmall"><i>&#45; (minus sign): The ticker's <b>Last Close</b> is below its <b>Begin</b> of Cycle-I yang.</i></div>
+        <div className="fontSizeSmall"><i>&#43; (plus sign): The ticker's <b>Last Close</b> is above its <b>Begin</b> of Cycle-II yin.</i></div>
 
       </div>
     );

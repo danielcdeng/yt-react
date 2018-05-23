@@ -56,7 +56,8 @@ const TickerRow = ({ticker}) => {
         {ticker.door.type == "yang" ? "I yang" : "II yin"}
       </td>
       <td title={ticker.tick.titl}>
-        {ticker.tick.name}
+        {ticker.tick.name}&nbsp;
+        {ticker.door.type == "yang" ? (parseFloat(ticker.door.lpri)<parseFloat(ticker.door.pri1)?"-":"") : (parseFloat(ticker.door.lpri)>parseFloat(ticker.door.pri1)?"+":"")}
       </td>
       <td>
         <a>{ticker.door.fore}</a>
