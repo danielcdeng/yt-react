@@ -6,8 +6,7 @@
   color: #4d4d4d;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 10px;
-  max-width: 1220px;
-  min-width: 920px;
+  min-width: 740px;
 }
 
 /*** HTML tags ***/
@@ -30,6 +29,10 @@ nav {
 }
 
 /*** My classes ***/
+
+.tableHeaderBackgroundColor {
+  background-color: #FFEEDB;
+}
 
 .colorBlue {
   color: blue;
