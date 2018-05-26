@@ -114,7 +114,7 @@ class PortfolioPage extends React.Component {
             <th width="10%">Stock<br/>Ticker</th>
             <th width="10%">State<br/>Code</th>
             <th width="15%">
-              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a><br/>Begin Price
+              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Begin Date</a><br/>Begin Price
             </th>
             <th width="15%">
               Highest <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Date</a><br/>

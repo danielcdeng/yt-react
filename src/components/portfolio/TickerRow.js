@@ -68,12 +68,12 @@ const TickerRow = ({ticker}) => {
       </td>
       <td>
         {ticker.door.type == "yang" ? ticker.sess.dat2 : ""}<br/>
-        {ticker.door.type == "yang" ? ticker.sess.pri2 : ""}<br/>
+        {ticker.door.type == "yang" ? ticker.sess.pri2+", " : ""}&nbsp;
         {ticker.door.type == "yang" ? addPlusSignIfPositive(ticker.sess.netp)+"%" : ""}
       </td>
       <td>
         {ticker.door.type == "yin" ? ticker.sess.dat2 : ""}<br/>
-        {ticker.door.type == "yin" ? ticker.sess.pri2 : ""}<br/>
+        {ticker.door.type == "yin" ? ticker.sess.pri2+", " : ""}&nbsp;
         {ticker.door.type == "yin" ? ticker.sess.netp+"%" : ""}
       </td>
       <td>
