@@ -108,29 +108,26 @@ class PortfolioPage extends React.Component {
         </h2>
 
         <table className="table">
-          <thead>
+          <thead className="tableHeaderBackgroundColor">
           <tr>
-            <th width="10%">
-              <a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle</a>
-            </th>
-            <th width="10%">Ticker</th>
-            <th width="10%">State</th>
+            <th width="10%"><a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle</a><br/>Type</th>
+            <th width="10%">Stock<br/>Ticker</th>
+            <th width="10%">State<br/>Code</th>
             <th width="15%">
-              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a>, Begin
+              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Date</a><br/>Begin Price
             </th>
             <th width="15%">
-              Highest&nbsp;
-              <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Date</a>,&nbsp;
-              <a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>%</a>
+              Highest <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Date</a><br/>
+              Price, +Net<a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>%</a>
             </th>
             <th width="15%">
-              Lowest Date, %
+              Lowest Date<br/>Price, -Net%
               {/*Lowest&nbsp;*/}
               {/*<a onClick={this.sortActions("LowestDate", porActions, portfolio)}>Date</a>,&nbsp;*/}
               {/*<a onClick={this.sortActions("LowestNetPer", porActions, portfolio)}>%</a>*/}
             </th>
-            <th width="15%">Last Close</th>
-            <th width="10%">Stock</th>
+            <th width="15%">Last Date<br/>Close Price</th>
+            <th width="10%">Stock<br/>Market</th>
           </tr>
           </thead>
           <tbody>
