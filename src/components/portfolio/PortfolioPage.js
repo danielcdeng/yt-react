@@ -110,15 +110,15 @@ class PortfolioPage extends React.Component {
         <table className="table">
           <thead className="tableHeaderBackgroundColor">
           <tr>
-            <th width="10%"><a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle</a><br/>Type</th>
+            <th width="10%"><a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle<br/>Type</a></th>
             <th width="10%">Stock<br/>Ticker</th>
             <th width="10%">State<br/>Code</th>
             <th width="15%">
               <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Begin Date</a><br/>Begin Price
             </th>
             <th width="15%">
-              Highest <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Date</a><br/>
-              Price, +Net<a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>%</a>
+              <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Highest Date</a><br/>
+              Price, <a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>+Net%</a>
             </th>
             <th width="15%">
               Lowest Date<br/>Price, -Net%
