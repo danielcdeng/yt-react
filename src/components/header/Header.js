@@ -35,6 +35,7 @@ class Header extends React.Component {
         case actionTypes.TAB_HOME:
           this.setState({home: true});
           browserHistory.push('/');
+          //ca.onCatClick(link);
           break;
         case actionTypes.TAB_PORTFOLIO:
           this.setState({port: true});
@@ -69,6 +70,7 @@ class Header extends React.Component {
         case actionTypes.TAB_ABOUT:
           this.setState({about: true});
           browserHistory.push('/about');
+          //ca.onCatClick(link);
           break;
       }
     });

@@ -19,7 +19,7 @@ class AboutPage extends React.Component {
           </li>
           <br/>
           <li>
-            The Cycle-yang-type implies either or the combination of the following meanings: expand, up-trend, rising, bullish, buy/hold, and/or positive. The Cycle-yin-type: constrict, down-trend, falling, bearish, sell/short, and/or negative. However, whether it's truly positive or negative, it would depend on the context presented by the five-digit code stated in the <i>Book of Change</i>.
+            The Cycle-yang-type implies either or the combination of the following meanings: expand, up-trend, rising, bullish, buy/hold, and/or positive. The Cycle-yin-type: constrict, down-trend, falling, bearish, sell/short, and/or negative. The context from the <i>Book of Change</i> metaphorically predicts the ensuing situation.
           </li>
           <br/>
           <li>The application uses <span className="colorOrange">React</span>,&nbsp;

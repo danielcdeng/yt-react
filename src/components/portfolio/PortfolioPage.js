@@ -9,6 +9,7 @@ class PortfolioPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.getFilterTickers = this.getFilterTickers.bind(this);
     this.getTabName = this.getTabName.bind(this);
     this.onViewReset = this.onViewReset.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
@@ -19,7 +20,23 @@ class PortfolioPage extends React.Component {
     };
   }
 
-  //-----------------------------------------
+  componentDidMount() {
+    this.getFilterTickers();
+  }
+
+  // componentDidUpdate() {
+  //   this.getFilterTickers();
+  // }
+
+  getFilterTickers() {
+    if (this.props.view.filter.length > 0) {
+      let filterTickers = '';
+      this.props.view.filter.forEach(ticker => filterTickers += ticker.tick.name + ' ');
+      document.getElementById('filterinput').value = filterTickers;
+    } else {
+      document.getElementById('filterinput').value = '';
+    }
+  }
 
   getTabName(cat) {
     switch (cat) {
@@ -87,8 +104,6 @@ class PortfolioPage extends React.Component {
       case 'onTopStateCodeClick': return(event => { console.log('event = ', event); });
     }
   }
-
-  //-----------------------------------------
 
   render() {
     const {cat, actions, view} = this.props;

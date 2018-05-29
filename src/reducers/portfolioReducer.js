@@ -22,7 +22,8 @@ export default function portfolioReducer(state = initReducerState, action) {
     crypto:    state.crypto
   };
 
-  function switchView(actionCat) {
+  // Only called when actionCat is one of the data views:
+  function switchDataView(actionCat) {
     if (state.view.cat != actionCat) {
       const viewObj = Object.assign({}, state.view);
       switch (actionCat) {
@@ -32,8 +33,8 @@ export default function portfolioReducer(state = initReducerState, action) {
         case actionTypes.TAB_FINANCIAL: newState.view = Object.assign({}, newState.financial); updateFilterInputBox(newState.view); break;
         case actionTypes.TAB_ASSET:     newState.view = Object.assign({}, newState.asset);     updateFilterInputBox(newState.view); break;
         case actionTypes.TAB_CRYPTO:    newState.view = Object.assign({}, newState.crypto);    updateFilterInputBox(newState.view); break;
-        default: break;
       }
+      // Backup:
       switch (viewObj.cat) {
         case actionTypes.TAB_PORTFOLIO: newState.portfolio = viewObj; break;
         case actionTypes.TAB_INDICES:   newState.indices   = viewObj; break;
@@ -41,19 +42,23 @@ export default function portfolioReducer(state = initReducerState, action) {
         case actionTypes.TAB_FINANCIAL: newState.financial = viewObj; break;
         case actionTypes.TAB_ASSET:     newState.asset     = viewObj; break;
         case actionTypes.TAB_CRYPTO:    newState.crypto    = viewObj; break;
-        default: break;
       }
-    } else {
+    } {
       console.log('portfolioReducer: The state.view switch is not required.');
     }
   }
 
   function updateFilterInputBox(view) {
-    document.getElementById('filterinput').value = '';
-    if (view.filter.length > 0) {
-      let filterTickers = '';
-      view.filter.forEach(ticker => filterTickers += ticker.tick.name + ' ');
-      document.getElementById('filterinput').value = filterTickers;
+    const inputEle = document.getElementById('filterinput');
+    if (inputEle) {
+      inputEle.value = '';
+      if (view.filter.length > 0) {
+        let filterTickers = '';
+        view.filter.forEach(ticker => filterTickers += ticker.tick.name + ' ');
+        inputEle.value = filterTickers;
+      }
+    } else {
+      // The action control must come from a non-data-view tab. Taken care of by componentDidMount() in PortfolioPage.js.
     }
   }
 
@@ -155,12 +160,12 @@ export default function portfolioReducer(state = initReducerState, action) {
       }
       break;
 
-    case actionTypes.TAB_PORTFOLIO: console.log('  ajaxStatusReducer TAB_PORTFOLIO'); switchView(actionTypes.TAB_PORTFOLIO); break;
-    case actionTypes.TAB_INDICES:   console.log('  ajaxStatusReducer TAB_INDICES');   switchView(actionTypes.TAB_INDICES);   break;
-    case actionTypes.TAB_HIGHTECH:  console.log('  ajaxStatusReducer TAB_HIGHTECH');  switchView(actionTypes.TAB_HIGHTECH);  break;
-    case actionTypes.TAB_FINANCIAL: console.log('  ajaxStatusReducer TAB_FINANCIAL'); switchView(actionTypes.TAB_FINANCIAL); break;
-    case actionTypes.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchView(actionTypes.TAB_ASSET);     break;
-    case actionTypes.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchView(actionTypes.TAB_CRYPTO);    break;
+    case actionTypes.TAB_PORTFOLIO: console.log('  ajaxStatusReducer TAB_PORTFOLIO'); switchDataView(actionTypes.TAB_PORTFOLIO); break;
+    case actionTypes.TAB_INDICES:   console.log('  ajaxStatusReducer TAB_INDICES');   switchDataView(actionTypes.TAB_INDICES);   break;
+    case actionTypes.TAB_HIGHTECH:  console.log('  ajaxStatusReducer TAB_HIGHTECH');  switchDataView(actionTypes.TAB_HIGHTECH);  break;
+    case actionTypes.TAB_FINANCIAL: console.log('  ajaxStatusReducer TAB_FINANCIAL'); switchDataView(actionTypes.TAB_FINANCIAL); break;
+    case actionTypes.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchDataView(actionTypes.TAB_ASSET);     break;
+    case actionTypes.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchDataView(actionTypes.TAB_CRYPTO);    break;
 
     default: break;
 
