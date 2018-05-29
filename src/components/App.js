@@ -49,10 +49,12 @@ App.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log('App, mapStateToProps, state = ', state);
+  console.log('App, mapStateToProps:');
+  console.log('  par state = ', state);
+  console.log('  par ownProps = ', ownProps);
   return {
-    loading: state.portfolio.ajax > 0,
-    locale: state.portfolio.locale
+    loading: state.data.ajax > 0,
+    locale:  state.data.locale
   };
 }
 

@@ -7,123 +7,96 @@ export default function portfolioReducer(state = initReducerState, action) {
   console.log('  par state = ', state);
   console.log('  par action = ', action);
 
-  // The new state:
+  // Init the new state:
   let newState = {
     ajax:   state.ajax,
-    cat:    state.cat,
     locale: state.locale,
-    //-------------------
-    source: state.source,
-    filter: state.filter,
-    filbak: state.filbak,
-    target: state.target,
-    tarbak: state.tarbak
+    //----------------------------
+    view:      Object.assign({}, state.view),
+    //----------------------------
+    portfolio: state.portfolio,
+    indices:   state.indices,
+    hightech:  state.hightech,
+    financial: state.financial,
+    asset:     state.asset,
+    crypto:    state.crypto
   };
 
-  function tabCommonProcessor(tabName, newState) {
-    //document.getElementById('filterinput').value = '';
-    newState.cat = tabName;
-    newState.filter = [];
+  function switchView(actionCat) {
+    if (state.view.cat != actionCat) {
+      const viewObj = Object.assign({}, state.view);
+      switch (actionCat) {
+        case actionTypes.TAB_PORTFOLIO: newState.view = Object.assign({}, newState.portfolio); updateFilterInputBox(newState.view); break;
+        case actionTypes.TAB_INDICES:   newState.view = Object.assign({}, newState.indices);   updateFilterInputBox(newState.view); break;
+        case actionTypes.TAB_HIGHTECH:  newState.view = Object.assign({}, newState.hightech);  updateFilterInputBox(newState.view); break;
+        case actionTypes.TAB_FINANCIAL: newState.view = Object.assign({}, newState.financial); updateFilterInputBox(newState.view); break;
+        case actionTypes.TAB_ASSET:     newState.view = Object.assign({}, newState.asset);     updateFilterInputBox(newState.view); break;
+        case actionTypes.TAB_CRYPTO:    newState.view = Object.assign({}, newState.crypto);    updateFilterInputBox(newState.view); break;
+        default: break;
+      }
+      switch (viewObj.cat) {
+        case actionTypes.TAB_PORTFOLIO: newState.portfolio = viewObj; break;
+        case actionTypes.TAB_INDICES:   newState.indices   = viewObj; break;
+        case actionTypes.TAB_HIGHTECH:  newState.hightech  = viewObj; break;
+        case actionTypes.TAB_FINANCIAL: newState.financial = viewObj; break;
+        case actionTypes.TAB_ASSET:     newState.asset     = viewObj; break;
+        case actionTypes.TAB_CRYPTO:    newState.crypto    = viewObj; break;
+        default: break;
+      }
+    } else {
+      console.log('portfolioReducer: The state.view switch is not required.');
+    }
+  }
+
+  function updateFilterInputBox(view) {
+    document.getElementById('filterinput').value = '';
+    if (view.filter.length > 0) {
+      let filterTickers = '';
+      view.filter.forEach(ticker => filterTickers += ticker.tick.name + ' ');
+      document.getElementById('filterinput').value = filterTickers;
+    }
   }
 
   switch (action.type) {
 
-    /*** For ajaxStatusActions ***/
-
     case actionTypes.BEGIN_AJAX_CALL:
-      //console.log('ajaxStatusReducer BEGIN_AJAX_CALL');
+      console.log('  ajaxStatusReducer BEGIN_AJAX_CALL');
       newState.ajax += 1;
       break;
 
     case actionTypes.AJAX_CALL_ERROR:
     case actionTypes.AJAX_CALL_SUCCESS:
-      //console.log('ajaxStatusReducer AJAX_CALL_ERROR || action.type == actionTypes.AJAX_CALL_SUCCESS');
+      console.log('  ajaxStatusReducer AJAX_CALL_ERROR || action.type == actionTypes.AJAX_CALL_SUCCESS');
       newState.ajax -= 1;
       break;
 
-    /*** For categoryActions (triggered in Header.js) ***/
-
-    case actionTypes.TAB_PORTFOLIO:
-      tabCommonProcessor(actionTypes.TAB_PORTFOLIO, newState);
-      newState.target = Object.assign([], state.source);
+    case actionTypes.LOAD_PORTFOLIO_SUCCESS:
+      console.log('  ajaxStatusReducer LOAD_PORTFOLIO_SUCCESS');
+      newState.view.cat = actionTypes.TAB_PORTFOLIO.slice(0);
+      newState.view.target = Object.assign([], action.target);
+      //
+      newState.portfolio = Object.assign({}, newState.view);
+      //
+      newState.indices = Object.assign({}, newState.portfolio);
+      newState.indices.cat = actionTypes.TAB_INDICES.slice(0);
+      newState.indices.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_INDICES.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      //
+      newState.hightech = Object.assign({}, newState.portfolio);
+      newState.hightech.cat = actionTypes.TAB_HIGHTECH.slice(0);
+      newState.hightech.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_HIGHTECH.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      //
+      newState.financial = Object.assign({}, newState.portfolio);
+      newState.financial.cat = actionTypes.TAB_FINANCIAL.slice(0);
+      newState.financial.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_FINANCIAL.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      //
+      newState.asset = Object.assign({}, newState.portfolio);
+      newState.asset.cat = actionTypes.TAB_ASSET.slice(0);
+      newState.asset.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      //
+      newState.crypto = Object.assign({}, newState.portfolio);
+      newState.crypto.cat = actionTypes.TAB_CRYPTO.slice(0);
+      newState.crypto.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
       break;
-
-    case actionTypes.TAB_INDICES:
-      tabCommonProcessor(actionTypes.TAB_INDICES, newState);
-      newState.target = newState.source.filter(ticker => {
-        switch (ticker.tick.name) {
-          case actionTypes.TICKER_DAX:
-          case actionTypes.TICKER_KOSPI:
-          case actionTypes.TICKER_NASDAQ:
-          case actionTypes.TICKER_SHCOMP:
-          case actionTypes.TICKER_SP500:
-          case actionTypes.TICKER_TAIEX:
-          case actionTypes.TICKER_TRAN:
-            return true;
-        }
-        return false;
-      });
-      break;
-
-    case actionTypes.TAB_HIGHTECH:
-      tabCommonProcessor(actionTypes.TAB_HIGHTECH, newState);
-      newState.target = newState.source.filter(ticker => {
-        switch (ticker.tick.name) {
-          case actionTypes.TICKER_AAPL:
-          case actionTypes.TICKER_AMZN:
-          case actionTypes.TICKER_BABA:
-          case actionTypes.TICKER_CRM:
-          case actionTypes.TICKER_FB:
-          case actionTypes.TICKER_GOOGL:
-          case actionTypes.TICKER_MSFT:
-          case actionTypes.TICKER_NFLX:
-          case actionTypes.TICKER_NVDA:
-          case actionTypes.TICKER_TQQQ:
-          case actionTypes.TICKER_TSLA:
-          case actionTypes.TICKER_TSM:
-            return true;
-        }
-        return false;
-      });
-      break;
-
-    case actionTypes.TAB_FINANCIAL:
-      tabCommonProcessor(actionTypes.TAB_FINANCIAL, newState);
-      newState.target = newState.source.filter(ticker => {
-        switch (ticker.tick.name) {
-          case actionTypes.TICKER_XLF:
-            return true;
-        }
-        return false;
-      });
-      break;
-
-    case actionTypes.TAB_ASSET:
-      tabCommonProcessor(actionTypes.TAB_ASSET, newState);
-      newState.target = newState.source.filter(ticker => {
-        switch (ticker.tick.name) {
-          case actionTypes.TICKER_GLD:
-          case actionTypes.TICKER_IYR:
-          case actionTypes.TICKER_SLV:
-          case actionTypes.TICKER_XLE:
-            return true;
-        }
-        return false;
-      });
-      break;
-
-    case actionTypes.TAB_CRYPTO:
-      tabCommonProcessor(actionTypes.TAB_CRYPTO, newState);
-      newState.target = newState.source.filter(ticker => {
-        switch (ticker.tick.name) {
-          case actionTypes.TICKER_BTC:
-            return true;
-        }
-        return false;
-      });
-      break;
-
-    /*** For localeActions ***/
 
     case actionTypes.LOCALE_ENUS: // default
       newState.locale = actionTypes.LOCALE_ENUS;
@@ -133,89 +106,67 @@ export default function portfolioReducer(state = initReducerState, action) {
       newState.locale = actionTypes.LOCALE_ZHTW;
       break;
 
-    /*** For portfolioActions ***/
-
-    case actionTypes.LOAD_PORTFOLIO_SUCCESS:
-      newState.source = Object.assign([], action.source);
-      newState.target = Object.assign([], action.source);
+    case actionTypes.ON_VIEW_FILTER:
+      newState.view.filter = Object.assign([], action.filter);
       break;
 
-    case actionTypes.ON_PORTFOLIO_FILTER:
-      newState.filter = Object.assign([], action.filter);
-      break;
-
-    case actionTypes.ON_RESTORE_PORTFOLIO:
-      newState.filter = [];
+    case actionTypes.ON_VIEW_RESET:
+      newState.view.filter = [];
       break;
 
     case actionTypes.ON_TICKER_BEGIN_DATE_SORT:
       if (action.filter && action.filter.length > 0) {
-        newState.filter = Object.assign([], action.filter); // otherwise sort would mutate the state
-        newState.filter.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
+        newState.view.filter = Object.assign([], action.filter); // otherwise sort would mutate the state
+        newState.view.filter.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
       } else {
-        newState.target = Object.assign([], action.target); // otherwise sort would mutate the state
-        newState.target.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
+        newState.view.target = Object.assign([], action.target); // otherwise sort would mutate the state
+        newState.view.target.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
       }
       break;
 
     case actionTypes.ON_TICKER_CYCLE_SORT:
-      // .filter (and .map) makes a new array, so no need of Object.assign().
+      // .filter and .map would make a new array, so no need of Object.assign().
       if (action.filter && action.filter.length > 0) {
-        newState.filter = action.filter.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
-        newState.filter = newState.filter.concat(action.filter.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
+        newState.view.filter = action.filter.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
+        newState.view.filter = newState.view.filter.concat(action.filter.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
       } else {
-        newState.target = action.target.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
-        newState.target = newState.target.concat(action.target.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
+        newState.view.target = action.target.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
+        newState.view.target = newState.view.target.concat(action.target.filter(ticker => { return ticker.door.type == 'yin' ? true : false; }));
       }
       break;
 
     case actionTypes.ON_TICKER_HIGHEST_DATE_SORT:
       if (action.filter && action.filter.length > 0) {
-        newState.filter = Object.assign([], action.filter);
-        newState.filter.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
+        newState.view.filter = Object.assign([], action.filter);
+        newState.view.filter.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
       } else {
-        newState.target = Object.assign([], action.target);
-        newState.target.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
+        newState.view.target = Object.assign([], action.target);
+        newState.view.target.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
       }
       break;
 
     case actionTypes.ON_TICKER_HIGHEST_NETPER_SORT:
       if (action.filter && action.filter.length > 0) {
-        newState.filter = Object.assign([], action.filter);
-        newState.filter.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
+        newState.view.filter = Object.assign([], action.filter);
+        newState.view.filter.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
       } else {
-        newState.target = Object.assign([], action.target);
-        newState.target.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
+        newState.view.target = Object.assign([], action.target);
+        newState.view.target.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
       }
       break;
 
-    case actionTypes.ON_TICKER_LOWEST_DATE_SORT:
-      if (action.filter && action.filter.length > 0) {
-        newState.filter = Object.assign([], action.filter);
-        newState.filter.sort((a, b) => b.sess.dat3 >= a.sess.dat3 ? 1 : -1);
-      } else {
-        newState.target = Object.assign([], action.target);
-        newState.target.sort((a, b) => b.sess.dat3 >= a.sess.dat3 ? 1 : -1);
-      }
-      break;
+    case actionTypes.TAB_PORTFOLIO: console.log('  ajaxStatusReducer TAB_PORTFOLIO'); switchView(actionTypes.TAB_PORTFOLIO); break;
+    case actionTypes.TAB_INDICES:   console.log('  ajaxStatusReducer TAB_INDICES');   switchView(actionTypes.TAB_INDICES);   break;
+    case actionTypes.TAB_HIGHTECH:  console.log('  ajaxStatusReducer TAB_HIGHTECH');  switchView(actionTypes.TAB_HIGHTECH);  break;
+    case actionTypes.TAB_FINANCIAL: console.log('  ajaxStatusReducer TAB_FINANCIAL'); switchView(actionTypes.TAB_FINANCIAL); break;
+    case actionTypes.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchView(actionTypes.TAB_ASSET);     break;
+    case actionTypes.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchView(actionTypes.TAB_CRYPTO);    break;
 
-    case actionTypes.ON_TICKER_LOWEST_NETPER_SORT:
-      if (action.filter && action.filter.length > 0) {
-        newState.filter = Object.assign([], action.filter);
-        newState.filter.sort((a, b) => parseFloat(b.sess.afnp) >= parseFloat(a.sess.afnp) ? -1 : 1);
-      } else {
-        newState.target = Object.assign([], action.target);
-        newState.target.sort((a, b) => parseFloat(b.sess.afnp) >= parseFloat(a.sess.afnp) ? -1 : 1);
-      }
-      break;
-
-    /*** Others ***/
-
-    default:
-      break;
+    default: break;
 
   }
 
-  console.log('portfolioReducer, newState = ', newState);
+  console.log('  newState = ', newState);
   return newState;
 }
+
