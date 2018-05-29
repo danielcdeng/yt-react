@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import portfolio from './portfolioReducer';
+import data from './portfolioReducer';
 
 const store = combineReducers({
-  portfolio
+  data
 });
 export default store;

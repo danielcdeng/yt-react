@@ -9,12 +9,13 @@ class PortfolioPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.restorePortfolio = this.restorePortfolio.bind(this);
-    this.sortActions = this.sortActions.bind(this);
     this.getTabName = this.getTabName.bind(this);
+    this.onViewReset = this.onViewReset.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
+    this.userAction = this.userAction.bind(this);
     this.state = {
-      reload: context.location.pathname
+      reload: context.location.pathname,
+      totalStateCodeChecked: false
     };
   }
 
@@ -31,49 +32,17 @@ class PortfolioPage extends React.Component {
     }
   }
 
-  restorePortfolio(actions) {
+  onTotalStateCodeCheck() {
     return event => {
-      document.getElementById('filterinput').value = '';
-      actions.onRestorePortfolio();
+      console.log('I am here');
     };
   }
 
-  sortActions(userClickOn, actions, portfolio) {
-
-    const filter = portfolio.filter;
-    const target = portfolio.target;
-
-    switch (userClickOn) {
-
-      // For filtering:
-      case 'Filter': // inputs
-        return event => {
-          event.target.value = event.target.value.toUpperCase();
-          let tickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
-          if (tickers.length == 0) { actions.onPortfolioFilter([]); return; }
-          let prefilter = [];
-          tickers = this.uniqBy(tickers, JSON.stringify); // remove duplicates from users's input
-          tickers = tickers.filter(t1 => {
-            for(let idx1 = 0; idx1 < portfolio.target.length; idx1++) {
-              if (t1 == portfolio.target[idx1].tick.name) {
-                prefilter.push(portfolio.target[idx1]);
-                return true;
-              }
-            }
-            return false;
-          });
-          if (prefilter.length > 0) actions.onPortfolioFilter(prefilter);
-          else actions.onPortfolioFilter([]);
-        };
-
-      // For column sorting:
-      case 'BeginDate':     return(event => { actions.onTickerBeginDateSort(filter, target); });
-      case 'Cycle':         return(event => { actions.onTickerCycleSort(filter, target); });
-      case 'HighestDate':   return(event => { actions.onTickerHighestDateSort(filter, target); });
-      case 'HighestNetPer': return(event => { actions.onTickerHighestNetPerSort(filter, target); });
-      case 'LowestDate':    return(event => { actions.onTickerLowestDateSort(filter, target); });
-      case 'LowestNetPer':  return(event => { actions.onTickerLowestNetPerSort(filter, target); });
-    }
+  onViewReset(actions) {
+    return event => {
+      document.getElementById('filterinput').value = '';
+      actions.onViewReset();
+    };
   }
 
   uniqBy(a, key) {
@@ -81,20 +50,59 @@ class PortfolioPage extends React.Component {
     return a.filter(item => { let k = key(item); return seen.hasOwnProperty(k) ? false : (seen[k] = true); });
   }
 
+  userAction(userClickOn, actions, view) {
+
+    const filter = view.filter;
+    const target = view.target;
+
+    switch (userClickOn) {
+
+      // For filtering:
+      case 'Filter': // inputs
+        return event => {
+          event.target.value = event.target.value.toUpperCase();
+          let filterTickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
+          if (filterTickers.length == 0) { actions.onViewFilter([]); return; }
+          let prefilter = [];
+          filterTickers = this.uniqBy(filterTickers, JSON.stringify); // remove duplicates from users's input
+          filterTickers = filterTickers.filter(ticker => {
+            for(let idx1 = 0; idx1 < view.target.length; idx1++) {
+              if (ticker == view.target[idx1].tick.name) {
+                prefilter.push(view.target[idx1]);
+                return true;
+              }
+            }
+            return false;
+          });
+          if (prefilter.length > 0) actions.onViewFilter(prefilter);
+        };
+
+      // For state.view's column sorting:
+      case 'BeginDate':     return(event => { actions.onTickerBeginDateSort(filter, target); });
+      case 'Cycle':         return(event => { actions.onTickerCycleSort(filter, target); });
+      case 'HighestDate':   return(event => { actions.onTickerHighestDateSort(filter, target); });
+      case 'HighestNetPer': return(event => { actions.onTickerHighestNetPerSort(filter, target); });
+
+      // For State Code click at the top:
+      case 'onTopStateCodeClick': return(event => { console.log('event = ', event); });
+    }
+  }
+
   //-----------------------------------------
 
   render() {
-    const {cat, porActions, portfolio} = this.props;
+    const {cat, actions, view} = this.props;
     return(
       <div>
         <br/>
-        <div style={{display: portfolio.target.length > 3 ? "block" : "none"}}>
+        <div style={{display: view.target.length > 3 ? "block" : "none"}}>
           <div className="marginBottom5px">
             <b>Filter</b> (separates each ticker by a space)
           </div>
+          {/* Filter input box */}
           <div>
             <input className="form-control" id="filterinput" type="text"
-              onChange={this.sortActions("Filter", porActions, portfolio)}
+              onChange={this.userAction("Filter", actions, view)}
               style={{textTransform: "uppercase"}}/>
           </div>
         </div>
@@ -102,42 +110,61 @@ class PortfolioPage extends React.Component {
         <h2>
           <span className="marginRight10px">{this.getTabName(cat)}</span> {/* "Portfolio" */}
           <span className="fontSize14px">This type of <a className="noGrab">Title</a> is clickable for sorting.</span>
-          <button style={{display: portfolio.target.length > 3 ? "block" : "none"}}
+          <button style={{display: view.target.length > 3 ? "block" : "none"}}
             className="btn btn-sm btn-primary marginTop6px pull-right"
-            onClick={this.restorePortfolio(porActions, portfolio)}>{"Reset " + this.getTabName(cat)}</button>
+            onClick={this.onViewReset(actions)}>{"Reset " + this.getTabName(cat)}</button> {/* Reset view */}
         </h2>
 
         <table className="table">
+
           <thead className="tableHeaderBackgroundColor">
-          <tr>
-            <th width="10%"><a onClick={this.sortActions("Cycle", porActions, portfolio)}>Cycle<br/>Type</a></th>
-            <th width="10%">Stock<br/>Ticker</th>
-            <th width="10%">State<br/>Code</th>
-            <th width="15%">
-              <a onClick={this.sortActions("BeginDate", porActions, portfolio)}>Begin Date</a><br/>Begin Price
-            </th>
-            <th width="15%">
-              <a onClick={this.sortActions("HighestDate", porActions, portfolio)}>Highest Date</a><br/>
-              Price, <a onClick={this.sortActions("HighestNetPer", porActions, portfolio)}>+Net%</a>
-            </th>
-            <th width="15%">
-              Lowest Date<br/>Price, -Net%
-              {/*Lowest&nbsp;*/}
-              {/*<a onClick={this.sortActions("LowestDate", porActions, portfolio)}>Date</a>,&nbsp;*/}
-              {/*<a onClick={this.sortActions("LowestNetPer", porActions, portfolio)}>%</a>*/}
-            </th>
-            <th width="15%">Last Date<br/>Close Price</th>
-            <th width="10%">Stock<br/>Market</th>
-          </tr>
+            <tr>
+              {/* Cycle Type column */}
+              <th width="10%"><a onClick={this.userAction("Cycle", actions, view)}>Cycle<br/>Type</a></th>
+
+              {/* Stock Ticker */}
+              <th width="10%">Stock<br/>Ticker</th>
+
+              {/* State Code */}
+              <th width="10%">
+                State<br/>Code&nbsp;&nbsp;
+                <input type="checkbox" checked={this.state.totalStateCodeChecked}
+                  onClick={this.userAction("onTopStateCodeClick", actions, view)}/>
+              </th>
+
+              {/* Begin Date, Begin Price */}
+              <th width="15%">
+                <a onClick={this.userAction("BeginDate", actions, view)}>Begin Date</a><br/>
+                Begin Price
+              </th>
+
+              {/* Highest Date, Price, +Net% */}
+              <th width="15%">
+                <a onClick={this.userAction("HighestDate", actions, view)}>Highest Date</a><br/>
+                Price, <a onClick={this.userAction("HighestNetPer", actions, view)}>+Net%</a>
+              </th>
+
+              {/* Lowest Date, Price, -Net% */}
+              <th width="15%">Lowest Date<br/>Price, -Net%</th>
+
+              {/* Last Date, Close Price */}
+              <th width="15%">Last Date<br/>Close Price</th>
+
+              {/* Stock Market */}
+              <th width="10%">Stock<br/>Market</th>
+            </tr>
           </thead>
+
           <tbody>
           {
-            portfolio.filter.length > 0 ?
-            portfolio.filter.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>) :
-            portfolio.target.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>)
+            view.filter.length > 0 ?
+            view.filter.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>) :
+            view.target.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>)
           }
           </tbody>
+
         </table>
+
         <div className="fontSizeSmall"><i>&#45; (minus sign): The ticker's <b>Last Close</b> is below its <b>Begin</b> of Cycle-I yang.</i></div>
         <div className="fontSizeSmall"><i>&#43; (plus sign): The ticker's <b>Last Close</b> is above its <b>Begin</b> of Cycle-II yin.</i></div>
 
@@ -152,22 +179,26 @@ PortfolioPage.contextTypes = {
 };
 
 PortfolioPage.propTypes = {
-  cat: PropTypes.string, // category
-  porActions: PropTypes.object.isRequired,
-  portfolio: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  cat:     PropTypes.string, // category
+  view:    PropTypes.object.isRequired
+
+
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    porActions: bindActionCreators(portfolioActions, dispatch)
+    actions: bindActionCreators(portfolioActions, dispatch)
   };
 }
 
 function mapStateToProps(state, ownProps) {
-  console.log('PortfolioPage, mapStateToProps, state = ', state);
+  console.log('PortfolioPage, mapStateToProps:');
+  console.log('  par state = ', state);
+  console.log('  par ownProps = ', ownProps);
   return {
-    cat: ownProps.params.cat,
-    portfolio: state.portfolio
+    cat:  ownProps.params.cat,
+    view: state.data.view
   };
 }
 

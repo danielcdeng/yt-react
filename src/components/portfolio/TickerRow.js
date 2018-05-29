@@ -45,22 +45,23 @@ const TickerRow = ({ticker}) => {
       case acts.TICKER_XLE:    url = "http://schrts.co/YxSoaj"; break;
       case acts.TICKER_XLF:    url = "http://schrts.co/pf3qUY"; break;
     }
-    console.log('Market: ' + name);
-    console.log('Stock chart url: ' + url);
+    // console.log('Market: ' + name);
+    // console.log('Stock chart url: ' + url);
     return url;
   }
 
   return(
     <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
       <td>
-        {ticker.door.type == "yang" ? "I yang" : "II yin"}
+        {ticker.door.type == "yang" ? "yang" : "yin"}
       </td>
       <td title={ticker.tick.titl}>
         {ticker.tick.name}&nbsp;
         {ticker.door.type == "yang" ? (parseFloat(ticker.door.lpri)<parseFloat(ticker.door.pri1)?"-":"") : (parseFloat(ticker.door.lpri)>parseFloat(ticker.door.pri1)?"+":"")}
       </td>
       <td>
-        <a>{ticker.door.fore}</a>
+        {ticker.door.fore}&nbsp;&nbsp;
+        <input checked={ticker.tick.stateCodeClicked} type="checkbox"/>
       </td>
       <td>
         {ticker.door.dat1}<br/>

@@ -145,9 +145,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
   console.log('Header, mapStateToProps, state = ', state);
   return {
-    cat: state.portfolio.cat,
-    loading: state.portfolio.ajax,
-    locale: state.portfolio.locale
+    cat: state.data.cat,
+    loading: state.data.ajax,
+    locale: state.data.locale
   };
 }
 
