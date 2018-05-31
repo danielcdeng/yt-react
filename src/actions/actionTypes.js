@@ -12,6 +12,7 @@ export const ON_TICKER_LOWEST_DATE_SORT    = 'ON_TICKER_LOWEST_DATE_SORT';
 export const ON_TICKER_LOWEST_NETPER_SORT  = 'ON_TICKER_LOWEST_NETPER_SORT';
 export const ON_VIEW_FILTER                = 'ON_VIEW_FILTER';
 export const ON_VIEW_RESET                 = 'ON_VIEW_RESTORE';
+export const ON_VIEW_STATE_CODE_CLICKED    = 'ON_VIEW_STATE_CODE_CLICKED';
 export const TAB_HOME      = 'home';
 export const TAB_PORTFOLIO = 'portfolio';
 export const TAB_INDICES   = 'indices';

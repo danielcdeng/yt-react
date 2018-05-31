@@ -1,22 +1,24 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import * as acts from '../../actions/actionTypes';
+import {connect} from "react-redux";
+import { bindActionCreators } from 'redux';
+import * as portfolioActions from "../../actions/portfolioActions";
 
-const TickerRow = ({ticker}) => {
+class TickerRow extends React.Component {
 
-  function addPlusSignIfPositive(num) {
+  constructor(props, context) {
+    super(props, context);
+    this.addPlusSignIfPositive = this.addPlusSignIfPositive.bind(this);
+    this.renderStockChart = this.renderStockChart.bind(this);
+  }
+
+  addPlusSignIfPositive(num) {
     if (num > 0) return "+" + num;
     return num;
   }
 
-  function cycleType(doorType) {
-    switch (doorType) {
-      case 'yang': return "I";
-      default:     return "II";
-    }
-  }
-
-  function renderStockChart(name) {
+  renderStockChart(name) {
     let url = "";
     switch (name) {
       case acts.TICKER_AAPL:   url = "http://schrts.co/1WQHNj"; break;
@@ -50,46 +52,61 @@ const TickerRow = ({ticker}) => {
     return url;
   }
 
-  return(
-    <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
-      <td>
-        {ticker.door.type == "yang" ? "yang" : "yin"}
-      </td>
-      <td title={ticker.tick.titl}>
-        {ticker.tick.name}&nbsp;
-        {ticker.door.type == "yang" ? (parseFloat(ticker.door.lpri)<parseFloat(ticker.door.pri1)?"-":"") : (parseFloat(ticker.door.lpri)>parseFloat(ticker.door.pri1)?"+":"")}
-      </td>
-      <td>
-        {ticker.door.fore}&nbsp;&nbsp;
-        <input checked={ticker.tick.stateCodeClicked} type="checkbox"/>
-      </td>
-      <td>
-        {ticker.door.dat1}<br/>
-        {ticker.door.pri1}
-      </td>
-      <td>
-        {ticker.door.type == "yang" ? ticker.sess.dat2 : ""}<br/>
-        {ticker.door.type == "yang" ? ticker.sess.pri2+", " : ""}&nbsp;
-        {ticker.door.type == "yang" ? addPlusSignIfPositive(ticker.sess.netp)+"%" : ""}
-      </td>
-      <td>
-        {ticker.door.type == "yin" ? ticker.sess.dat2 : ""}<br/>
-        {ticker.door.type == "yin" ? ticker.sess.pri2+", " : ""}&nbsp;
-        {ticker.door.type == "yin" ? ticker.sess.netp+"%" : ""}
-      </td>
-      <td>
-        {ticker.door.ldat}<br/>
-        {ticker.door.lpri}
-      </td>
-      <td><a href={renderStockChart(ticker.tick.name)} target="_blank">Chart</a></td>
-    </tr>
-  );
+  render() {
+    const {ticker} = this.props;
+    return(
+      <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
+        <td>
+          {ticker.door.type == "yang" ? "yang" : "yin"}
+        </td>
+        <td title={ticker.tick.titl}>
+          {ticker.tick.name}&nbsp;
+          {ticker.door.type == "yang" ? (parseFloat(ticker.door.lpri) < parseFloat(ticker.door.pri1) ? "-" : "") : (parseFloat(ticker.door.lpri) > parseFloat(ticker.door.pri1) ? "+" : "")}
+        </td>
+        <td>
+          {ticker.door.fore}&nbsp;&nbsp;
+          <input checked={ticker.tick.scClicked} type="checkbox"/>
+        </td>
+        <td>
+          {ticker.door.dat1}<br/>
+          {ticker.door.pri1}
+        </td>
+        <td>
+          {ticker.door.type == "yang" ? ticker.sess.dat2 : ""}<br/>
+          {ticker.door.type == "yang" ? ticker.sess.pri2 + ", " : ""}&nbsp;
+          {ticker.door.type == "yang" ? this.addPlusSignIfPositive(ticker.sess.netp) + "%" : ""}
+        </td>
+        <td>
+          {ticker.door.type == "yin" ? ticker.sess.dat2 : ""}<br/>
+          {ticker.door.type == "yin" ? ticker.sess.pri2 + ", " : ""}&nbsp;
+          {ticker.door.type == "yin" ? ticker.sess.netp + "%" : ""}
+        </td>
+        <td>
+          {ticker.door.ldat}<br/>
+          {ticker.door.lpri}
+        </td>
+        <td><a href={this.renderStockChart(ticker.tick.name)} target="_blank">Chart</a></td>
+      </tr>
+    );
+  }
 
-};
+}
 
 TickerRow.propTypes = {
   ticker: PropTypes.object.isRequired
 };
 
-export default TickerRow;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(portfolioActions, dispatch)
+  };
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+    //scClicked: state.data.scClicked // overall state code clicked, true or false
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TickerRow);
 

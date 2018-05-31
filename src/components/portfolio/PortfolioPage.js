@@ -24,10 +24,6 @@ class PortfolioPage extends React.Component {
     this.getFilterTickers();
   }
 
-  // componentDidUpdate() {
-  //   this.getFilterTickers();
-  // }
-
   getFilterTickers() {
     if (this.props.view.filter.length > 0) {
       let filterTickers = '';
@@ -101,12 +97,12 @@ class PortfolioPage extends React.Component {
       case 'HighestNetPer': return(event => { actions.onTickerHighestNetPerSort(filter, target); });
 
       // For State Code click at the top:
-      case 'onTopStateCodeClick': return(event => { console.log('event = ', event); });
+      case 'scClicked': return(event => { actions.onViewStateCodeClicked(); });
     }
   }
 
   render() {
-    const {cat, actions, view} = this.props;
+    const {actions, cat, scClicked, view} = this.props;
     return(
       <div>
         <br/>
@@ -143,8 +139,7 @@ class PortfolioPage extends React.Component {
               {/* State Code */}
               <th width="10%">
                 State<br/>Code&nbsp;&nbsp;
-                <input type="checkbox" checked={this.state.totalStateCodeChecked}
-                  onClick={this.userAction("onTopStateCodeClick", actions, view)}/>
+                <input type="checkbox" checked={scClicked} onClick={this.userAction("scClicked", actions, view)}/>
               </th>
 
               {/* Begin Date, Begin Price */}
@@ -190,15 +185,14 @@ class PortfolioPage extends React.Component {
 
 PortfolioPage.contextTypes = {
   location: PropTypes.object,
-  router: PropTypes.object
+  router:   PropTypes.object
 };
 
 PortfolioPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  cat:     PropTypes.string, // category
-  view:    PropTypes.object.isRequired
-
-
+  actions:   PropTypes.object.isRequired,
+  cat:       PropTypes.string, // category
+  scClicked: PropTypes.bool.isRequired,
+  view:      PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
@@ -213,6 +207,7 @@ function mapStateToProps(state, ownProps) {
   console.log('  par ownProps = ', ownProps);
   return {
     cat:  ownProps.params.cat,
+    scClicked: state.data.view.scClicked,
     view: state.data.view
   };
 }

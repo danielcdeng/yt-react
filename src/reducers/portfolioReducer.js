@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as types from '../actions/actionTypes';
 import initReducerState from './initReducerState';
 
 export default function portfolioReducer(state = initReducerState, action) {
@@ -27,21 +27,21 @@ export default function portfolioReducer(state = initReducerState, action) {
     if (state.view.cat != actionCat) {
       const viewObj = Object.assign({}, state.view);
       switch (actionCat) {
-        case actionTypes.TAB_PORTFOLIO: newState.view = Object.assign({}, newState.portfolio); updateFilterInputBox(newState.view); break;
-        case actionTypes.TAB_INDICES:   newState.view = Object.assign({}, newState.indices);   updateFilterInputBox(newState.view); break;
-        case actionTypes.TAB_HIGHTECH:  newState.view = Object.assign({}, newState.hightech);  updateFilterInputBox(newState.view); break;
-        case actionTypes.TAB_FINANCIAL: newState.view = Object.assign({}, newState.financial); updateFilterInputBox(newState.view); break;
-        case actionTypes.TAB_ASSET:     newState.view = Object.assign({}, newState.asset);     updateFilterInputBox(newState.view); break;
-        case actionTypes.TAB_CRYPTO:    newState.view = Object.assign({}, newState.crypto);    updateFilterInputBox(newState.view); break;
+        case types.TAB_PORTFOLIO: newState.view = Object.assign({}, newState.portfolio); updateFilterInputBox(newState.view); break;
+        case types.TAB_INDICES:   newState.view = Object.assign({}, newState.indices);   updateFilterInputBox(newState.view); break;
+        case types.TAB_HIGHTECH:  newState.view = Object.assign({}, newState.hightech);  updateFilterInputBox(newState.view); break;
+        case types.TAB_FINANCIAL: newState.view = Object.assign({}, newState.financial); updateFilterInputBox(newState.view); break;
+        case types.TAB_ASSET:     newState.view = Object.assign({}, newState.asset);     updateFilterInputBox(newState.view); break;
+        case types.TAB_CRYPTO:    newState.view = Object.assign({}, newState.crypto);    updateFilterInputBox(newState.view); break;
       }
       // Backup:
       switch (viewObj.cat) {
-        case actionTypes.TAB_PORTFOLIO: newState.portfolio = viewObj; break;
-        case actionTypes.TAB_INDICES:   newState.indices   = viewObj; break;
-        case actionTypes.TAB_HIGHTECH:  newState.hightech  = viewObj; break;
-        case actionTypes.TAB_FINANCIAL: newState.financial = viewObj; break;
-        case actionTypes.TAB_ASSET:     newState.asset     = viewObj; break;
-        case actionTypes.TAB_CRYPTO:    newState.crypto    = viewObj; break;
+        case types.TAB_PORTFOLIO: newState.portfolio = viewObj; break;
+        case types.TAB_INDICES:   newState.indices   = viewObj; break;
+        case types.TAB_HIGHTECH:  newState.hightech  = viewObj; break;
+        case types.TAB_FINANCIAL: newState.financial = viewObj; break;
+        case types.TAB_ASSET:     newState.asset     = viewObj; break;
+        case types.TAB_CRYPTO:    newState.crypto    = viewObj; break;
       }
     } {
       console.log('portfolioReducer: The state.view switch is not required.');
@@ -64,62 +64,70 @@ export default function portfolioReducer(state = initReducerState, action) {
 
   switch (action.type) {
 
-    case actionTypes.BEGIN_AJAX_CALL:
+    case types.BEGIN_AJAX_CALL:
       console.log('  ajaxStatusReducer BEGIN_AJAX_CALL');
       newState.ajax += 1;
       break;
 
-    case actionTypes.AJAX_CALL_ERROR:
-    case actionTypes.AJAX_CALL_SUCCESS:
-      console.log('  ajaxStatusReducer AJAX_CALL_ERROR || action.type == actionTypes.AJAX_CALL_SUCCESS');
+    case types.AJAX_CALL_ERROR:
+    case types.AJAX_CALL_SUCCESS:
+      console.log('  ajaxStatusReducer AJAX_CALL_ERROR || action.type == types.AJAX_CALL_SUCCESS');
       newState.ajax -= 1;
       break;
 
-    case actionTypes.LOAD_PORTFOLIO_SUCCESS:
+    case types.LOAD_PORTFOLIO_SUCCESS:
       console.log('  ajaxStatusReducer LOAD_PORTFOLIO_SUCCESS');
-      newState.view.cat = actionTypes.TAB_PORTFOLIO.slice(0);
+      newState.view.cat = types.TAB_PORTFOLIO.slice(0);
       newState.view.target = Object.assign([], action.target);
+      newState.view.target.forEach(ticker => {
+        ticker.tick.scClicked = false;
+      });
       //
       newState.portfolio = Object.assign({}, newState.view);
       //
-      newState.indices = Object.assign({}, newState.portfolio);
-      newState.indices.cat = actionTypes.TAB_INDICES.slice(0);
-      newState.indices.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_INDICES.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      newState.indices = Object.assign({}, newState.view);
+      newState.indices.cat = types.TAB_INDICES.slice(0);
+      newState.indices.target = newState.view.target.filter(ticker => { return types.TICKERS_INDICES.indexOf(ticker.tick.name) >= 0 ? true : false; });
       //
-      newState.hightech = Object.assign({}, newState.portfolio);
-      newState.hightech.cat = actionTypes.TAB_HIGHTECH.slice(0);
-      newState.hightech.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_HIGHTECH.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      newState.hightech = Object.assign({}, newState.view);
+      newState.hightech.cat = types.TAB_HIGHTECH.slice(0);
+      newState.hightech.target = newState.view.target.filter(ticker => { return types.TICKERS_HIGHTECH.indexOf(ticker.tick.name) >= 0 ? true : false; });
       //
-      newState.financial = Object.assign({}, newState.portfolio);
-      newState.financial.cat = actionTypes.TAB_FINANCIAL.slice(0);
-      newState.financial.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_FINANCIAL.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      newState.financial = Object.assign({}, newState.view);
+      newState.financial.cat = types.TAB_FINANCIAL.slice(0);
+      newState.financial.target = newState.view.target.filter(ticker => { return types.TICKERS_FINANCIAL.indexOf(ticker.tick.name) >= 0 ? true : false; });
       //
-      newState.asset = Object.assign({}, newState.portfolio);
-      newState.asset.cat = actionTypes.TAB_ASSET.slice(0);
-      newState.asset.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      newState.asset = Object.assign({}, newState.view);
+      newState.asset.cat = types.TAB_ASSET.slice(0);
+      newState.asset.target = newState.view.target.filter(ticker => { return types.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
       //
-      newState.crypto = Object.assign({}, newState.portfolio);
-      newState.crypto.cat = actionTypes.TAB_CRYPTO.slice(0);
-      newState.crypto.target = newState.portfolio.target.filter(ticker => { return actionTypes.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      newState.crypto = Object.assign({}, newState.view);
+      newState.crypto.cat = types.TAB_CRYPTO.slice(0);
+      newState.crypto.target = newState.view.target.filter(ticker => { return types.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
       break;
 
-    case actionTypes.LOCALE_ENUS: // default
-      newState.locale = actionTypes.LOCALE_ENUS;
+    case types.LOCALE_ENUS: // default
+      newState.locale = types.LOCALE_ENUS;
       break;
 
-    case actionTypes.LOCALE_ZHTW:
-      newState.locale = actionTypes.LOCALE_ZHTW;
+    case types.LOCALE_ZHTW:
+      newState.locale = types.LOCALE_ZHTW;
       break;
 
-    case actionTypes.ON_VIEW_FILTER:
+    case types.ON_VIEW_FILTER:
       newState.view.filter = Object.assign([], action.filter);
       break;
 
-    case actionTypes.ON_VIEW_RESET:
+    case types.ON_VIEW_RESET:
       newState.view.filter = [];
+      newState.view.scClicked = false;
+      if (newState.view.target.length > 0) {
+        newState.view.target = JSON.parse(JSON.stringify(newState.view.target));
+        newState.view.target.forEach(ticker => ticker.tick.scClicked = false);
+      }
       break;
 
-    case actionTypes.ON_TICKER_BEGIN_DATE_SORT:
+    case types.ON_TICKER_BEGIN_DATE_SORT:
       if (action.filter && action.filter.length > 0) {
         newState.view.filter = Object.assign([], action.filter); // otherwise sort would mutate the state
         newState.view.filter.sort((a, b) => b.door.dat1 >= a.door.dat1 ? 1 : -1);
@@ -129,7 +137,7 @@ export default function portfolioReducer(state = initReducerState, action) {
       }
       break;
 
-    case actionTypes.ON_TICKER_CYCLE_SORT:
+    case types.ON_TICKER_CYCLE_SORT:
       // .filter and .map would make a new array, so no need of Object.assign().
       if (action.filter && action.filter.length > 0) {
         newState.view.filter = action.filter.filter(ticker => { return ticker.door.type == 'yang' ? true : false; });
@@ -140,7 +148,7 @@ export default function portfolioReducer(state = initReducerState, action) {
       }
       break;
 
-    case actionTypes.ON_TICKER_HIGHEST_DATE_SORT:
+    case types.ON_TICKER_HIGHEST_DATE_SORT:
       if (action.filter && action.filter.length > 0) {
         newState.view.filter = Object.assign([], action.filter);
         newState.view.filter.sort((a, b) => b.sess.dat2 >= a.sess.dat2 ? 1 : -1);
@@ -150,7 +158,7 @@ export default function portfolioReducer(state = initReducerState, action) {
       }
       break;
 
-    case actionTypes.ON_TICKER_HIGHEST_NETPER_SORT:
+    case types.ON_TICKER_HIGHEST_NETPER_SORT:
       if (action.filter && action.filter.length > 0) {
         newState.view.filter = Object.assign([], action.filter);
         newState.view.filter.sort((a, b) => parseFloat(b.sess.netp) >= parseFloat(a.sess.netp) ? 1 : -1);
@@ -160,12 +168,23 @@ export default function portfolioReducer(state = initReducerState, action) {
       }
       break;
 
-    case actionTypes.TAB_PORTFOLIO: console.log('  ajaxStatusReducer TAB_PORTFOLIO'); switchDataView(actionTypes.TAB_PORTFOLIO); break;
-    case actionTypes.TAB_INDICES:   console.log('  ajaxStatusReducer TAB_INDICES');   switchDataView(actionTypes.TAB_INDICES);   break;
-    case actionTypes.TAB_HIGHTECH:  console.log('  ajaxStatusReducer TAB_HIGHTECH');  switchDataView(actionTypes.TAB_HIGHTECH);  break;
-    case actionTypes.TAB_FINANCIAL: console.log('  ajaxStatusReducer TAB_FINANCIAL'); switchDataView(actionTypes.TAB_FINANCIAL); break;
-    case actionTypes.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchDataView(actionTypes.TAB_ASSET);     break;
-    case actionTypes.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchDataView(actionTypes.TAB_CRYPTO);    break;
+    case types.ON_VIEW_STATE_CODE_CLICKED:
+      newState.view.scClicked = !newState.view.scClicked;
+      if (newState.view.filter.length > 0) {
+        newState.view.filter = JSON.parse(JSON.stringify(newState.view.filter));
+        newState.view.filter.forEach(ticker => ticker.tick.scClicked = !ticker.tick.scClicked);
+      } else if (newState.view.target.length > 0) {
+        newState.view.target = JSON.parse(JSON.stringify(newState.view.target));
+        newState.view.target.forEach(ticker => ticker.tick.scClicked = !ticker.tick.scClicked);
+      }
+      break;
+
+    case types.TAB_PORTFOLIO: console.log('  ajaxStatusReducer TAB_PORTFOLIO'); switchDataView(types.TAB_PORTFOLIO); break;
+    case types.TAB_INDICES:   console.log('  ajaxStatusReducer TAB_INDICES');   switchDataView(types.TAB_INDICES);   break;
+    case types.TAB_HIGHTECH:  console.log('  ajaxStatusReducer TAB_HIGHTECH');  switchDataView(types.TAB_HIGHTECH);  break;
+    case types.TAB_FINANCIAL: console.log('  ajaxStatusReducer TAB_FINANCIAL'); switchDataView(types.TAB_FINANCIAL); break;
+    case types.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchDataView(types.TAB_ASSET);     break;
+    case types.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchDataView(types.TAB_CRYPTO);    break;
 
     default: break;
 

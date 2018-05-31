@@ -12,54 +12,17 @@ const initReducerState = {
   ajax:   0,                 // for Header.js
   locale: types.LOCALE_ENUS, // for Locale.js
   view: {
-    cat:    '',               // referring to data category only--i.e., home and about are not data category
-    filter: [],               // for the view rendering
-    stateCodeClickHash: {},
-    target: [],               // for the view rendering
-    totalClicked: false
+    cat:    '',       // referring to data category only--i.e., home and about are not data category
+    filter: [],       // for customized data view
+    scClicked: false, // overall state code select box clicked
+    target: []        // for original data view
   },
-  portfolio: {
-    cat: '',
-    filter: [],             // the customized view under filtering
-    stateCodeClickHash: {}, // hashed state code click
-    target: [],             // the original data (no filtering
-    totalClicked: false     // overall state code select box clicked
-  },
-  indices: {
-    cat: '',
-    filter: [],
-    stateCodeClickHash: {},
-    target: [],
-    totalClicked: false
-  },
-  hightech: {
-    cat: '',
-    filter: [],
-    stateCodeClickHash: {},
-    target: [],
-    totalClicked: false
-  },
-  financial: {
-    cat: '',
-    filter: [],
-    stateCodeClickHash: {},
-    target: [],
-    totalClicked: false
-  },
-  asset: {
-    cat: '',
-    filter: [],
-    stateCodeClickHash: {},
-    target: [],
-    totalClicked: false
-  },
-  crypto: {
-    cat: '',
-    filter: [],
-    stateCodeClickHash: {},
-    target: [],
-    totalClicked: false
-  }
+  portfolio: null,
+  indices: null,
+  hightech: null,
+  financial: null,
+  asset: null,
+  crypto: null
 };
 
 export default initReducerState;
