@@ -110,8 +110,8 @@ class Header extends React.Component {
           <Link to="/portfolio/crypto" onClick={this.onLinkClick(actionTypes.TAB_CRYPTO, catActions)}
             activeClassName={(this.state.reload == "/portfolio/crypto" || this.state.crypto) ? "active" : "inactive"}>Crypto</Link>
           {" | "}
-          <Link to="/about" onClick={this.onLinkClick(actionTypes.TAB_ABOUT)}
-            activeClassName={(this.state.reload == "/about" || this.state.about) ? "active" : "inactive"}>About</Link>
+          <Link to="/info" onClick={this.onLinkClick(actionTypes.TAB_ABOUT)}
+            activeClassName={(this.state.reload == "/info" || this.state.about) ? "active" : "inactive"}>More Info</Link>
           &nbsp;&nbsp;
           {loading > 0 && <LoadingDots interval={30} dots={30}/>} {/* Show dot q.30ms, up to 30 dots */}
           &nbsp;&nbsp;

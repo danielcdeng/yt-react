@@ -10,6 +10,6 @@ export default (
     <IndexRoute                  component={HomePage} />
     <Route path="portfolio"      component={PortfolioPage} />
     <Route path="portfolio/:cat" component={PortfolioPage} />
-    <Route path="about"          component={AboutPage} />
+    <Route path="info"           component={AboutPage} />
   </Route>
 );

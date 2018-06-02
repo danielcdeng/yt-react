@@ -28,6 +28,15 @@ nav {
   padding-top: 20px;
 }
 
+table td {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+ul {
+  padding-left: 1.2em
+}
+
 /*** My classes ***/
 
 .tableHeaderBackgroundColor {
@@ -91,8 +100,14 @@ nav {
 .yangrowbackground {
   background-color: #e2ffeb;
 }
+.yangStateCodeBgColor {
+  background-color: #effff4;
+}
 .yinrowbackground {
-  background-color: #fff3f1;
+  background-color: #fff0f9;
+}
+.yinStateCodeBgColor {
+  background-color: #fff4f7;
 }
 
 .yt-display-center {

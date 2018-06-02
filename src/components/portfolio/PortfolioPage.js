@@ -2,13 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
 import { bindActionCreators } from 'redux';
-import * as portfolioActions from '../../actions/portfolioActions';
-import TickerRow from './TickerRow';
+import * as pActions from '../../actions/portfolioActions';
+import TickerRow from './ticker/TickerRow';
 
 class PortfolioPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.checkTableToExpand = this.checkTableToExpand.bind(this);
     this.getFilterTickers = this.getFilterTickers.bind(this);
     this.getTabName = this.getTabName.bind(this);
     this.onViewReset = this.onViewReset.bind(this);
@@ -22,6 +23,12 @@ class PortfolioPage extends React.Component {
 
   componentDidMount() {
     this.getFilterTickers();
+  }
+
+  //----------------------------------------
+
+  checkTableToExpand(actions, view) {
+    actions.onViewReset();
   }
 
   getFilterTickers() {
@@ -43,12 +50,6 @@ class PortfolioPage extends React.Component {
       case actionTypes.TAB_CRYPTO: return actionTypes.TAB_CRYPTO.charAt(0).toUpperCase() + actionTypes.TAB_CRYPTO.slice(1);
       default: return actionTypes.TAB_PORTFOLIO.charAt(0).toUpperCase() + actionTypes.TAB_PORTFOLIO.slice(1);
     }
-  }
-
-  onTotalStateCodeCheck() {
-    return event => {
-      console.log('I am here');
-    };
   }
 
   onViewReset(actions) {
@@ -101,8 +102,11 @@ class PortfolioPage extends React.Component {
     }
   }
 
+  //--------------------------------------------------
+
   render() {
-    const {actions, cat, scClicked, view} = this.props;
+    const {actions, cat, locale, scClicked, view} = this.props;
+    //this.checkTableToExpand(actions, view);
     return(
       <div>
         <br/>
@@ -137,15 +141,14 @@ class PortfolioPage extends React.Component {
               <th width="10%">Stock<br/>Ticker</th>
 
               {/* State Code */}
-              <th width="10%">
-                State<br/>Code&nbsp;&nbsp;
-                <input type="checkbox" checked={scClicked} onClick={this.userAction("scClicked", actions, view)}/>
+              <th width="11%">
+                State<br/>
+                Code&nbsp;<input type="checkbox" checked={scClicked} onClick={this.userAction("scClicked", actions, view)}/>
               </th>
 
               {/* Begin Date, Begin Price */}
               <th width="15%">
-                <a onClick={this.userAction("BeginDate", actions, view)}>Begin Date</a><br/>
-                Begin Price
+                <a onClick={this.userAction("BeginDate", actions, view)}>Begin Date</a><br/>Price
               </th>
 
               {/* Highest Date, Price, +Net% */}
@@ -158,20 +161,18 @@ class PortfolioPage extends React.Component {
               <th width="15%">Lowest Date<br/>Price, -Net%</th>
 
               {/* Last Date, Close Price */}
-              <th width="15%">Last Date<br/>Close Price</th>
+              <th width="14%">Last<br/>Close</th>
 
               {/* Stock Market */}
               <th width="10%">Stock<br/>Market</th>
             </tr>
           </thead>
 
-          <tbody>
           {
             view.filter.length > 0 ?
-            view.filter.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>) :
-            view.target.map(ticker => <TickerRow key={ticker.tick.name} ticker={ticker}/>)
+            view.filter.map(ticker => <TickerRow key={ticker.tick.name} locale={locale} ticker={ticker}/>) :
+            view.target.map(ticker => <TickerRow key={ticker.tick.name} locale={locale} ticker={ticker}/>)
           }
-          </tbody>
 
         </table>
 
@@ -191,13 +192,14 @@ PortfolioPage.contextTypes = {
 PortfolioPage.propTypes = {
   actions:   PropTypes.object.isRequired,
   cat:       PropTypes.string, // category
+  locale:    PropTypes.string.isRequired,
   scClicked: PropTypes.bool.isRequired,
   view:      PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(portfolioActions, dispatch)
+    actions: bindActionCreators(pActions, dispatch)
   };
 }
 
@@ -206,9 +208,10 @@ function mapStateToProps(state, ownProps) {
   console.log('  par state = ', state);
   console.log('  par ownProps = ', ownProps);
   return {
-    cat:  ownProps.params.cat,
+    cat:       ownProps.params.cat,
+    locale:    state.data.locale,
     scClicked: state.data.view.scClicked,
-    view: state.data.view
+    view:      state.data.view
   };
 }
 

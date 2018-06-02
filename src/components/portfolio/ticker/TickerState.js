@@ -1,0 +1,174 @@
+import React, { PropTypes } from 'react';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as pActions from '../../../actions/portfolioActions';
+import * as types from '../../../actions/actionTypes';
+import * as Const from '../../common/AppConstants';
+import { getICO } from '../../common/AppICO';
+
+class TickerState extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.getElement = this.getElement.bind(this);
+  }
+
+  getElement(title, locale, stat, ticker, icostate) {
+    switch (locale) {
+      case types.LOCALE_ENUS:
+        switch (title) {
+          case 'LABEL1B':
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL1b}</b><br/><i>{icostate}</i></li>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL1b}</b><br/><i>{icostate}</i></li>;
+            else return '';
+          case 'LABEL2A':
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL2a}</b><br/><i>{icostate}</i></li>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL2a}</b><br/><i>{icostate}</i></li>;
+            else return '';
+          case 'LABEL2B':
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL2b}</b><br/><i>{icostate}</i></li>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL2b}</b><br/><i>{icostate}</i></li>;
+            else return '';
+        }
+        if (stat[ticker.tick.name][ticker.door.type].netp.length == 0) return '';
+        else if (ticker.door.type == 'yang') {
+          switch (title) {
+            case 'AVERAGE': return <li>{Const.ENUS_YANG_AVG}{stat[ticker.tick.name].yang.average}</li>;
+            case 'CYCLES':  return <li>{Const.ENUS_YANG_CYCLES}{stat[ticker.tick.name].yang.netp.length}</li>;
+            case 'DISTCH':  return <li>{Const.ENUS_YANG_DISTCH}</li>;
+            case 'MEDIAN':  return <li>{Const.ENUS_YANG_MED}{stat[ticker.tick.name].yang.median}</li>;
+            case 'SEAEND':  return <li>{Const.ENUS_YANG_TOPMON}</li>;
+          }
+        }
+        else {
+          switch (title) {
+            case 'AVERAGE': return <li>{Const.ENUS_YIN_AVG}{stat[ticker.tick.name].yin.average}</li>;
+            case 'CYCLES':  return <li>{Const.ENUS_YIN_CYCLES}{stat[ticker.tick.name].yin.netp.length}</li>;
+            case 'DISTCH':  return <li>{Const.ENUS_YIN_DISTCH}</li>;
+            case 'MEDIAN':  return <li>{Const.ENUS_YIN_MED}{stat[ticker.tick.name].yin.median}</li>;
+            case 'SEAEND':  return <li>{Const.ENUS_YIN_BOTMON}</li>;
+          }
+        }
+        switch (title) {
+          case 'SEABEGIN': return <li>{Const.ENUS_SEA_BEGIN}</li>;
+          case 'STATDATA': return <h4>{Const.ENUS_STAT_DATA}</h4>;
+        }
+        break;
+      case types.LOCALE_ZHTW:
+        if (stat[ticker.tick.name][ticker.door.type].netp.length == 0) return '';
+        else if (ticker.door.type == 'yang') {
+          switch (title) {
+            case 'AVERAGE': return <li>{Const.ZHTW_YANG_AVG}{stat[ticker.tick.name].yang.average}</li>;
+            case 'CYCLES':  return <li>{Const.ZHTW_YANG_CYCLES}{stat[ticker.tick.name].yang.netp.length}</li>;
+            case 'DISTCH':  return <li>{Const.ZHTW_YANG_DISTCH}</li>;
+            case 'MEDIAN':  return <li>{Const.ZHTW_YANG_MED}{stat[ticker.tick.name].yang.median}</li>;
+            case 'SEAEND':  return <li>{Const.ZHTW_YANG_TOPMON}</li>;
+          }
+        }
+        else {
+          switch (title) {
+            case 'AVERAGE': return <li>{Const.ZHTW_YIN_AVG}{stat[ticker.tick.name].yin.average}</li>;
+            case 'CYCLES':  return <li>{Const.ZHTW_YIN_CYCLES}{stat[ticker.tick.name].yin.netp.length}</li>;
+            case 'DISTCH':  return <li>{Const.ZHTW_YIN_DISTCH}</li>;
+            case 'MEDIAN':  return <li>{Const.ZHTW_YIN_MED}{stat[ticker.tick.name].yin.median}</li>;
+            case 'SEAEND':  return <li>{Const.ZHTW_YIN_BOTMON}</li>;
+          }
+        }
+        switch (title) {
+          case 'SEABEGIN': return <li>{Const.ZHTW_SEA_BEGIN}</li>;
+          case 'STATDATA': return <h4>{Const.ZHTW_STAT_DATA}</h4>;
+        }
+        break;
+      default:
+        return '';
+    }
+  }
+
+  getYiXiang(locale) {
+    switch (locale) {
+      case types.LOCALE_ENUS: return Const.ENUS_YI_XIANG;
+      case types.LOCALE_ZHTW: return Const.ZHTW_YI_XIANG;
+    }
+  }
+
+  render() {
+    const {actions, locale, stat, ticker} = this.props;
+    const ico = getICO(locale, ticker);
+    let label1a, label2a, label2b, statData;
+    let seaEnd;
+    switch (locale) {
+      case types.LOCALE_ENUS:
+        label1a = Const.ENUS_LABEL1a;
+        label2a = Const.ENUS_LABEL2a; label2b = Const.ENUS_LABEL2b;
+        statData = Const.ENUS_STAT_DATA;
+        if (ticker.door.type == 'yang') {
+          seaEnd = Const.ENUS_YANG_TOPMON;
+        } else {
+          seaEnd = Const.ENUS_YIN_BOTMON;
+        }
+        break;
+      case types.LOCALE_ZHTW:
+        label1a = Const.ZHTW_LABEL1a;
+        label2a = Const.ZHTW_LABEL2a; label2b = Const.ZHTW_LABEL2b;
+        statData = Const.ZHTW_STAT_DATA;
+        if (ticker.door.type == 'yang') {
+          seaEnd = Const.ZHTW_YANG_TOPMON;
+        } else {
+          seaEnd = Const.ZHTW_YIN_BOTMON;
+        }
+        break;
+      default:
+        alert('Unsupported locale, ' + locale);
+        break;
+    }
+    return(
+      <tr>
+        <td colSpan={4} className={ticker.door.type=='yang' ? "yangStateCodeBgColor" : "yinStateCodeBgColor"}>
+          <h4>{ticker.door.fore} {this.getYiXiang(locale)}:</h4>
+          <ul>
+            <li><b>{label1a}</b><br/><i>{ico.state1a}</i></li>
+            {this.getElement("LABEL1B", locale, stat, ticker, ico.state1b)}
+            {this.getElement("LABEL2A", locale, stat, ticker, ico.state2a)}
+            {this.getElement("LABEL2B", locale, stat, ticker, ico.state2b)}
+          </ul>
+        </td>
+        <td colSpan={5} className={ticker.door.type=='yang'? "yangStateCodeBgColor" : "yinStateCodeBgColor"}>
+          {this.getElement("STATDATA", locale, stat, ticker)}
+          <ul>
+            {/*{this.getElement("CYCLES", locale, stat, ticker)}*/} {/* total # of cycles of the door */}
+            {this.getElement("AVERAGE", locale, stat, ticker)}
+            {this.getElement("MEDIAN", locale, stat, ticker)}
+            {this.getElement("DISTCH", locale, stat, ticker)}
+            {this.getElement("SEABEGIN", locale, stat, ticker)} {/* SEABEGIN - seasonality begin months */}
+            {this.getElement("SEAEND", locale, stat, ticker)} {/* SEAEND - seasonality top/bottom-out months */}
+          </ul>
+        </td>
+      </tr>
+    );
+  }
+
+}
+
+TickerState.propTypes = {
+  actions:  PropTypes.object.isRequired,
+  //archives: PropTypes.object.isRequired,
+  locale:   PropTypes.string.isRequired,
+  stat:     PropTypes.object.isRequired,
+  ticker:   PropTypes.object.isRequired
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(pActions, dispatch)
+  };
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+    //archives: state.data.archives,
+    stat:     state.data.stat
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TickerState);
+

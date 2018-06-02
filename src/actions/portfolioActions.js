@@ -2,36 +2,15 @@ import * as types from './actionTypes';
 import portfolioApi from '../api/portfolioApi';
 import {ajaxCallError, ajaxCallSuccess, beginAjaxCall} from './ajaxStatusActions';
 
-/***** Local Functions *****/
-
-/***** Exported Functions *****/
-
 export function getCatIndices(portfolio) {
-  const action = {type: types.TAB_INDICES, portfolio};
-  console.log('Action = ', action);
-  return action;
+  console.log('Action getCatIndices');
+  return {type: types.TAB_INDICES, portfolio};
 }
 
 export function loadPortfolioSuccess(target) {
-  const action = {type: types.LOAD_PORTFOLIO_SUCCESS, target};
-  console.log('Action = ', action);
-  return action;
+  console.log('Action loadPortfolioSuccess');
+  return {type: types.LOAD_PORTFOLIO_SUCCESS, target};
 }
-
-// target and filter are the two keys in the state.portfolio object
-export function onViewFilter(filter) {
-  const action = {type: types.ON_VIEW_FILTER, filter};
-  console.log('Action = ', action);
-  return action;
-}
-
-export function onViewReset() {
-  const action = {type: types.ON_VIEW_RESET};
-  console.log('Action = ', action);
-  return action;
-}
-
-// In below, parameter target could be also from portfolio.filter if filterFlag is true.
 
 export function onTickerBeginDateSort(filter, target) {
   console.log('Action onTickerBeginDateSort');
@@ -57,6 +36,24 @@ export function onTickerHighestNetPerSort(filter, target) {
     {type: types.ON_TICKER_HIGHEST_NETPER_SORT, target};
 }
 
+// Ticker row level:
+export function onTickerStateCodeClicked(ticker) {
+  console.log('Action onTickerStateCodeClicked');
+  return {type: types.ON_TICKER_STATE_CODE_CLICKED, ticker};
+}
+
+// target and filter are the two data-view-objects in state.data
+export function onViewFilter(filter) {
+  console.log('Action onViewFilter');
+  return {type: types.ON_VIEW_FILTER, filter};
+}
+
+export function onViewReset() {
+  console.log('Action onViewFilter');
+  return {type: types.ON_VIEW_RESET};
+}
+
+// Table view level:
 export function onViewStateCodeClicked() {
   console.log('Action onViewStateCodeClicked');
   return {type: types.ON_VIEW_STATE_CODE_CLICKED};

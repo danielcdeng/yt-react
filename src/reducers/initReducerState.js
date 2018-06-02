@@ -22,7 +22,9 @@ const initReducerState = {
   hightech: null,
   financial: null,
   asset: null,
-  crypto: null
+  crypto: null,
+  archives: null,
+  stat: null          // statistical data for each archive in archives
 };
 
 export default initReducerState;
