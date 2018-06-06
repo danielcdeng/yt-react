@@ -17,9 +17,21 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-// The wildcard means to send index.html for every request we receive.
-app.get('*', function(req, res) {
+//The wildcard means to send index.html for every request we receive.
+app.get('/', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
+});
+
+app.get('/active.json', function(req, res) {
+  const fileSent = path.join( __dirname, '../src/data/active.json');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
+});
+
+app.get('/archive.json', function(req, res) {
+  const fileSent = path.join( __dirname, '../src/data/archive.json');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
 });
 
 // Start the Express:

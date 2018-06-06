@@ -2,9 +2,16 @@ import * as types from './actionTypes';
 import portfolioApi from '../api/portfolioApi';
 import {ajaxCallError, ajaxCallSuccess, beginAjaxCall} from './ajaxStatusActions';
 
+// 11 actions:
+
 export function getCatIndices(portfolio) {
   console.log('Action getCatIndices');
   return {type: types.TAB_INDICES, portfolio};
+}
+
+export function loadArchiveSuccess(archive) {
+  console.log('Action loadArchiveSuccess');
+  return {type: types.LOAD_ARCHIVE_SUCCESS, archive};
 }
 
 export function loadPortfolioSuccess(target) {
@@ -61,7 +68,19 @@ export function onViewStateCodeClicked() {
 
 /***** Thunk APIs *****/
 
-export function loadPortfolioThunk() {
+export function getArchive() {
+  return dispatch => {
+    dispatch(beginAjaxCall());
+    return portfolioApi.getArchive().then(archive => {
+      dispatch(loadArchiveSuccess(archive));
+      dispatch(ajaxCallSuccess());
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function getPortfolio() {
   return dispatch => {
     dispatch(beginAjaxCall());
     return portfolioApi.getPortfolio().then(portfolio => {

@@ -1,6 +1,5 @@
 import * as types from '../actions/actionTypes';
 import initReducerState from './initReducerState';
-import archives from '../data/archives';
 
 export default function portfolioReducer(state = initReducerState, action) {
 
@@ -22,7 +21,7 @@ export default function portfolioReducer(state = initReducerState, action) {
     asset:     state.asset,
     crypto:    state.crypto,
     //-------------------
-    archives:  state.archives,
+    archive:  state.archive,
     stat:      state.stat
   };
 
@@ -106,39 +105,13 @@ export default function portfolioReducer(state = initReducerState, action) {
       newState.ajax -= 1;
       break;
 
-    case types.LOAD_PORTFOLIO_SUCCESS:
-      console.log('  ajaxStatusReducer LOAD_PORTFOLIO_SUCCESS');
-      newState.view.cat = types.TAB_PORTFOLIO.slice(0);
-      newState.view.target = JSON.parse(JSON.stringify(action.target));
-      newState.view.target.forEach(ticker => { ticker.tick.scClicked = false; });
-      // Portfolio:
-      newState.portfolio = JSON.parse(JSON.stringify(action.target));
-      // Indices:
-      newState.indices = Object.assign({}, newState.view);
-      newState.indices.cat = types.TAB_INDICES.slice(0);
-      newState.indices.target = newState.view.target.filter(ticker => { return types.TICKERS_INDICES.indexOf(ticker.tick.name) >= 0 ? true : false; });
-      // Hightech:
-      newState.hightech = Object.assign({}, newState.view);
-      newState.hightech.cat = types.TAB_HIGHTECH.slice(0);
-      newState.hightech.target = newState.view.target.filter(ticker => { return types.TICKERS_HIGHTECH.indexOf(ticker.tick.name) >= 0 ? true : false; });
-      // Financial:
-      newState.financial = Object.assign({}, newState.view);
-      newState.financial.cat = types.TAB_FINANCIAL.slice(0);
-      newState.financial.target = newState.view.target.filter(ticker => { return types.TICKERS_FINANCIAL.indexOf(ticker.tick.name) >= 0 ? true : false; });
-      // Asset:
-      newState.asset = Object.assign({}, newState.view);
-      newState.asset.cat = types.TAB_ASSET.slice(0);
-      newState.asset.target = newState.view.target.filter(ticker => { return types.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
-      // Crypto:
-      newState.crypto = Object.assign({}, newState.view);
-      newState.crypto.cat = types.TAB_CRYPTO.slice(0);
-      newState.crypto.target = newState.view.target.filter(ticker => { return types.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
+    case types.LOAD_ARCHIVE_SUCCESS:
       // Archives and Statistics:
-      newState.archives = {};
+      newState.archive = {};
       newState.stat = {};
       for (let idx = 0; idx < types.TICKERS_TOTAL.length; idx++) {
         const symbol = types.TICKERS_TOTAL[idx];
-        newState.archives[symbol] = [];
+        newState.archive[symbol] = [];
         newState.stat[symbol] = {
           yang: {
             average: '',
@@ -158,10 +131,10 @@ export default function portfolioReducer(state = initReducerState, action) {
           }
         };
       }
-      archives.forEach(ticker => newState.archives[ticker.tick.name].push(ticker));
+      action.archive.forEach(ticker => newState.archive[ticker.tick.name].push(ticker));
       for (let idx = 0; idx < types.TICKERS_TOTAL.length; idx++) {
         const symbol = types.TICKERS_TOTAL[idx];
-        const archive = newState.archives[symbol];
+        const archive = newState.archive[symbol];
         const stat = newState.stat[symbol];
         archive.forEach(ticker => {
           if (ticker.tick.name == symbol) {
@@ -204,8 +177,37 @@ export default function portfolioReducer(state = initReducerState, action) {
           stat.yin.median  = 'N/A';
         }
       }
-      console.log('newState.archives = ', newState.archives);
+      console.log('newState.archive = ', newState.archive);
       console.log('newState.stat     = ', newState.stat);
+      break;
+
+    case types.LOAD_PORTFOLIO_SUCCESS:
+      console.log('  ajaxStatusReducer LOAD_PORTFOLIO_SUCCESS');
+      newState.view.cat = types.TAB_PORTFOLIO.slice(0);
+      newState.view.target = JSON.parse(JSON.stringify(action.target));
+      newState.view.target.forEach(ticker => { ticker.tick.scClicked = false; });
+      // Portfolio:
+      newState.portfolio = JSON.parse(JSON.stringify(action.target));
+      // Indices:
+      newState.indices = Object.assign({}, newState.view);
+      newState.indices.cat = types.TAB_INDICES.slice(0);
+      newState.indices.target = newState.view.target.filter(ticker => { return types.TICKERS_INDICES.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      // Hightech:
+      newState.hightech = Object.assign({}, newState.view);
+      newState.hightech.cat = types.TAB_HIGHTECH.slice(0);
+      newState.hightech.target = newState.view.target.filter(ticker => { return types.TICKERS_HIGHTECH.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      // Financial:
+      newState.financial = Object.assign({}, newState.view);
+      newState.financial.cat = types.TAB_FINANCIAL.slice(0);
+      newState.financial.target = newState.view.target.filter(ticker => { return types.TICKERS_FINANCIAL.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      // Asset:
+      newState.asset = Object.assign({}, newState.view);
+      newState.asset.cat = types.TAB_ASSET.slice(0);
+      newState.asset.target = newState.view.target.filter(ticker => { return types.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      // Crypto:
+      newState.crypto = Object.assign({}, newState.view);
+      newState.crypto.cat = types.TAB_CRYPTO.slice(0);
+      newState.crypto.target = newState.view.target.filter(ticker => { return types.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
       break;
 
     case types.LOCALE_ENUS: // default

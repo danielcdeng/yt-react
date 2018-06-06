@@ -1,8 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-/***** Local Functions *****/
-
-/***** Exported Functions *****/
+// 1 action:
 
 export function onCatClick(link) {
   let action = null;

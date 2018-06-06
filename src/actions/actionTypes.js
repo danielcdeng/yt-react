@@ -1,6 +1,7 @@
 export const AJAX_CALL_ERROR        = 'AJAX_CALL_ERROR';
 export const AJAX_CALL_SUCCESS      = 'AJAX_CALL_SUCCESS';
 export const BEGIN_AJAX_CALL        = 'BEGIN_AJAX_CALL';
+export const LOAD_ARCHIVE_SUCCESS   = 'LOAD_ARCHIVE_SUCCESS';
 export const LOAD_PORTFOLIO_SUCCESS = 'LOAD_PORTFOLIO_SUCCESS';
 export const LOCALE_ENUS            = 'en-us';
 export const LOCALE_ZHTW            = 'zh-tw';

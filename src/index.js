@@ -7,15 +7,14 @@ import { Router, browserHistory } from 'react-router';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import { Provider } from 'react-redux';
-
 import routes from './routes';
 import './styles/styles.css';
-import { loadPortfolioThunk } from "./actions/portfolioActions";
+import { getArchive, getPortfolio } from "./actions/portfolioActions";
 import configureStore from './store/configureStore';
 
 const store = configureStore();
-const portfolioThunk = loadPortfolioThunk();
-store.dispatch(portfolioThunk);
+store.dispatch(getPortfolio());
+store.dispatch(getArchive());
 
 render(
   <Provider store={store}>

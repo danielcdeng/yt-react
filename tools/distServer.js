@@ -11,8 +11,22 @@ const app = express();
 app.use(compression());
 app.use(express.static('dist'));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../dist/index.html'));
+app.get('/', function(req, res) {
+  const fileSent = path.join( __dirname, '../dist/index.html');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
+});
+
+app.get('/data/active', function(req, res) {
+  const fileSent = path.join( __dirname, '../dist/active.json');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
+});
+
+app.get('/data/archive', function(req, res) {
+  const fileSent = path.join( __dirname, '../dist/archive.json');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
 });
 
 app.listen(port, function(err) {

@@ -1,8 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-/***** Local Functions *****/
-
-/***** Exported Functions *****/
+// 2 actions:
 
 export function localeENUS() {
   const action = {type: actionTypes.LOCALE_ENUS, locale: actionTypes.LOCALE_ENUS};

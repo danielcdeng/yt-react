@@ -17,13 +17,15 @@ const initReducerState = {
     scClicked: false, // overall state code select box clicked
     target: []        // for original data view
   },
+  //--------------
   portfolio: null,
   indices: null,
   hightech: null,
   financial: null,
   asset: null,
   crypto: null,
-  archives: null,
+  //--------------
+  archive: null,
   stat: null          // statistical data for each archive in archives
 };
 
