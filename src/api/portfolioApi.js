@@ -13,9 +13,8 @@ class PortfolioApi {
         resolve(response.data);
       })
       .catch(error => {
-        console.log('Error: GET /data/archive');
-        alert('Error: GET /data/archive');
-        resolve([{}]);
+        console.log('GET /archive.json, error = ', error);
+        reject({error, 'message': 'Error in GET /archive.json'});
       });
     });
   }
@@ -32,9 +31,8 @@ class PortfolioApi {
         resolve(response.data);
       })
       .catch(error => {
-        console.log('Error: GET /data/active');
-        alert('Error: GET /data/active');
-        resolve([{}]);
+        console.log('GET /active.json, error = ', error);
+        reject({error, 'message': 'Error in GET /active.json'});
       });
     });
   }

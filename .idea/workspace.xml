@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cac49365-281e-4687-9710-0555672bc8ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/ajaxStatusActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/ajaxStatusActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/categoryActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/categoryActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/localeActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/localeActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/portfolioActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/portfolioActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/portfolioApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/portfolioApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/active.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/archives.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/initReducerState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/initReducerState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/portfolioReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/portfolioReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/buildHtml.js" beforeDir="false" afterPath="$PROJECT_DIR$/tools/buildHtml.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/distServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/tools/distServer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/srcServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/tools/srcServer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,8 +20,8 @@
       <file leaf-file-name="portfolioActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actions/portfolioActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-259">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="34" />
+            <state relative-caret-position="333">
+              <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -43,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="portfolioApi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="portfolioApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/portfolioApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            <state relative-caret-position="495">
+              <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -68,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -76,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="distServer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="distServer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tools/distServer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
-              <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+              <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -232,11 +218,11 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/reducers/initReducerState.js" />
         <option value="$PROJECT_DIR$/src/reducers/portfolioReducer.js" />
-        <option value="$PROJECT_DIR$/src/actions/portfolioActions.js" />
         <option value="$PROJECT_DIR$/tools/buildHtml.js" />
         <option value="$PROJECT_DIR$/tools/distServer.js" />
-        <option value="$PROJECT_DIR$/src/api/portfolioApi.js" />
         <option value="$PROJECT_DIR$/tools/srcServer.js" />
+        <option value="$PROJECT_DIR$/src/api/portfolioApi.js" />
+        <option value="$PROJECT_DIR$/src/actions/portfolioActions.js" />
       </list>
     </option>
   </component>
@@ -280,11 +266,6 @@
             <path>
               <item name="yt-react" type="b2602c69:ProjectViewProjectNode" />
               <item name="yt-react" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yt-react" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yt-react" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yt-react" type="b2602c69:ProjectViewProjectNode" />
@@ -391,12 +372,12 @@
       <workItem from="1527314592595" duration="3655000" />
       <workItem from="1527547550610" duration="58045000" />
       <workItem from="1527811855045" duration="33255000" />
-      <workItem from="1527901345016" duration="55346000" />
+      <workItem from="1527901345016" duration="56246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="434610000" />
+    <option name="totallyTimeSpent" value="435510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="309" y="23" width="1553" height="1037" extended-state="0" />
@@ -770,27 +751,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/portfolioActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-259">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/portfolioApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tools/srcServer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -800,10 +764,27 @@
     <entry file="file://$PROJECT_DIR$/tools/distServer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/portfolioActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="77" column="17" selection-start-line="77" selection-start-column="17" selection-end-line="77" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/portfolioApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
         </state>
       </provider>
     </entry>
