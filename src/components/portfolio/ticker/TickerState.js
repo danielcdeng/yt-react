@@ -35,22 +35,22 @@ class TickerState extends React.Component {
           switch (title) {
             case 'AVERAGE': return <li>{Const.ENUS_YANG_AVG}{stat[ticker.tick.name].yang.average}</li>;
             case 'CYCLES':  return <li>{Const.ENUS_YANG_CYCLES}{stat[ticker.tick.name].yang.netp.length}</li>;
-            case 'DISTCH':  return <li>{Const.ENUS_YANG_DISTCH}</li>;
+            case 'DISTCH':  return <li>{Const.ENUS_YANG_DISTCH} (TBA in D3.js)</li>;
             case 'MEDIAN':  return <li>{Const.ENUS_YANG_MED}{stat[ticker.tick.name].yang.median}</li>;
-            case 'SEAEND':  return <li>{Const.ENUS_YANG_TOPMON}</li>;
+            case 'SEAEND':  return <li>{Const.ENUS_YANG_TOPMON} (TBA in D3.js)</li>;
           }
         }
         else {
           switch (title) {
             case 'AVERAGE': return <li>{Const.ENUS_YIN_AVG}{stat[ticker.tick.name].yin.average}</li>;
             case 'CYCLES':  return <li>{Const.ENUS_YIN_CYCLES}{stat[ticker.tick.name].yin.netp.length}</li>;
-            case 'DISTCH':  return <li>{Const.ENUS_YIN_DISTCH}</li>;
+            case 'DISTCH':  return <li>{Const.ENUS_YIN_DISTCH} (TBA in D3.js)</li>;
             case 'MEDIAN':  return <li>{Const.ENUS_YIN_MED}{stat[ticker.tick.name].yin.median}</li>;
-            case 'SEAEND':  return <li>{Const.ENUS_YIN_BOTMON}</li>;
+            case 'SEAEND':  return <li>{Const.ENUS_YIN_BOTMON} (TBA in D3.js)</li>;
           }
         }
         switch (title) {
-          case 'SEABEGIN': return <li>{Const.ENUS_SEA_BEGIN}</li>;
+          case 'SEABEGIN': return <li>{Const.ENUS_SEA_BEGIN} (TBA in D3.js)</li>;
           case 'STATDATA': return <h4>{Const.ENUS_STAT_DATA}</h4>;
         }
         break;
@@ -60,9 +60,9 @@ class TickerState extends React.Component {
           switch (title) {
             case 'AVERAGE': return <li>{Const.ZHTW_YANG_AVG}{stat[ticker.tick.name].yang.average}</li>;
             case 'CYCLES':  return <li>{Const.ZHTW_YANG_CYCLES}{stat[ticker.tick.name].yang.netp.length}</li>;
-            case 'DISTCH':  return <li>{Const.ZHTW_YANG_DISTCH}</li>;
+            case 'DISTCH':  return <li>{Const.ZHTW_YANG_DISTCH} (TBA in D3.js)</li>;
             case 'MEDIAN':  return <li>{Const.ZHTW_YANG_MED}{stat[ticker.tick.name].yang.median}</li>;
-            case 'SEAEND':  return <li>{Const.ZHTW_YANG_TOPMON}</li>;
+            case 'SEAEND':  return <li>{Const.ZHTW_YANG_TOPMON} (TBA in D3.js)</li>;
           }
         }
         else {
