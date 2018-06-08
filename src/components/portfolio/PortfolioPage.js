@@ -11,10 +11,11 @@ class PortfolioPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.checkTableToExpand = this.checkTableToExpand.bind(this);
-    //this.ppRef = React.createRef();
+    this.filterInputHandler = this.filterInputHandler.bind(this);
     this.getFilterTickers = this.getFilterTickers.bind(this);
     this.getTabName = this.getTabName.bind(this);
     this.onViewReset = this.onViewReset.bind(this);
+    this.ppRef = React.createRef();
     this.uniqBy = this.uniqBy.bind(this);
     this.userAction = this.userAction.bind(this);
     this.state = {
@@ -25,12 +26,20 @@ class PortfolioPage extends React.Component {
 
   componentDidMount() {
     this.getFilterTickers();
+    document.getElementById('filterinput').focus();
+    console.log('************* FOCUSD');
   }
 
   //----------------------------------------
 
   checkTableToExpand(actions, view) {
     actions.onViewReset();
+  }
+
+  filterInputHandler() {
+    const node = this.ppRef.current;
+    const tickerName = node.value.toUpperCase();
+    console.log('tickerName = ', tickerName);
   }
 
   getFilterTickers() {
@@ -77,6 +86,7 @@ class PortfolioPage extends React.Component {
       case 'Filter': // inputs
         return event => {
           console.log('this.ppRef = ', this.ppRef);
+          this.filterInputHandler();
           event.target.value = event.target.value.toUpperCase();
           let filterTickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
           if (filterTickers.length == 0) { actions.onViewFilter([]); return; }
@@ -109,11 +119,13 @@ class PortfolioPage extends React.Component {
 
   render() {
     const {actions, cat, locale, scClicked, view} = this.props;
+    if (document.getElementById('filterinput')) document.getElementById('filterinput').focus();
     //this.checkTableToExpand(actions, view);
     return(
       <div>
         <br/>
-        <div style={{display: view.target.length > 3 ? "block" : "none"}}>
+        {/* <div style={{display: view.target.length > 3 ? "block" : "none"}}> */}
+        <div>
           <div className="marginBottom5px">
             <b>Filter</b> (separates each ticker by a space)
           </div>
@@ -121,7 +133,7 @@ class PortfolioPage extends React.Component {
           <div>
             <input className="form-control" id="filterinput" type="text"
               onChange={this.userAction("Filter", actions, view)}
-              style={{textTransform: "uppercase"}}/>
+              ref={this.ppRef} style={{textTransform: "uppercase"}}/>
           </div>
         </div>
 

@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cac49365-281e-4687-9710-0555672bc8ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/about/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/about/AboutPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/AppICO.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/AppICO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/AppTitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/AppTitle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/LoadingDots.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/LoadingDots.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/portfolio/ticker/TickerRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/portfolio/ticker/TickerRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/portfolio/ticker/TickerState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/portfolio/ticker/TickerState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TickerRow.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TickerRow.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/portfolio/ticker/TickerRow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="105" column="122" selection-start-line="105" selection-start-column="118" selection-end-line="105" selection-end-column="122" />
+            <state relative-caret-position="566">
+              <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -92,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PortfolioPage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PortfolioPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="148" column="106" lean-forward="true" selection-start-line="148" selection-start-column="106" selection-end-line="148" selection-end-column="106" />
+            <state relative-caret-position="288">
+              <caret line="126" column="82" lean-forward="true" selection-start-line="126" selection-start-column="82" selection-end-line="126" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -115,8 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateFilterInputBox</find>
-      <find>getFilterTickers</find>
       <find>TickerRow</find>
       <find>cycleType</find>
       <find>onTotalStateCodeCheck</find>
@@ -145,6 +131,8 @@
       <find>enzyme</find>
       <find>react-addons-test-utils</find>
       <find>&amp;nbsp;</find>
+      <find>filterinput</find>
+      <find>getFilterTickers</find>
     </findStrings>
     <replaceStrings>
       <replace>;</replace>
@@ -211,13 +199,13 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/header/Header.js" />
         <option value="$PROJECT_DIR$/src/components/App.js" />
-        <option value="$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js" />
         <option value="$PROJECT_DIR$/src/components/home/HomePage.js" />
         <option value="$PROJECT_DIR$/src/components/common/AppTitle.js" />
         <option value="$PROJECT_DIR$/src/components/about/AboutPage.js" />
         <option value="$PROJECT_DIR$/src/components/portfolio/ticker/TickerState.js" />
         <option value="$PROJECT_DIR$/src/styles/styles.css" />
         <option value="$PROJECT_DIR$/src/components/portfolio/ticker/TickerRow.js" />
+        <option value="$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js" />
       </list>
     </option>
   </component>
@@ -410,18 +398,18 @@
       <workItem from="1527547550610" duration="58045000" />
       <workItem from="1527811855045" duration="33255000" />
       <workItem from="1527901345016" duration="68642000" />
-      <workItem from="1528486390059" duration="4233000" />
+      <workItem from="1528486390059" duration="5909000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="452139000" />
+    <option name="totallyTimeSpent" value="453815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="301" y="23" width="1553" height="1037" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20561358" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20561358" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -430,7 +418,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.22553192" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.22553192" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -772,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="148" column="106" lean-forward="true" selection-start-line="148" selection-start-column="106" selection-end-line="148" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/AppTitle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -791,11 +772,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/portfolio/ticker/TickerRow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="105" column="122" selection-start-line="105" selection-start-column="118" selection-end-line="105" selection-end-column="122" />
+        <state relative-caret-position="566">
+          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/portfolio/PortfolioPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="126" column="82" lean-forward="true" selection-start-line="126" selection-start-column="82" selection-end-line="126" selection-end-column="82" />
         </state>
       </provider>
     </entry>
