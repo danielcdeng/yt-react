@@ -26,8 +26,7 @@ class PortfolioPage extends React.Component {
 
   componentDidMount() {
     this.getFilterTickers();
-    document.getElementById('filterinput').focus();
-    console.log('************* FOCUSD');
+    if (document.getElementById('filterinput')) document.getElementById('filterinput').focus();
   }
 
   //----------------------------------------
@@ -36,19 +35,37 @@ class PortfolioPage extends React.Component {
     actions.onViewReset();
   }
 
-  filterInputHandler() {
+  filterInputHandler(actions, view) {
     const node = this.ppRef.current;
-    const tickerName = node.value.toUpperCase();
-    console.log('tickerName = ', tickerName);
+    if (node) {
+      const tickerNames = node.value.toUpperCase();
+      if (tickerNames.length == 0) {
+        actions.onViewFilter([]);
+        return;
+      }
+      let filterTickers = tickerNames.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
+      let prefilter = [];
+      filterTickers = this.uniqBy(filterTickers, JSON.stringify); // remove duplicates from users's input
+      filterTickers = filterTickers.filter(ticker => {
+        for (let idx1 = 0; idx1 < view.target.length; idx1++) {
+          if (ticker == view.target[idx1].tick.name) {
+            prefilter.push(view.target[idx1]);
+            return true;
+          }
+        }
+        return false;
+      });
+      if (prefilter.length > 0) actions.onViewFilter(prefilter);
+    }
   }
 
   getFilterTickers() {
     if (this.props.view.filter.length > 0) {
       let filterTickers = '';
       this.props.view.filter.forEach(ticker => filterTickers += ticker.tick.name + ' ');
-      document.getElementById('filterinput').value = filterTickers;
+      if (document.getElementById('filterinput')) document.getElementById('filterinput').value = filterTickers;
     } else {
-      document.getElementById('filterinput').value = '';
+      if (document.getElementById('filterinput')) document.getElementById('filterinput').value = '';
     }
   }
 
@@ -81,35 +98,13 @@ class PortfolioPage extends React.Component {
     const target = view.target;
 
     switch (userClickOn) {
-
       // For filtering:
-      case 'Filter': // inputs
-        return event => {
-          console.log('this.ppRef = ', this.ppRef);
-          this.filterInputHandler();
-          event.target.value = event.target.value.toUpperCase();
-          let filterTickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
-          if (filterTickers.length == 0) { actions.onViewFilter([]); return; }
-          let prefilter = [];
-          filterTickers = this.uniqBy(filterTickers, JSON.stringify); // remove duplicates from users's input
-          filterTickers = filterTickers.filter(ticker => {
-            for(let idx1 = 0; idx1 < view.target.length; idx1++) {
-              if (ticker == view.target[idx1].tick.name) {
-                prefilter.push(view.target[idx1]);
-                return true;
-              }
-            }
-            return false;
-          });
-          if (prefilter.length > 0) actions.onViewFilter(prefilter);
-        };
-
+      case 'Filter':        return event => { this.filterInputHandler(actions, view); };
       // For state.view's column sorting:
-      case 'BeginDate':     return(event => { actions.onTickerBeginDateSort(filter, target); });
-      case 'Cycle':         return(event => { actions.onTickerCycleSort(filter, target); });
-      case 'HighestDate':   return(event => { actions.onTickerHighestDateSort(filter, target); });
-      case 'HighestNetPer': return(event => { actions.onTickerHighestNetPerSort(filter, target); });
-
+      case 'BeginDate':     return event => { actions.onTickerBeginDateSort(filter, target); };
+      case 'Cycle':         return event => { actions.onTickerCycleSort(filter, target); };
+      case 'HighestDate':   return event => { actions.onTickerHighestDateSort(filter, target); };
+      case 'HighestNetPer': return event => { actions.onTickerHighestNetPerSort(filter, target); };
       // For State Code click at the top:
       case 'scClicked': return(event => { actions.onViewStateCodeClicked(); });
     }
@@ -149,8 +144,12 @@ class PortfolioPage extends React.Component {
 
           <thead className="tableHeaderBackgroundColor">
             <tr>
+              <th width="2%">
+                {"#"}
+              </th>
+
               {/* Cycle Type column */}
-              <th width="10%"><a onClick={this.userAction("Cycle", actions, view)}>Cycle<br/>Type</a></th>
+              <th width="8%"><a onClick={this.userAction("Cycle", actions, view)}>Cycle<br/>Type</a></th>
 
               {/* Stock Ticker */}
               <th width="10%">Stock<br/>Ticker</th>
@@ -185,8 +184,8 @@ class PortfolioPage extends React.Component {
 
           {
             view.filter.length > 0 ?
-            view.filter.map(ticker => <TickerRow key={ticker.tick.name} locale={locale} ticker={ticker}/>) :
-            view.target.map(ticker => <TickerRow key={ticker.tick.name} locale={locale} ticker={ticker}/>)
+            view.filter.map((ticker, idx) => <TickerRow idx={idx+1} key={ticker.tick.name} locale={locale} ticker={ticker}/>) :
+            view.target.map((ticker, idx) => <TickerRow idx={idx+1} key={ticker.tick.name} locale={locale} ticker={ticker}/>)
           }
 
         </table>

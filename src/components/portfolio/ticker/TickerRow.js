@@ -64,10 +64,12 @@ class TickerRow extends React.Component {
   //------------------------------------------
 
   render() {
-    const {actions, locale, ticker} = this.props;
+    const {actions, idx, locale, ticker} = this.props;
     return(
       <tbody>
         <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
+          <td>{idx}</td>
+
           {/* Cycle Type */}
           <td>{ticker.door.type == "yang" ? Const.ENUS_POS : Const.ENUS_NEG}</td>
           {/* Ticker Name */}
@@ -111,6 +113,7 @@ class TickerRow extends React.Component {
 
 TickerRow.propTypes = {
   actions: PropTypes.object.isRequired,
+  idx:     PropTypes.number.isRequired,
   locale:  PropTypes.string.isRequired,
   ticker:  PropTypes.object.isRequired
 };
