@@ -37,6 +37,15 @@ function sameAs1b(locale) {
 }
 
 /*
+function basexxxx(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return '';
+    case types.LOCALE_ZHTW:
+      return '';
+  }
+}
+
 function yaoxxxx(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
@@ -123,7 +132,7 @@ function IC00000(locale, ticker) {
   return obj;
 }
 
-/***** 3756 火山旅 101100 *****/
+/***** 3756 火山旅 101.100 *****/
 
 function base3756(locale, ticker) {
   switch (locale) {
@@ -165,7 +174,7 @@ function yao3756(locale, ticker, yao) {
   }
 }
 
-/***** 4762 雷山小過 001100 *****/
+/***** 4762 雷山小過 001.100 *****/
 
 function base4762(locale, ticker) {
   switch (locale) {
@@ -213,7 +222,7 @@ function IC4762(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = base3756(locale, ticker); obj.state2b = yao3756(locale, ticker, yao); break; // 001100 (4762) -> 101100 (3756)
+        case types.TICKER_CYCLE1: obj.state2a = base3756(locale, ticker); obj.state2b = yao3756(locale, ticker, yao); break; // 001.100 -> 101.100
         case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
@@ -253,7 +262,7 @@ function IC4762(locale, ticker, yao) {
   return obj;
 }
 
-/***** 7241 山澤損 100011 *****/
+/***** 7241 山澤損 100.011 *****/
 
 function base7241(locale, ticker) {
   switch (locale) {
@@ -273,20 +282,23 @@ function yao7241(locale, ticker, yao) {
         case 6: return '(6th verse) Cannot treat it as a DECREASE. On the contrary, it is a benefit, not a fault. ' +
           'Perseverance brings good fortune and it furthers ' + ticker.tick.name + ' to undertake cooperation from ' +
           'other parties in order to expand the ' + ticker.tick.name + '\'s market share and influence.';
-        case 5: return;
+        case 5: return '(5th verse) Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), cannot oppose. Supreme good fortune.';
         case 4: return;
         case 3: return;
-        case 2: return;
+        case 2: return '(2nd verse) Favorable to have perseverance on the vertical integration of ' + ticker.tick.name +
+          '\'s business domain. It would be misfortune to extend oneself to different area such as that a fashion company buying out a telecommunication one. ' +
+          'In a word, not only to stop decreasing the original business, but to increase it.';
         case 1: return;
       }
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 不能以損視之，反而是益之无咎，貞吉，利有攸往，得臣無家，意思是雙方合作以壯大勢力版圖。';
-        case 5: return;
+        case 5: return '(第五爻) 或益 ' + ticker.tick.name + ' 以十朋之龜 (價值)，弗克違，元吉。';
         case 4: return;
         case 3: return;
-        case 2: return;
+        case 2: return '(第二爻) 利於貞定在 ' + ticker.tick.name + '\'s 本業上的垂直整合，若跨領域如服裝行業的去做通訊業，則征凶。' +
+          '言而總之，大原則為不僅不去損自己的本業，還要能去益之。';
         case 1: return;
       }
       break;
@@ -302,16 +314,22 @@ function IC7241(locale, ticker, yao) {
     case 6:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = base8219(locale, ticker); obj.state2b = yao8219(locale, ticker, yao); break; // 100011 (7241) -> 000011 (8219)
+        case types.TICKER_CYCLE2: obj.state2a = base8219(locale, ticker); obj.state2b = yao8219(locale, ticker, yao); break; // 100.011 -> 000.011
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.011 -> 110.011
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.011 -> 110.001
       }
       break;
     /*
-    case 5:
-      switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
-        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
-      }
-      break;
     case 4:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
@@ -319,12 +337,6 @@ function IC7241(locale, ticker, yao) {
       }
       break;
     case 3:
-      switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
-        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
-      }
-      break;
-    case 2:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
         case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
@@ -341,7 +353,7 @@ function IC7241(locale, ticker, yao) {
   return obj;
 }
 
-/***** 7518 山風蠱 100110 *****/
+/***** 7518 山風蠱 100.110 *****/
 
 function base7518(locale, ticker) {
   switch (locale) {
@@ -414,13 +426,13 @@ function IC7518(locale, ticker, yao) {
     case 3:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = base7604(locale, ticker); obj.state2b = yao7604(locale, ticker, yao); break; // 100110 -> 100010
+        case types.TICKER_CYCLE2: obj.state2a = base7604(locale, ticker); obj.state2b = yao7604(locale, ticker, yao); break; // 100.110 -> 100.010
       }
       break;
     case 2:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = base7752(locale, ticker); obj.state2b = yao7752(locale, ticker, yao); break; // 100110 -> 100100
+        case types.TICKER_CYCLE2: obj.state2a = base7752(locale, ticker); obj.state2b = yao7752(locale, ticker, yao); break; // 100.110 -> 100.100
       }
       break;
     /*
@@ -435,7 +447,7 @@ function IC7518(locale, ticker, yao) {
   return obj;
 }
 
-/***** 7604 山水蒙 100010 *****/
+/***** 7604 山水蒙 100.010 *****/
 
 function base7604(locale, ticker) {
   switch (locale) {
@@ -478,7 +490,7 @@ function yao7604(locale, ticker, yao) {
   }
 }
 
-/***** 7752 艮為山 100100 *****/
+/***** 7752 艮為山 100.100 *****/
 
 function base7752(locale, ticker) {
   switch (locale) {
@@ -515,7 +527,7 @@ function yao7752(locale, ticker, yao) {
   }
 }
 
-/***** 8219 地澤臨 000011 *****/
+/***** 8219 地澤臨 000.011 *****/
 
 function base8219(locale, ticker) {
   switch (locale) {
@@ -552,6 +564,91 @@ function yao8219(locale, ticker, yao) {
   }
 }
 
+/***** 8336 地火明夷 000.101 *****/
+
+function base8336(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'DARKENING OF THE LIGHT. In adversity (negative), if ' + ticker.tick.name + ' could still hold the perseverance, it would be beneficial.';
+    case types.LOCALE_ZHTW:
+      return '(地火明夷) 艱難中若 ' + ticker.tick.name + ' 仍能有貞定，則利。';
+  }
+}
+
+function yao8336(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '(2nd verse) ' + ticker.tick.name + ' gets injuried on the "left thigh", thus it cannot continue to march forward. ' +
+          'Pay attention to its recovery speed. If it is quick, then good fortune.';
+        case 1: return '';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '(第二爻) ' + ticker.tick.name + ' 被傷到了"左大腿"，以至於它不能繼續往前邁進。此時注意其復原速度，若甚快，吉。';
+        case 1: return '';
+      }
+      break;
+  }
+}
+
+function IC8336(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base8336(locale, ticker);
+  obj.state1b = yao8336(locale, ticker, yao);
+  switch (yao) {
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 000.101 -> 000.111
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    /*
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ''; obj.state2b = ''; break;
+        case types.TICKER_CYCLE2: obj.state2a = ''; obj.state2b = ''; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    */
+  }
+  return obj;
+}
+
 /********************************************************************/
 
 // Get the I-Ching Object:
@@ -561,10 +658,12 @@ export function getICO(locale, ticker) {
     case '00000': Obj = IC00000(locale, ticker); break;
     case '47626':
       Obj = IC4762(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
-    case '72416':
+    case '72412': case '72415': case '72416':
       Obj = IC7241(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
     case '75182': case '75183':
       Obj = IC7518(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
+    case '83362':
+      Obj = IC8336(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
     default:
       Obj = locale == types.LOCALE_ENUS ? Object.assign({}, ENUS_State_Obj) : Object.assign({}, ZHTW_State_Obj);
       break;

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../actions/actionTypes';
 import { bindActionCreators } from 'redux';
@@ -10,6 +11,7 @@ class PortfolioPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.checkTableToExpand = this.checkTableToExpand.bind(this);
+    //this.ppRef = React.createRef();
     this.getFilterTickers = this.getFilterTickers.bind(this);
     this.getTabName = this.getTabName.bind(this);
     this.onViewReset = this.onViewReset.bind(this);
@@ -74,6 +76,7 @@ class PortfolioPage extends React.Component {
       // For filtering:
       case 'Filter': // inputs
         return event => {
+          console.log('this.ppRef = ', this.ppRef);
           event.target.value = event.target.value.toUpperCase();
           let filterTickers = event.target.value.trim().split(' ').filter(ele => ele.length == 0 ? false : true);
           if (filterTickers.length == 0) { actions.onViewFilter([]); return; }

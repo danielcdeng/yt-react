@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as pActions from '../../../actions/portfolioActions';
@@ -123,7 +124,7 @@ class TickerState extends React.Component {
     }
     return(
       <tr>
-        <td colSpan={4} className={ticker.door.type=='yang' ? "yangStateCodeBgColor" : "yinStateCodeBgColor"}>
+        <td colSpan={4}>
           <h4>{ticker.door.fore} {this.getYiXiang(locale)}:</h4>
           <ul>
             <li><b>{label1a}</b><br/><i>{ico.state1a}</i></li>
@@ -132,7 +133,7 @@ class TickerState extends React.Component {
             {this.getElement("LABEL2B", locale, stat, ticker, ico.state2b)}
           </ul>
         </td>
-        <td colSpan={5} className={ticker.door.type=='yang'? "yangStateCodeBgColor" : "yinStateCodeBgColor"}>
+        <td colSpan={5}>
           {this.getElement("STATDATA", locale, stat, ticker)}
           <ul>
             {/*{this.getElement("CYCLES", locale, stat, ticker)}*/} {/* total # of cycles of the door */}

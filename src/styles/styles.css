@@ -84,6 +84,9 @@ ul {
 .marginBottom5px {
   margin-bottom: 5px;
 }
+.marginRight3px {
+  margin-right: 3px;
+}
 .marginRight10px {
   margin-right: 10px;
 }
@@ -97,17 +100,12 @@ ul {
   margin-top: 6px;
 }
 
+
 .yangrowbackground {
   background-color: #e2ffeb;
 }
-.yangStateCodeBgColor {
-  background-color: #effff4;
-}
 .yinrowbackground {
   background-color: #fff0f9;
-}
-.yinStateCodeBgColor {
-  background-color: #fff4f7;
 }
 
 .yt-display-center {

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as acts from '../../../actions/actionTypes';
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -72,36 +72,38 @@ class TickerRow extends React.Component {
           <td>{ticker.door.type == "yang" ? Const.ENUS_POS : Const.ENUS_NEG}</td>
           {/* Ticker Name */}
           <td title={ticker.tick.titl}>
-            {ticker.tick.name}&nbsp;
-            {ticker.door.type == "yang" ?
-            (parseFloat(ticker.door.lpri) < parseFloat(ticker.door.pri1) ? "-" : "") :
-            (parseFloat(ticker.door.lpri) > parseFloat(ticker.door.pri1) ? "+" : "")}
+            <span className="marginRight3px">{ticker.tick.name}</span>
+            {
+              ticker.door.type == "yang" ?
+              (parseFloat(ticker.door.lpri) < parseFloat(ticker.door.pri1) ? "-" : null) :
+              (parseFloat(ticker.door.lpri) > parseFloat(ticker.door.pri1) ? "+" : null)
+            }
           </td>
           {/* State Code */}
           <td>
-            {ticker.door.fore}&nbsp;
+            <span className="marginRight3px">{ticker.door.fore}</span>
             <input type="checkbox" checked={ticker.tick.scClicked} onClick={this.onTickerStateCodeClicked(actions, ticker)}/>
           </td>
           {/* Begin Date and Price */}
           <td>{ticker.door.dat1}<br/>{ticker.door.pri1}</td>
           {/* Highest Date, Price, +Net% */}
           <td>
-            {ticker.door.type == "yang" ? ticker.sess.dat2 : ""}<br/>
-            {ticker.door.type == "yang" ? ticker.sess.pri2 + ", " : ""}<br/>
-            {ticker.door.type == "yang" ? this.addPlusSignIfPositive(ticker.sess.netp) + "%" : ""}
+            {ticker.door.type == "yang" ? ticker.sess.dat2 : null}<br/>
+            {ticker.door.type == "yang" ? ticker.sess.pri2 + "," : null}<br/>
+            {ticker.door.type == "yang" ? this.addPlusSignIfPositive(ticker.sess.netp) + "%" : null}
           </td>
           {/* Lowest Date, Price, -Net% */}
           <td>
-            {ticker.door.type == "yin" ? ticker.sess.dat2 : ""}<br/>
-            {ticker.door.type == "yin" ? ticker.sess.pri2 + ", " : ""}<br/>
-            {ticker.door.type == "yin" ? ticker.sess.netp + "%" : ""}
+            {ticker.door.type == "yin" ? ticker.sess.dat2 : null}<br/>
+            {ticker.door.type == "yin" ? ticker.sess.pri2 + "," : null}<br/>
+            {ticker.door.type == "yin" ? ticker.sess.netp + "%" : null}
           </td>
           {/* Last Date and Price */}
           <td>{ticker.door.ldat}<br/>{ticker.door.lpri}</td>
           {/* Stock Market Chart */}
           <td><a href={this.renderStockChart(ticker.tick.name)} target="_blank">Chart</a></td>
         </tr>
-        {ticker.tick.scClicked ? <TickerState key={ticker.tick.name+"-StateCode"} locale={locale} ticker={ticker}/> : ""}
+        {ticker.tick.scClicked ? <TickerState key={ticker.tick.name+"-StateCode"} locale={locale} ticker={ticker}/> : null}
       </tbody>
     );
   }
