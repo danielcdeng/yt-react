@@ -28,6 +28,7 @@ class PortfolioApi {
         timeout: 5000
       })
       .then(response => {
+        console.log('REST portfolio = ', response.data);
         resolve(response.data);
       })
       .catch(error => {

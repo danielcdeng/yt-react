@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import initReducerState from './initReducerState';
 
-export default function portfolioReducer(state = initReducerState, action) {
+export default function portfolioReducer(state = initReducerState.primary, action) {
 
   console.log('portfolioReducer:');
   console.log('  par state = ', state);
@@ -9,8 +9,8 @@ export default function portfolioReducer(state = initReducerState, action) {
 
   // Init the new state:
   let newState = {
-    ajax:   state.ajax,
-    locale: state.locale,
+    ajax:      state.ajax,
+    locale:    state.locale,
     //-------------------
     view:      JSON.parse(JSON.stringify(state.view)),
     //-------------------
@@ -21,7 +21,7 @@ export default function portfolioReducer(state = initReducerState, action) {
     asset:     state.asset,
     crypto:    state.crypto,
     //-------------------
-    archive:  state.archive,
+    archive:   state.archive,
     stat:      state.stat
   };
 
@@ -53,7 +53,7 @@ export default function portfolioReducer(state = initReducerState, action) {
         case types.TAB_ASSET:     newState.asset     = viewObj; break;
         case types.TAB_CRYPTO:    newState.crypto    = viewObj; break;
       }
-    } {
+    } else {
       console.log('portfolioReducer: The state.view switch is not required.');
     }
   }
@@ -299,7 +299,9 @@ export default function portfolioReducer(state = initReducerState, action) {
     case types.TAB_ASSET:     console.log('  ajaxStatusReducer TAB_ASSET');     switchDataView(types.TAB_ASSET);     break;
     case types.TAB_CRYPTO:    console.log('  ajaxStatusReducer TAB_CRYPTO');    switchDataView(types.TAB_CRYPTO);    break;
 
-    default: break;
+    default:
+      console.log('portfolioReducer undefined, action.type = "' + action.type + '"');
+      break;
 
   }
 

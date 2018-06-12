@@ -13,7 +13,7 @@ class HomePage extends React.Component {
     return(
       <div className="jumbotron jumbotron-fluid"> {/* class from Bootstrap */}
         <h2>YouTiming</h2>
-        <hr/>
+        <hr className="jumboHR"/>
         <p>The stock markets amazing changes from the principles of <i>I-Ching</i></p>
         <Link to="about" className="btn btn-primary btn-lg">Learn More</Link>
       </div>

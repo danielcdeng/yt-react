@@ -2,8 +2,6 @@ import * as types from './actionTypes';
 import portfolioApi from '../api/portfolioApi';
 import {ajaxCallError, ajaxCallSuccess, beginAjaxCall} from './ajaxStatusActions';
 
-// 11 actions:
-
 export function getCatIndices(portfolio) {
   console.log('Action getCatIndices');
   return {type: types.TAB_INDICES, portfolio};

@@ -103,7 +103,8 @@ export default {
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
 
       // 6. svg - Scalable Vector Graphics, an XML-based vector image format for two-dimensional graphics:
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
+      {test: /\.png$/, loader: 'file'}
     ]
   }
 };

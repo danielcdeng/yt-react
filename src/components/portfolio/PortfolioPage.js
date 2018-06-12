@@ -217,15 +217,15 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  console.log('PortfolioPage, mapStateToProps:');
-  console.log('  par state = ', state);
-  console.log('  par ownProps = ', ownProps);
+function mapStateToProps(store, ownProps) {
+  // console.log('PortfolioPage, mapStateToProps:');
+  // console.log('  par store = ', store);
+  // console.log('  par ownProps = ', ownProps);
   return {
     cat:       ownProps.params.cat,
-    locale:    state.data.locale,
-    scClicked: state.data.view.scClicked,
-    view:      state.data.view
+    locale:    store.primary.locale,
+    scClicked: store.primary.view.scClicked,
+    view:      store.primary.view
   };
 }
 

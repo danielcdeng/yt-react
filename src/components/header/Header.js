@@ -12,11 +12,20 @@ class Header extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.home = this.home.bind(this);
+    this.portfolio = this.portfolio.bind(this);
+    this.indices = this.indices.bind(this);
+    this.hightech = this.hightech.bind(this);
+    this.financial = this.financial.bind(this);
+    this.asset = this.asset.bind(this);
+    this.crypto = this.crypto.bind(this);
+    this.info = this.info.bind(this);
+    this.owm = this.owm.bind(this);
+    this.loadingDots = this.loadingDots.bind(this);
     this.onLinkClick  = this.onLinkClick.bind(this);
     this.onLocaleENUS = this.onLocaleENUS.bind(this);
     this.onLocaleZHTW = this.onLocaleZHTW.bind(this);
     this.state = {
-      about: false,
       home: false,
       port: false,
       indices: false,
@@ -24,14 +33,93 @@ class Header extends React.Component {
       financial: false,
       asset: false,
       crypto: false,
+      info: false,
+      owm: false, // open weather map
       reload: context.location.pathname
     };
     //console.log('path: ', context.location.pathname);
   }
+  componentWillMount() {
+    this.setState({home:true});
+  }
+  componentDidMount() {
+  }
+
+  home() {
+    return(
+      <IndexLink to="/" onClick={this.onLinkClick(actionTypes.TAB_HOME)}
+        activeClassName={(this.state.reload == "/" || this.state.home) ? "active" : "inactive"}>Home</IndexLink>
+    );
+  }
+  portfolio(catActions) {
+    return(
+      <Link to="/portfolio" onClick={this.onLinkClick(actionTypes.TAB_PORTFOLIO, catActions)}
+        activeClassName={(this.state.reload == "/portfolio" || this.state.port) ? "active" : "inactive"}>Portfolio</Link>
+    );
+  }
+  indices(catActions) {
+    return(
+      <Link to="/portfolio/indices" onClick={this.onLinkClick(actionTypes.TAB_INDICES, catActions)}
+        activeClassName={(this.state.reload == "/portfolio/indices" || this.state.indices) ? "active" : "inactive"}>Indices</Link>
+    );
+  }
+  hightech(catActions) {
+    return(
+      <Link to="/portfolio/hightech" onClick={this.onLinkClick(actionTypes.TAB_HIGHTECH, catActions)}
+        activeClassName={(this.state.reload == "/portfolio/hightech" || this.state.hightech) ? "active" : "inactive"}>Hightech</Link>
+    );
+  }
+  financial(catActions) {
+    return(
+      <Link to="/portfolio/financial" onClick={this.onLinkClick(actionTypes.TAB_FINANCIAL, catActions)}
+        activeClassName={(this.state.reload == "/portfolio/financial" || this.state.financial) ? "active" : "inactive"}>Financial</Link>
+    );
+  }
+  asset(catActions) {
+    return(
+      <Link to="/portfolio/asset" onClick={this.onLinkClick(actionTypes.TAB_ASSET, catActions)}
+        activeClassName={(this.state.reload == "/portfolio/asset" || this.state.asset) ? "active" : "inactive"}>Asset</Link>
+    );
+  }
+  crypto(catActions) {
+    return(
+      <Link to="/portfolio/crypto" onClick={this.onLinkClick(actionTypes.TAB_CRYPTO, catActions)}
+        activeClassName={(this.state.reload == "/portfolio/crypto" || this.state.crypto) ? "active" : "inactive"}>Crypto</Link>
+    );
+  }
+  info() {
+    return(
+      <Link to="/info" onClick={this.onLinkClick(actionTypes.TAB_ABOUT)}
+        activeClassName={(this.state.reload == "/info" || this.state.info) ? "active" : "inactive"}>More Info</Link>
+    );
+  }
+  owm(catActions) {
+    return(
+      <div style={{marginTop:"5px", fontSize:"14px"}}>
+        Other resources:&nbsp;
+        <Link to="/weather" onClick={this.onLinkClick(actionTypes.TAB_WEATHER, catActions)}
+          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>Any City,Country 5-Day Weather Forecast</Link>
+      </div>
+    );
+  }
+
+  loadingDots(loading) {
+    return(loading > 0 && <LoadingDots interval={1} dots={100}/>); // Show dot q 1ms, up to 100 dots
+  }
+
+  locales(locale, localeActions) {
+    return(
+      <span className="btn-group pull-right">
+        <button className={'btn btn-xs '+(locale == 'en-us'?'btn-info':'btn-default')} onClick={this.onLocaleENUS(localeActions)}>en</button>
+        <button className={'btn btn-xs '+(locale == 'zh-tw'?'btn-info':'btn-default')} onClick={this.onLocaleZHTW(localeActions)}>ch</button>
+      </span>
+    );
+  }
 
   onLinkClick(link, ca) {
     return(event => {
-      this.setState({about:false,home:false,port:false,indices:false,hightech:false,financial:false,asset:false,crypto:false});
+      this.setState({home:false,port:false,indices:false,hightech:false,financial:false,asset:false,crypto:false,info:false,owm:false});
+      console.log('Header, onLinkClick, link = ', link);
       switch(link) {
         case actionTypes.TAB_HOME:
           this.setState({home: true});
@@ -69,9 +157,16 @@ class Header extends React.Component {
           ca.onCatClick(link);
           break;
         case actionTypes.TAB_ABOUT:
-          this.setState({about: true});
-          browserHistory.push('/about');
-          //ca.onCatClick(link);
+          this.setState({info: true});
+          browserHistory.push('/info');
+          break;
+        case actionTypes.TAB_WEATHER:
+          this.setState({owm: true});
+          browserHistory.push('/weather');
+          ca.onCatClick(link);
+          break;
+        default:
+          console.log('Header, onLinkClick, undefined link = ', link);
           break;
       }
     });
@@ -80,7 +175,6 @@ class Header extends React.Component {
   onLocaleENUS(localeActions) {
     return(event => localeActions.localeENUS());
   }
-
   onLocaleZHTW(localeActions) {
     return(event => localeActions.localeZHTW());
   }
@@ -90,36 +184,23 @@ class Header extends React.Component {
     return (
       <div>
         <nav className="fontSize16px">
-          <IndexLink to="/" onClick={this.onLinkClick(actionTypes.TAB_HOME)}
-            activeClassName={(this.state.reload == "/" || this.state.home) ? "active" : "inactive"}>Home</IndexLink>
-          {" | "}
-          <Link to="/portfolio" onClick={this.onLinkClick(actionTypes.TAB_PORTFOLIO, catActions)}
-            activeClassName={(this.state.reload == "/portfolio" || this.state.port) ? "active" : "inactive"}>Portfolio</Link>
-          {" | "}
-          <Link to="/portfolio/indices" onClick={this.onLinkClick(actionTypes.TAB_INDICES, catActions)}
-            activeClassName={(this.state.reload == "/portfolio/indices" || this.state.indices) ? "active" : "inactive"}>Indices</Link>
-          {" | "}
-          <Link to="/portfolio/hightech" onClick={this.onLinkClick(actionTypes.TAB_HIGHTECH, catActions)}
-            activeClassName={(this.state.reload == "/portfolio/hightech" || this.state.hightech) ? "active" : "inactive"}>Hightech</Link>
-          {" | "}
-          <Link to="/portfolio/financial" onClick={this.onLinkClick(actionTypes.TAB_FINANCIAL, catActions)}
-            activeClassName={(this.state.reload == "/portfolio/financial" || this.state.financial) ? "active" : "inactive"}>Financial</Link>
-          {" | "}
-          <Link to="/portfolio/asset" onClick={this.onLinkClick(actionTypes.TAB_ASSET, catActions)}
-            activeClassName={(this.state.reload == "/portfolio/asset" || this.state.asset) ? "active" : "inactive"}>Asset</Link>
-          {" | "}
-          <Link to="/portfolio/crypto" onClick={this.onLinkClick(actionTypes.TAB_CRYPTO, catActions)}
-            activeClassName={(this.state.reload == "/portfolio/crypto" || this.state.crypto) ? "active" : "inactive"}>Crypto</Link>
-          {" | "}
-          <Link to="/info" onClick={this.onLinkClick(actionTypes.TAB_ABOUT)}
-            activeClassName={(this.state.reload == "/info" || this.state.about) ? "active" : "inactive"}>More Info</Link>
-          &nbsp;&nbsp;
-          {loading > 0 && <LoadingDots interval={30} dots={30}/>} {/* Show dot q.30ms, up to 30 dots */}
-          &nbsp;&nbsp;
-          <span className="btn-group pull-right">
-            <button className={'btn btn-xs '+(locale == 'en-us'?'btn-info':'btn-default')} onClick={this.onLocaleENUS(localeActions)}>en</button>
-            <button className={'btn btn-xs '+(locale == 'zh-tw'?'btn-info':'btn-default')} onClick={this.onLocaleZHTW(localeActions)}>ch</button>
-          </span>
+          <div>
+            {/* Primary Menu */}
+            {this.home()}{" | "}
+            {this.portfolio(catActions)}{" | "}
+            {this.indices(catActions)}{" | "}
+            {this.hightech(catActions)}{" | "}
+            {this.financial(catActions)}{" | "}
+            {this.asset(catActions)}{" | "}
+            {this.crypto(catActions)}{" | "}
+            {this.info(catActions)}
+            &nbsp;&nbsp;
+            {this.loadingDots(loading)}
+            &nbsp;&nbsp;
+            {this.locales(locale, localeActions)}
+          </div>
+          {this.state.home ? this.owm(catActions) : null}
+          <br/>
         </nav>
       </div>
     );
@@ -145,12 +226,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function mapStateToProps(state, ownProps) {
-  console.log('Header, mapStateToProps, state = ', state);
+function mapStateToProps(store, ownProps) {
+  // console.log('Header, mapStateToProps, state = ', store);
   return {
-    cat: state.data.cat,
-    loading: state.data.ajax,
-    locale: state.data.locale
+    cat:     store.primary.cat,
+    loading: store.primary.ajax,
+    locale:  store.primary.locale
   };
 }
 

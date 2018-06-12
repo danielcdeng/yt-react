@@ -37,3 +37,5 @@ export const ZHTW_YIN_BOTMON  = '跌最低月份一覽表: : ';
 export const ZHTW_YIN_CYCLES  = '总負向循環数: ';
 export const ZHTW_YIN_DISTCH  = '+淨損% 分配图: ';
 export const ZHTW_YIN_MED     = '中間 -淨%: ';
+//---------------------------------------------
+export const CITY_COUNTRY_LIST = 'city.list.json.gz';

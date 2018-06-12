@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import data from './portfolioReducer';
+import primary   from './portfolioReducer';
+import openweathermap from './weatherReducer';
 
+// Init store:
 const store = combineReducers({
-  data
+  primary,        // primary menu, YouTiming
+  openweathermap  // secondary menu
 });
 export default store;

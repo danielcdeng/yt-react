@@ -17,14 +17,20 @@ app.get('/', function(req, res) {
   res.sendFile(fileSent);
 });
 
-app.get('/data/active', function(req, res) {
+app.get('/active.json', function(req, res) {
   const fileSent = path.join( __dirname, '../dist/active.json');
   console.log('fileSent = ', fileSent);
   res.sendFile(fileSent);
 });
 
-app.get('/data/archive', function(req, res) {
+app.get('/archive.json', function(req, res) {
   const fileSent = path.join( __dirname, '../dist/archive.json');
+  console.log('fileSent = ', fileSent);
+  res.sendFile(fileSent);
+});
+
+app.get('/city.list.json.gz', function(req, res) {
+  const fileSent = path.join( __dirname, '../src/data/city.list.json.gz');
   console.log('fileSent = ', fileSent);
   res.sendFile(fileSent);
 });

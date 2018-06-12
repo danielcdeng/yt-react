@@ -13,8 +13,9 @@ export function onCatClick(link) {
     case actionTypes.TAB_ASSET:     action = {type: actionTypes.TAB_ASSET};     break;
     case actionTypes.TAB_CRYPTO:    action = {type: actionTypes.TAB_CRYPTO};    break;
     case actionTypes.TAB_ABOUT:     action = {type: actionTypes.TAB_ABOUT};     break;
+    case actionTypes.TAB_WEATHER:   action = {type: actionTypes.TAB_WEATHER};   break;
   }
-  console.log('categoryActions, onCatClick, action created = ', action);
+  console.log('categoryActions, onCatClick, action = ', action);
   return action;
 }
 

@@ -68,8 +68,8 @@ class TickerRow extends React.Component {
     return(
       <tbody>
         <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
+          {/* # */}
           <td>{idx}</td>
-
           {/* Cycle Type */}
           <td>{ticker.door.type == "yang" ? Const.ENUS_POS : Const.ENUS_NEG}</td>
           {/* Ticker Name */}

@@ -15,14 +15,14 @@ const exec = require('child_process').exec;
 let child;
 
 child = exec('cp src/data/active.json dist/.', function (error, stdout, stderr) {
-  // console.log('stdout: ' + stdout);
-  // console.log('stderr: ' + stderr);
   if (error !== null) console.log('exec error: ' + error);
 });
 
 child = exec('cp src/data/archive.json dist/.', function (error, stdout, stderr) {
-  // console.log('stdout: ' + stdout);
-  // console.log('stderr: ' + stderr);
+  if (error !== null) console.log('exec error: ' + error);
+});
+
+child = exec('cp src/data/city.list.json.gz dist/.', function (error, stdout, stderr) {
   if (error !== null) console.log('exec error: ' + error);
 });
 

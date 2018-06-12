@@ -167,7 +167,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
   return {
     //archives: state.data.archives,
-    stat:     state.data.stat
+    stat:     state.primary.stat
   };
 }
 

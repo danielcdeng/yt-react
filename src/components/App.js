@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Header from './header/Header';
 import AppTitle from './common/AppTitle';
-// import LoadingDots from './common/LoadingDots'
 
 class App extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.primaryMenu = this.primaryMenu.bind(this);
     // this.state = { location: context.location };
   }
 
@@ -19,18 +19,27 @@ class App extends React.Component {
     };
   }
 
-  render() {
-    //console.log('location.pathname = ', location.pathname);
-    return(
-      <div className="container-fluid">
-        <Header loading={this.props.loading} locale={this.props.locale}/>
-        <AppTitle />
-        <div className="fontSizeSmall colorDeepPink">
-          <i>
-            {(location.pathname == "/portfolio")?"Note: The language switch and the ticker column State view are yet to be implemented." : ""}
-          </i>
+  primaryMenu(pathname, loading, locale) {
+    if (pathname != '/weather' || false) {
+      return(
+        <div>
+          <AppTitle />
+          <Header loading={loading} locale={locale}/>
+          <div className="fontSizeSmall colorDeepPink">
+            <i>
+              {(pathname == '/portfolio') ? 'Note: The language switch is yet to be implemented. The State Code column view is partially done.' : ''}
+            </i>
+          </div>
         </div>
-        {/*{this.props.loading && <LoadingDots interval={30} dots={25}/>}*/}
+      );
+    }
+  }
+
+  render() {
+    const {location, loading, locale} = this.props;
+    return(
+      <div className="container container-fluid">
+        {this.primaryMenu(location.pathname, loading, locale)}
         {this.props.children}
       </div>
     );
@@ -49,13 +58,13 @@ App.propTypes = {
   location: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-  console.log('App, mapStateToProps:');
-  console.log('  par state = ', state);
-  console.log('  par ownProps = ', ownProps);
+function mapStateToProps(store, ownProps) {
+  // console.log('App, mapStateToProps:');
+  // console.log('  par store = ', store);
+  // console.log('  par ownProps = ', ownProps);
   return {
-    loading: state.data.ajax > 0,
-    locale:  state.data.locale
+    loading: store.primary.ajax > 0,
+    locale:  store.primary.locale
   };
 }
 

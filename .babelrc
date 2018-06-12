@@ -7,6 +7,8 @@
       // Run react-hmre babel preset for development.
       // In package.json, included devDependency on "babel-preset-react-hmre": "1.1.1"
       "presets": ["react-hmre"]
-    }
+    },
+
+    "plugins": ["transform-decorators-legacy"]
   }
 }

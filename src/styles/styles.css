@@ -1,10 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
 /* Not much here because we rely mostly on bootstrap. Here is my simple extension. */
 
 /*** HTML IDs ***/
 
 #app {
   color: #4d4d4d;
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 14px 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  min-height: 1024px;
   margin: 10px;
   min-width: 788px;
 }
@@ -24,23 +27,64 @@ a.noGrab:hover {
   text-decoration: none;
 }
 
+hr.hrMarginTop {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid steelblue;
+  margin: 1em 0;
+  padding: 0;
+}
+
 nav {
   padding-top: 20px;
+}
+
+sup.owm {
+  vertical-align: super;
 }
 
 table td {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+table.owm {
+  table-layout: fixed;
+  width: 100%;
+}
+td.vl {
+  border-right: 1px solid lightgrey;
+}
+td.vl:last-child {
+  border-right: none;
+}
 
 ul {
   padding-left: 1.2em
 }
 
+/*** 3rd Party Libraries ***/
+
+.container {
+  margin-top: -10px;
+}
+
+.container.owm {
+  margin-top: 60px;
+  max-width: 600px;
+}
+
+.jumbotron {
+  background-color: lightyellow;
+}
+
 /*** My classes ***/
 
-.tableHeaderBackgroundColor {
-  background-color: #FFEEDB;
+.alignLeft {
+  float: left;
+}
+.alignRight {
+  float: right;
 }
 
 .colorBlue {
@@ -60,6 +104,11 @@ ul {
   display: inline-block;
 }
 
+.fa-search, .fa-times {
+  color: blue;
+  margin-top: 6px;
+}
+
 .fontSize14px {
   font-size: 14px;
 }
@@ -76,6 +125,34 @@ ul {
 .google-ad-container {
   width: 95%;
   margin:0px auto 0px auto;
+}
+
+.hrMarginTop {
+  margin-top: 8px;
+}
+
+.jumboHR {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid lightblue !important;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.mainTempDegree {
+  font-size: 30px;
+}
+.mainTempDesc {
+  color: whitesmoke;
+  font-size: 12px;
+  opacity: .75;
+  padding-top: 45px;
+  text-align: left;
+}
+.mainTempText {
+  font-size: 120px;
+  text-align: right;
 }
 
 .margin10px {
@@ -100,6 +177,76 @@ ul {
   margin-top: 6px;
 }
 
+.maxTemp {
+  font-size: 18px;
+  color: darkblue;
+}
+.minTemp {
+  font-size: 14px;
+  color: lightgrey;
+}
+
+.owmBackground {
+  background: linear-gradient(#367CD6, #183968);
+  background-position: 100% 100%;
+  color: #4d4d4d;
+  font: 14px 'Open Sans', sans-serif;
+  height: 600px;
+  overflow: hidden;
+  width: 800px;
+}
+.owmCloudsOnInputForm {
+  content: '';
+  background-image: url("./images/cloud1.png"), url("./images/cloud2.png");
+  background-position: 30% 100%, 80% 60%;
+  background-repeat: no-repeat, no-repeat;
+  position: relative;
+}
+.owmCloudsOnWeatherData {
+  content: '';
+  background-image: url("./images/cloud1.png"), url("./images/cloud2.png");
+  background-position: 5% 80%, 96% 0%;
+  background-repeat: no-repeat, no-repeat;
+  position: relative;
+}
+.owmHomeBox {
+  border-style: none;
+  color: white;
+  font-size: 16px;
+}
+.owmInputBox {
+  background-color: #4A90E2;
+  border-style: none;
+  color: white;
+  font-size: 16px;
+}
+.owmInputContainer {
+  margin: 50px;
+}
+
+.panel.owm {
+  border-color: #367CD6;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 2px;
+}
+.panel.owm > .panel-heading.owm {
+  background-image: none;
+  background-color: #4A90E2;
+  color: white;
+}
+.panelBodyDateStr {
+  color: lightgrey;
+  margin-bottom: 10px;
+}
+
+.textAlignCenter {
+  text-align: center;
+}
+
+.tableHeaderBackgroundColor {
+  background-color: #FFEEDB;
+}
 
 .yangrowbackground {
   background-color: #e2ffeb;

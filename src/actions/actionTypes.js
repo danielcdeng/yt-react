@@ -1,3 +1,4 @@
+/*** Primary Menu ***/
 export const AJAX_CALL_ERROR        = 'AJAX_CALL_ERROR';
 export const AJAX_CALL_SUCCESS      = 'AJAX_CALL_SUCCESS';
 export const BEGIN_AJAX_CALL        = 'BEGIN_AJAX_CALL';
@@ -23,6 +24,7 @@ export const TAB_FINANCIAL = 'financial';
 export const TAB_ASSET     = 'asset';
 export const TAB_CRYPTO    = 'crypto';
 export const TAB_ABOUT     = 'about';
+export const TAB_WEATHER   = 'weather';
 export const TICKER_CYCLE1 = 'yang';
 export const TICKER_CYCLE2 = 'yin';
 export const TICKER_AAPL   = 'AAPL';
@@ -57,3 +59,9 @@ export const TICKERS_ASSET     = [TICKER_GLD, TICKER_IYR, TICKER_SLV, TICKER_XLE
 export const TICKERS_CRYPTO    = [TICKER_BTC];
 export const TICKERS_TOTAL = [...TICKERS_INDICES, ...TICKERS_HIGHTECH, ...TICKERS_FINANCIAL, ...TICKERS_ASSET, ...TICKERS_CRYPTO];
 
+/*** Secondary Menu ***/
+export const LOAD_FORECAST_WEATHER_SUCCESS = 'LOAD_FORECAST_WEATHER_SUCCESS';
+export const LOAD_PRESENT_WEATHER_SUCCESS  = 'LOAD_PRESENT_WEATHER_SUCCESS';
+export const ON_GO_HOME        = 'ON_GO_HOME';
+export const ON_LOCATION_INPUT = 'ON_LOCATION_INPUT';
+export const ON_TOGGLE_FORM    = 'ON_TOGGLE_FORM';
