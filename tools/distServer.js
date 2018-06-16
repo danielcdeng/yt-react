@@ -29,8 +29,8 @@ app.get('/archive.json', function(req, res) {
   res.sendFile(fileSent);
 });
 
-app.get('/city.list.json.gz', function(req, res) {
-  const fileSent = path.join( __dirname, '../src/data/city.list.json.gz');
+app.get('/US.city.list.json', function(req, res) {
+  const fileSent = path.join( __dirname, '../src/data/US.city.list.json');
   console.log('fileSent = ', fileSent);
   res.sendFile(fileSent);
 });

@@ -191,15 +191,17 @@ ul {
   background-position: 100% 100%;
   color: #4d4d4d;
   font: 14px 'Open Sans', sans-serif;
-  height: 600px;
+  height: 700px;
   overflow: hidden;
+  margin: auto;
   width: 800px;
 }
 .owmCloudsOnInputForm {
   content: '';
   background-image: url("./images/cloud1.png"), url("./images/cloud2.png");
-  background-position: 30% 100%, 80% 60%;
+  background-position: 30% 100%, 85% 50%;
   background-repeat: no-repeat, no-repeat;
+  margin: 40px 40px 80px 40px;
   position: relative;
 }
 .owmCloudsOnWeatherData {
@@ -221,7 +223,6 @@ ul {
   font-size: 16px;
 }
 .owmInputContainer {
-  margin: 50px;
 }
 
 .panel.owm {

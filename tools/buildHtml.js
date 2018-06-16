@@ -22,7 +22,7 @@ child = exec('cp src/data/archive.json dist/.', function (error, stdout, stderr)
   if (error !== null) console.log('exec error: ' + error);
 });
 
-child = exec('cp src/data/city.list.json.gz dist/.', function (error, stdout, stderr) {
+child = exec('cp src/data/US.city.list.json dist/.', function (error, stdout, stderr) {
   if (error !== null) console.log('exec error: ' + error);
 });
 

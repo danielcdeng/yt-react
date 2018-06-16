@@ -98,13 +98,14 @@ class Header extends React.Component {
       <div style={{marginTop:"5px", fontSize:"14px"}}>
         Other resources:&nbsp;
         <Link to="/weather" onClick={this.onLinkClick(actionTypes.TAB_WEATHER, catActions)}
-          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>Any City,Country 5-Day Weather Forecast</Link>
+          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>5-Day Weather Forecast</Link>
       </div>
     );
   }
 
+  // Show dot q 25 ms, up to 30 dots
   loadingDots(loading) {
-    return(loading > 0 && <LoadingDots interval={1} dots={100}/>); // Show dot q 1ms, up to 100 dots
+    return(loading > 0 && <LoadingDots interval={30} dots={30}/>);
   }
 
   locales(locale, localeActions) {
@@ -227,11 +228,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(store, ownProps) {
-  // console.log('Header, mapStateToProps, state = ', store);
+  console.log('Header, mapStateToProps, store = ', store);
   return {
-    cat:     store.primary.cat,
-    loading: store.primary.ajax,
-    locale:  store.primary.locale
+    cat:     store.market.cat,
+    loading: store.market.ajax+store.weather.ajax,
+    locale:  store.common.locale
   };
 }
 

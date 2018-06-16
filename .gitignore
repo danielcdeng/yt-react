@@ -15,8 +15,8 @@ yarn-error.log*
 
 # oracle code challenge
 /src/components/weather/*.js
-/src/api/openWeatherMapApi.js
-/src/actions/weatherActions.js
+/src/api/weather*.js
+/src/actions/weather*.js
 /src/styles/owfont-master/*
 /src/styles/images/*
 /src/reducers/weather*.js

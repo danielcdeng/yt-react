@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import primary   from './portfolioReducer';
-import openweathermap from './weatherReducer';
+import common  from './commonReducer';
+import market  from './marketReducer';
+import weather from './weatherReducer';
 
 // Init store:
 const store = combineReducers({
-  primary,        // primary menu, YouTiming
-  openweathermap  // secondary menu
+  common, // common
+  market, // market (YouTiming)
+  weather // weather (OpenWeatherMap)
 });
 export default store;

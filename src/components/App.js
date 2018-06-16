@@ -63,8 +63,8 @@ function mapStateToProps(store, ownProps) {
   // console.log('  par store = ', store);
   // console.log('  par ownProps = ', ownProps);
   return {
-    loading: store.primary.ajax > 0,
-    locale:  store.primary.locale
+    loading: (store.market.ajax + store.weather.ajax) > 0,
+    locale:  store.common.locale
   };
 }
 
