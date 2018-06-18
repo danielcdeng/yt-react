@@ -28,4 +28,6 @@ yarn-error.log*
 /coverage
 
 #
-.idea
+/.idea
+/.idea/*
+/src/components/common/AppICO.js

@@ -120,7 +120,9 @@ function ICxxxx(locale, ticker, yao) {
 }
 */
 
-function IC00000(locale, ticker) {
+/***** 0000 易象起算 *****/
+
+function IC0000(locale, ticker) {
   let obj;
   if (locale == types.LOCALE_ENUS) {                      // enus
     obj = Object.assign({}, ENUS_State_Obj);
@@ -128,6 +130,275 @@ function IC00000(locale, ticker) {
   } else if (locale == types.LOCALE_ZHTW) {               // zhtw
     obj = Object.assign({}, ZHTW_State_Obj);
     obj.state1a += '易象起算 ' + ticker.tick.name + ' (' + ticker.tick.titl + ') ...';
+  }
+  return obj;
+}
+
+/***** 1425 天雷無妄 111.001 *****/
+
+function base1425(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'INNOCENCE. The foundation is sound and smooth. Beneficial to have further perseverance. ' +
+        'If someone is not as he should be and/or not doing the right thing, he would have misfortune and ' +
+        'it does not further him to undertake anything.';
+    case types.LOCALE_ZHTW:
+      return '(天雷无妄) 本元亨通，利於貞定；若其人不正，則會有眚，不利有攸往。';
+  }
+}
+
+function yao1425(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '(5th verse) Use no medicine in an illness. Incurred through no fault of your own. It will pass of itself.';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '(第五爻) 无妄之疾，勿藥有喜。';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+  }
+}
+
+function IC1425(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base1425(locale, ticker);
+  obj.state1b = yao1425(locale, ticker, yao);
+  switch (yao) {
+    // case 6:
+    //   switch (ticker.door.type) {
+    //     // yang:
+    //     case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+    //     // yin:
+    //     case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+    //   }
+    //   break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBD)'; obj.state2b = '(TBD)'; break; // 111.001 -> 101.001
+      }
+      break;
+    // case 4:
+    //   switch (ticker.door.type) {
+    //     case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+    //     case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+    //   }
+    //   break;
+    // case 3:
+    //   switch (ticker.door.type) {
+    //     case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+    //     case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+    //   }
+    //   break;
+    // case 2:
+    //   switch (ticker.door.type) {
+    //     case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+    //     case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+    //   }
+    //   break;
+    // case 1:
+    //   switch (ticker.door.type) {
+    //     case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+    //     case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+    //   }
+    //   break;
+  }
+  return obj;
+}
+
+/***** 2349 澤火革 011.101 *****/
+
+function base2349(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'REFORM. Good fortune will come on the year that ends with 9. ' +
+        'The foundation is good and smooth. Beneficial for long-term thinking, which furthers perseverance. ' +
+        'Remorse disappears.';
+    case types.LOCALE_ZHTW:
+      return '(澤火革) 己日乃孚 (天干己年，指的是西元年份尾數為 9 的年份)，本元亨通，利於貞定，後悔消亡。';
+  }
+}
+
+function yao2349(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '(3rd verse) A revolution, not a reform, would bring misfortune. But if standing still, it would ' +
+          'bring danger, too. The situation is going to be very troublesome. Only three rounds of back-and-forth talks ' +
+          'and negotiations for reaching the goal of reform would bring the trust-worthy result.';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '(第三爻) 革動之征，凶，但若又貞定不動，厲！革言三就，來回協商，才能有孚。';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+  }
+}
+
+/*
+function IC2349(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base2349(locale, ticker);
+  obj.state1b = yao2349(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        // yang:
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        // yin:
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+  }
+  return obj;
+}
+*/
+
+/***** 2417 澤雷隨 011.001 *****/
+
+function base2417(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'FOLLOWING. ' + ticker.tick.name + ' continues to be a follower, eventually brings supreme success. ' +
+        'Perseverance furthers. No blame.';
+    case types.LOCALE_ZHTW:
+      return '(澤雷隨) 隨之，' + ticker.tick.name + ' 繼續做個追隨者，最終會有極大的成功來到。';
+  }
+}
+
+function yao2417(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '(3rd verse) The most important thing for ' + ticker.tick.name + ' is to cling to the primary ' +
+          'strategic directions and let go the little ones such as "faces" issue. Through FOLLOWING, ' +
+          ticker.tick.name + ' will find what it has been seeking for. During this timing, it is beneficial not to ' +
+          'randomly derail from one\'s original path. One needs to remain persevering and play it cool.';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '(第三爻) 對 ' + ticker.tick.name + ' 來說，最重要的是抓住主要大戰略方向並且放掉那些小的例如面子問題，' +
+          '則能在隨勢當中而有所求得；於此時機，利於不妄動而貞定泰然處之。';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+  }
+}
+
+function IC2417(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base2417(locale, ticker);
+  obj.state1b = yao2417(locale, ticker, yao);
+  switch (yao) {
+    /*
+    case 6:
+      switch (ticker.door.type) {
+        // yang:
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        // yin:
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    */
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = base2349(locale, ticker); obj.state2b = yao2349(locale, ticker, yao); break; // 011.001 -> 011.101
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    /*
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    */
   }
   return obj;
 }
@@ -282,12 +553,14 @@ function yao7241(locale, ticker, yao) {
         case 6: return '(6th verse) Cannot treat it as a DECREASE. On the contrary, it is a benefit, not a fault. ' +
           'Perseverance brings good fortune and it furthers ' + ticker.tick.name + ' to undertake cooperation from ' +
           'other parties in order to expand the ' + ticker.tick.name + '\'s market share and influence.';
-        case 5: return '(5th verse) Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), cannot oppose. Supreme good fortune.';
+        case 5: return '(5th verse) Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), ' +
+          'cannot oppose. Supreme good fortune.';
         case 4: return;
         case 3: return;
         case 2: return '(2nd verse) Favorable to have perseverance on the vertical integration of ' + ticker.tick.name +
-          '\'s business domain. It would be misfortune to extend oneself to different area such as that a fashion company buying out a telecommunication one. ' +
-          'In a word, not only to stop decreasing the original business, but to increase it.';
+          '\'s business domain. It would be misfortune to extend oneself to different area such as that a fashion ' +
+          'company buying out a telecommunication one. In a word, not only to stop decreasing the original business, ' +
+          'but to increase it.';
         case 1: return;
       }
       break;
@@ -360,10 +633,11 @@ function base7518(locale, ticker) {
     case types.LOCALE_ENUS:
       return 'WORKING ON WHAT HAS BEEN SPOILED and/or DECAYED has supreme success. ' +
         'It furthers ' + ticker.tick.name + ' to cross great rivers (dangerous situations). ' +
-        'The cause was rooted in the first of the last three timings (usually years), following which ' +
-        'there will be another three timings of WORKING.';
+        'The cause was rooted in the first of the last three timings (usually years or quarters), ' +
+        'following which there will be another three timings of WORKING.';
     case types.LOCALE_ZHTW:
-      return '(山風蠱) 本元亨通，利涉大川(危險之境地)；本因根緣於往回數三個時間點的第一個時間點 (通常為年)，隨後還有三個時間點要走 (原文：先甲三日，後甲三日)。';
+      return '(山風蠱) 本元亨通，利涉大川(危險之境地)；本因根緣於往回數三個時間點的第一個時間點 (通常為年或季)，隨後還有三個時間點要走 ' +
+        '(原文：先甲三日，後甲三日)。';
   }
 }
 
@@ -371,24 +645,27 @@ function yao7518(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '';
+        case 6: return '(6th verse) The CEO/President of ' + ticker.tick.name + ' does not work for major ' +
+          'investors/special-interest-groups. He is setting himself with higher goals.';
         case 5: return '';
         case 4: return '';
-        case 3: return '(3rd verse) Setting right what has been left by the predecessor. There will be a little remorse, no great blame/fault.';
-        case 2: return '(2nd verse) Setting right on the process that the other business (or country) has been aiding/fostering ' +
-          ticker.tick.name + ' to reach the success and prosperity so far. ' + ticker.tick.name + ' must not be too persevering and ' +
-          'even needs to bend to the "setting-right" if necessary.';
+        case 3: return '(3rd verse) Setting right what has been left by the predecessor. There will be a little remorse, ' +
+          'no great blame/fault.';
+        case 2: return '(2nd verse) Setting right on the process that the other business (or country) has been ' +
+          'aiding/fostering ' + ticker.tick.name + ' to reach the success and prosperity so far. ' + ticker.tick.name +
+          ' must not be too persevering and even needs to bend to the "setting-right" if necessary.';
         case 1: return '';
       }
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '';
+        case 6: return '(第六爻) 此位 CEO/領導人 並不是為著主要投資人/特殊利益團體而工作。他給自己訂下了更高的目標。' +
+          '(原文：不事王侯，高尚其事。)';
         case 5: return '';
         case 4: return '';
         case 3: return '(第三爻) 整治前任留下來的事業，小有悔，无大咎。';
-        case 2: return '(第二爻) 對於 ' + ticker.tick.name + ' 能夠達到目前的成功及繁榮，有另外一個商業(或國家)在給予助力及孕育，如今這個過程要被整治了。' +
-          ticker.tick.name + ' 不可不理或堅持己見，必要時甚至必須對"整治"弯腰。';
+        case 2: return '(第二爻) 對於 ' + ticker.tick.name + ' 能夠達到目前的成功及繁榮，有另外一個商業(或國家)在給予助力及孕育，' +
+          '如今這個過程要被整治了。' + ticker.tick.name + ' 不可不理或堅持己見，必要時甚至必須對"整治"弯腰。';
         case 1: return '';
       }
       break;
@@ -452,11 +729,11 @@ function IC7518(locale, ticker, yao) {
 function base7604(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'YOUTHFUL FOLLY (like ' + ticker.tick.name + '\'s present situation) who listens to the market would have success. ' +
-        'It is not the market/economy who seeks the young fool, it is the young fool who seeks the market/economy to accept him. ' +
-        'At the first sign, the market did inform him. If he doesn\'t get the first point, he mey be given a second chance. ' +
-        'At the third time, it only proves that he is a true folly and is importunity, then lastly the market would stop giving him further chances. ' +
-        'Thus, only wisdom and perseverance may turn the tide.';
+      return 'YOUTHFUL FOLLY (like ' + ticker.tick.name + '\'s present situation) who listens to the market would have ' +
+        'success. It is not the market/economy who seeks the young fool, it is the young fool who seeks the market/economy ' +
+        'to accept him. At the first sign, the market did inform him. If he doesn\'t get the first point, he mey be given ' +
+        'a second chance. At the third time, it only proves that he is a true folly and is importunity, then lastly the ' +
+        'market would stop giving him further chances. Thus, only wisdom and perseverance may turn the tide.';
     case types.LOCALE_ZHTW:
       return '(山水蒙) 童蒙如同 ' + ticker.tick.name + ' 目前的狀況，假若他听的懂市場對他說的話，則他會成功。' +
         '不是市場要求他，而是他要求市場接受他。起初市場已經給過他第一個徵兆，若他仍然听沒懂，可能他還有第二個機會。' +
@@ -495,10 +772,12 @@ function yao7604(locale, ticker, yao) {
 function base7752(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'KEEPING STILL. ' + ticker.tick.name + ' is searching the next right business/direction. Currently, ' + ticker.tick.name + ' is dangling on the past old business/direction. No blame. ' +
-        '(Original: Keeping his back still, he no longer feels his body. He goes into his courtyard and does not see his people. No blame.)';
+      return 'KEEPING STILL. ' + ticker.tick.name + ' is searching the next right business/direction. Currently, ' +
+        ticker.tick.name + ' is dangling on the past old business/direction. No blame. (Original: Keeping his back ' +
+        'still, he no longer feels his body. He goes into his courtyard and does not see his people. No blame.)';
     case types.LOCALE_ZHTW:
-      return '(艮為山) ' + ticker.tick.name + ' 在尋找下一個對的商業或方向，目前 ' + ticker.tick.name + ' 在原來的商業或方向上面懸了，這是無咎的 (原文：艮其背，不獲其身，行其庭，不見其人，无咎)。';
+      return '(艮為山) ' + ticker.tick.name + ' 在尋找下一個對的商業或方向，目前 ' + ticker.tick.name + ' 在原來的商業或方向' +
+        '上面懸了，這是無咎的 (原文：艮其背，不獲其身，行其庭，不見其人，无咎)。';
   }
 }
 
@@ -569,7 +848,8 @@ function yao8219(locale, ticker, yao) {
 function base8336(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DARKENING OF THE LIGHT. In adversity (negative), if ' + ticker.tick.name + ' could still hold the perseverance, it would be beneficial.';
+      return 'DARKENING OF THE LIGHT. In adversity (negative), if ' + ticker.tick.name + ' could still hold the perseverance, ' +
+        'it would be beneficial.';
     case types.LOCALE_ZHTW:
       return '(地火明夷) 艱難中若 ' + ticker.tick.name + ' 仍能有貞定，則利。';
   }
@@ -583,8 +863,8 @@ function yao8336(locale, ticker, yao) {
         case 5: return '';
         case 4: return '';
         case 3: return '';
-        case 2: return '(2nd verse) ' + ticker.tick.name + ' gets injuried on the "left thigh", thus it cannot continue to march forward. ' +
-          'Pay attention to its recovery speed. If it is quick, then good fortune.';
+        case 2: return '(2nd verse) ' + ticker.tick.name + ' gets injuried on the "left thigh", thus it cannot continue ' +
+          'to march forward. Pay attention to its recovery speed. If it is quick, then good fortune.';
         case 1: return '';
       }
       break;
@@ -649,24 +929,114 @@ function IC8336(locale, ticker, yao) {
   return obj;
 }
 
+
+/***** 8546 地風升 000.110 *****/
+
+function base8546(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'PUSHING UPWARD has supreme success because the foundation is smooth and good. ' +
+        'However, is ' + ticker.tick.name + ' being managed by a great CEO (company) or President (country)? ' +
+        'If yes, then fear not, ' + ticker.tick.name + ' should departure or march toward the ' +
+        'south where there is good fortune (i.e., "south" means to further draw down the product price and make ' +
+        'it more affordable).';
+    case types.LOCALE_ZHTW:
+      return '(地風升) 本元亨通，雖然如此，目前 ' + ticker.tick.name + ' 是否被一位大人所掌管？若是，對於目前局勢，勿恤，' +
+        '南征吉 ("南"指的是降低商品售價，使其更加平價近人)。';
+  }
+}
+
+function yao8546(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) Pushing upward in darkness (or darkness is being pushed upward). ' +
+          'It prompts one to be unremittingly cautious, disciplinary and/or persevering the right way of investment.';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) 冥升，利于不息之貞。註：貞字在此處有 小心，紀律，堅持投資正道的意義。';
+        case 5: return '';
+        case 4: return '';
+        case 3: return '';
+        case 2: return '';
+        case 1: return '';
+      }
+      break;
+  }
+}
+
+function IC8546(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base8546(locale, ticker);
+  obj.state1b = yao8546(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = base7518(locale, ticker); obj.state2b = yao7518(locale, ticker, yao); break;
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    /*
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 000.101 -> 000.111
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = ???; obj.state2b = ???; break;
+        case types.TICKER_CYCLE2: obj.state2a = ???; obj.state2b = ???; break;
+      }
+      break;
+    */
+  }
+  return obj;
+}
+
+
 /********************************************************************/
 
 // Get the I-Ching Object:
 export function getICO(locale, ticker) {
   let Obj;
+  const yao = parseInt(ticker.door.fore.slice(4));
   switch (ticker.door.fore) {
-    case '00000': Obj = IC00000(locale, ticker); break;
-    case '47626':
-      Obj = IC4762(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
-    case '72412': case '72415': case '72416':
-      Obj = IC7241(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
-    case '75182': case '75183':
-      Obj = IC7518(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
-    case '83362':
-      Obj = IC8336(locale, ticker, parseInt(ticker.door.fore.slice(4))); break;
-    default:
-      Obj = locale == types.LOCALE_ENUS ? Object.assign({}, ENUS_State_Obj) : Object.assign({}, ZHTW_State_Obj);
-      break;
+    case'00000': Obj = IC0000(locale,ticker); break;
+    case'14251':case'14252':case'14253':case'14254':case'14255':case'14256': Obj = IC1425(locale,ticker,yao); break;
+    case'24171':case'24172':case'24173':case'24174':case'24175':case'24176': Obj = IC2417(locale,ticker,yao); break;
+    case'47621':case'47622':case'47623':case'47624':case'47625':case'47626': Obj = IC4762(locale,ticker,yao); break;
+    case'72411':case'72412':case'72413':case'72414':case'72415':case'72416': Obj = IC7241(locale,ticker,yao); break;
+    case'75181':case'75182':case'75183':case'75184':case'75185':case'75186': Obj = IC7518(locale,ticker,yao); break;
+    case'83361':case'83362':case'83363':case'83364':case'83365':case'83366': Obj = IC8336(locale,ticker,yao); break;
+    case'85461':case'85462':case'85463':case'85464':case'85465':case'85466': Obj = IC8546(locale,ticker,yao); break;
+    default: Obj = locale == types.LOCALE_ENUS ? Object.assign({},ENUS_State_Obj) : Object.assign({},ZHTW_State_Obj); break;
   }
   return Obj;
 }

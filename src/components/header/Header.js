@@ -98,7 +98,7 @@ class Header extends React.Component {
       <div style={{marginTop:"5px", fontSize:"14px"}}>
         Other resources:&nbsp;
         <Link to="/weather" onClick={this.onLinkClick(actionTypes.TAB_WEATHER, catActions)}
-          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>5-Day Weather Forecast</Link>
+          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>Present and 5-Day Weather Forecast (USA only)</Link>
       </div>
     );
   }
