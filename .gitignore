@@ -13,14 +13,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# oracle code challenge
-/src/components/weather/*.js
-/src/api/weather*.js
-/src/actions/weather*.js
-/src/styles/owfont-master/*
-/src/styles/images/*
-/src/reducers/weather*.js
-
 # production
 /dist
 
@@ -30,4 +22,4 @@ yarn-error.log*
 #
 /.idea
 /.idea/*
-/src/components/common/AppICO.js
+
