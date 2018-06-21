@@ -117,7 +117,13 @@ class WeatherPage extends React.Component {
         <div className="row">
           <div className="col-sm-12">
             <div align="center">
-              {coords.length > 1 ? <div style={{color:"whitesmoke"}} className="owmLatLongClickInstruction">Click the (lat, long) link to identify your city on Google Map.</div> : null}
+              {
+                coords.length > 1 ?
+                <div style={{color:"whitesmoke"}} className="owmLatLongClickInstruction">
+                  Click the (lat, long) link to identify your city on Google Map.<br/>
+                  Then select its radio button to make the city switch.
+                </div> : null
+              }
               <table>
                 <tbody>
                   {
@@ -156,6 +162,7 @@ class WeatherPage extends React.Component {
       coords.forEach(city => city.clicked = false);
       coords[idx].clicked = true;
       this.setState({coords});
+      this.setState({selectedCity: coords[idx]});
       const cityID = coords[idx].id;
       actions.getNewPresentWeather(cityID);
       actions.getNewFiveDayForecast(cityID);
