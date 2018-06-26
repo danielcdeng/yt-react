@@ -31,7 +31,7 @@ export default function marketReducer(state = initReducerState.market, action) {
   }
 
   // Only called when actionCat is one of the data views:
-  function switchDataView(actionCat) {
+  function switchMarketView(actionCat) {
     if (state.view.cat != actionCat) {
       const viewObj = JSON.parse(JSON.stringify(state.view));
       switch (actionCat) {
@@ -72,7 +72,7 @@ export default function marketReducer(state = initReducerState.market, action) {
     } else {
       console.log('marketReducer: The view switch is not required.');
     }
-  }
+  } // switchMarketView
 
   function updateFilterInputBox(view) {
     const inputEle = document.getElementById('filterinput');
@@ -308,12 +308,12 @@ export default function marketReducer(state = initReducerState.market, action) {
       }
       break;
 
-    case types.TAB_PORTFOLIO: console.log('marketReducer, TAB_PORTFOLIO'); switchDataView(types.TAB_PORTFOLIO); break;
-    case types.TAB_INDICES:   console.log('marketReducer, TAB_INDICES');   switchDataView(types.TAB_INDICES);   break;
-    case types.TAB_HIGHTECH:  console.log('marketReducer, TAB_HIGHTECH');  switchDataView(types.TAB_HIGHTECH);  break;
-    case types.TAB_FINANCIAL: console.log('marketReducer, TAB_FINANCIAL'); switchDataView(types.TAB_FINANCIAL); break;
-    case types.TAB_ASSET:     console.log('marketReducer, TAB_ASSET');     switchDataView(types.TAB_ASSET);     break;
-    case types.TAB_CRYPTO:    console.log('marketReducer, TAB_CRYPTO');    switchDataView(types.TAB_CRYPTO);    break;
+    case types.TAB_PORTFOLIO: console.log('marketReducer, TAB_PORTFOLIO'); switchMarketView(types.TAB_PORTFOLIO); break;
+    case types.TAB_INDICES:   console.log('marketReducer, TAB_INDICES');   switchMarketView(types.TAB_INDICES);   break;
+    case types.TAB_HIGHTECH:  console.log('marketReducer, TAB_HIGHTECH');  switchMarketView(types.TAB_HIGHTECH);  break;
+    case types.TAB_FINANCIAL: console.log('marketReducer, TAB_FINANCIAL'); switchMarketView(types.TAB_FINANCIAL); break;
+    case types.TAB_ASSET:     console.log('marketReducer, TAB_ASSET');     switchMarketView(types.TAB_ASSET);     break;
+    case types.TAB_CRYPTO:    console.log('marketReducer, TAB_CRYPTO');    switchMarketView(types.TAB_CRYPTO);    break;
 
     default:
       console.log('marketReducer, undefined, action.type = "' + action.type + '"');

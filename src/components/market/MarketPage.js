@@ -19,7 +19,9 @@ class MarketPage extends React.Component {
     this.uniqBy = this.uniqBy.bind(this);
     this.userAction = this.userAction.bind(this);
     this.state = {
-      reload: context.location.pathname,
+      cat: '',
+      //prevPath: context.location.pathname.slice(0), // only gets /portfolio, not good enough
+      prevPath: this.props.currPath.slice(0),
       totalStateCodeChecked: false
     };
   }
@@ -27,6 +29,16 @@ class MarketPage extends React.Component {
   componentDidMount() {
     this.getFilterTickers();
     if (document.getElementById('filterinput')) document.getElementById('filterinput').focus();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.currPath && nextProps.currPath.length > 0) {
+      const currPath = nextProps.currPath.slice(0);
+      if (!this.state.prevPath || currPath != this.state.prevPath) {
+        document.getElementById('filterinput').focus();
+        this.setState({prevPath: currPath.slice(0)});
+      }
+    }
   }
 
   //----------------------------------------
@@ -93,10 +105,8 @@ class MarketPage extends React.Component {
   }
 
   userAction(userClickOn, actions, view) {
-
     const filter = view.filter;
     const target = view.target;
-
     switch (userClickOn) {
       // For filtering:
       case 'Filter':        return event => { this.filterInputHandler(actions, view); };
@@ -113,8 +123,9 @@ class MarketPage extends React.Component {
   //--------------------------------------------------
 
   render() {
-    const {actions, cat, locale, scClicked, view} = this.props;
-    if (document.getElementById('filterinput')) document.getElementById('filterinput').focus();
+    const {actions, cat, currPath, locale, scClicked, view} = this.props;
+    const {lastPath} = this.state;
+    console.log('********** current market path = ', currPath);
     //this.checkTableToExpand(actions, view);
     return(
       <div>
@@ -199,13 +210,14 @@ class MarketPage extends React.Component {
 }
 
 MarketPage.contextTypes = {
-  location: PropTypes.object,
-  router:   PropTypes.object
+  //location: PropTypes.object, // Only gets the main path name, /portfolio
+  //router:   PropTypes.object
 };
 
 MarketPage.propTypes = {
   actions:   PropTypes.object.isRequired,
   cat:       PropTypes.string, // category
+  currPath:  PropTypes.string,
   locale:    PropTypes.string.isRequired,
   scClicked: PropTypes.bool.isRequired,
   view:      PropTypes.object.isRequired
@@ -223,6 +235,7 @@ function mapStateToProps(store, ownProps) {
   // console.log('  par ownProps = ', ownProps);
   return {
     cat:       ownProps.params.cat,
+    currPath:  ownProps.router.location.pathname, // current router path
     locale:    store.common.locale,
     scClicked: store.market.view.scClicked,
     view:      store.market.view

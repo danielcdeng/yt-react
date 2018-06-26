@@ -18,7 +18,7 @@ const initReducerState = {
   market: {
     ajax: 0,            // overall ajax call count
     view: {
-      cat: '',          // referring to data category only--i.e., home and about are not data category
+      cat: '',          // currently visited by the user--home and about are not data category
       filter: [],       // for customized data view
       scClicked: false, // overall state code select box clicked
       target: []        // for original data view
