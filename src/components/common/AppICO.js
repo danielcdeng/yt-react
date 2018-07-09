@@ -114,8 +114,8 @@ function ICxxxx(locale, ticker, yao) {
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
-}
-return obj;
+  }
+  return obj;
 } // xxxx
 
 /***** 0000 易象起算 *****/
@@ -130,7 +130,7 @@ function IC0000(locale, ticker) {
     obj.state1a += '易象起算 ' + ticker.tick.name + ' (' + ticker.tick.titl + ') ...';
   }
   return obj;
-}
+} // 0000
 
 /***** 1425 天雷無妄 111.001 *****/
 
@@ -216,7 +216,177 @@ function IC1425(locale, ticker, yao) {
     //   break;
   }
   return obj;
+} // 1425
+
+/***** 1733 天山遁 111.100 *****/
+
+function base1733(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'RETREAT. Although smooth and success, only small gain there will be in the process. ' +
+        'The view toward the value of ' + ticker.tick.name + ' still holds and does not change. ' +
+        'Perseverance furthers.';
+    case types.LOCALE_ZHTW:
+      return '(天山遁) 雖然亨通，只能小利，' + ticker.tick.name + ' 的價值貞定不變。';
+  }
 }
+
+function yao1733(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) During retreat, investors should be still mindful about and pay attention to ' +
+          ticker.tick.name + ', although the environment is nerve-wracking and dangerous. Accumulation: good fortune.';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) 於 ' + ticker.tick.name + ' 撤退之中，投資者仍然要對 ' + ticker.tick.name + ' 心有牽掛，' +
+          '儘管環境有疾且厲。累積：吉。';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC1733(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base1733(locale, ticker);
+  obj.state1b = yao1733(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base1812(locale, ticker); obj.state2b = yao1812(locale, ticker, yao); break; // 111.100 -> 111.000
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 1733
+
+/***** 1812 天地否 111.000 *****/
+
+function base1812(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'STANDSTILL, caused by the force of the negative side. Not favorable to the perseverance of the superior man: ' +
+        'the great departs, the small approaches.';
+    case types.LOCALE_ZHTW:
+      return '(天地否) 否之於陰門之勢，不利君子贞：大往，小来。';
+  }
+}
+
+function yao1812(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) They bear shame.';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) 所包容的是羞恥之事 (原文：包羞)。';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC1812(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base1812(locale, ticker);
+  obj.state1b = yao1812(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 1812
+
 
 /***** 2349 澤火革 011.101 *****/
 
@@ -258,7 +428,6 @@ function yao2349(locale, ticker, yao) {
   }
 }
 
-/*
 function IC2349(locale, ticker, yao) {
   let obj;
   obj = getDefault(locale);
@@ -305,8 +474,7 @@ function IC2349(locale, ticker, yao) {
       break;
   }
   return obj;
-}
-*/
+} // 2349
 
 /***** 2417 澤雷隨 011.001 *****/
 
@@ -399,7 +567,7 @@ function IC2417(locale, ticker, yao) {
     */
   }
   return obj;
-}
+} // 2417
 
 /***** 3756 火山旅 101.100 *****/
 
@@ -441,7 +609,7 @@ function yao3756(locale, ticker, yao) {
       }
       break;
   }
-}
+} // 3756
 
 /***** 4762 雷山小過 001.100 *****/
 
@@ -874,7 +1042,7 @@ function IC7241(locale, ticker, yao) {
     */
   }
   return obj;
-}
+} // 7241
 
 /***** 7518 山風蠱 100.110 *****/
 
@@ -929,12 +1097,9 @@ function IC7518(locale, ticker, yao) {
   obj.state1a = base7518(locale, ticker);
   obj.state1b = yao7518(locale, ticker, yao);
   switch (yao) {
-    /*
     case 6:
       switch (ticker.door.type) {
-        // yang:
         case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        // yin:
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
@@ -950,7 +1115,6 @@ function IC7518(locale, ticker, yao) {
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
-    */
     case 3:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
@@ -963,14 +1127,12 @@ function IC7518(locale, ticker, yao) {
         case types.TICKER_CYCLE2: obj.state2a = base7752(locale, ticker); obj.state2b = yao7752(locale, ticker, yao); break; // 100.110 -> 100.100
       }
       break;
-    /*
     case 1:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.110 -> 100.111
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
-    */
   }
   return obj;
 }
@@ -1281,6 +1443,7 @@ export function getICO(locale, ticker) {
   switch (ticker.door.fore) {
     case'00000': Obj = IC0000(locale,ticker); break;
     case'14251':case'14252':case'14253':case'14254':case'14255':case'14256': Obj = IC1425(locale,ticker,yao); break;
+    case'17331':case'17332':case'17333':case'17334':case'17335':case'17336': Obj = IC1733(locale,ticker,yao); break;
     case'24171':case'24172':case'24173':case'24174':case'24175':case'24176': Obj = IC2417(locale,ticker,yao); break;
     case'47621':case'47622':case'47623':case'47624':case'47625':case'47626': Obj = IC4762(locale,ticker,yao); break;
     case'52611':case'52612':case'52613':case'52614':case'52615':case'52616': Obj = IC5261(locale,ticker,yao); break;

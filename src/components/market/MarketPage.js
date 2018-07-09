@@ -10,12 +10,13 @@ class MarketPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.ppRef = React.createRef();
     this.checkTableToExpand = this.checkTableToExpand.bind(this);
     this.filterInputHandler = this.filterInputHandler.bind(this);
     this.getFilterTickers = this.getFilterTickers.bind(this);
     this.getTabName = this.getTabName.bind(this);
     this.onViewReset = this.onViewReset.bind(this);
-    this.ppRef = React.createRef();
+    this.render = this.render.bind(this);
     this.uniqBy = this.uniqBy.bind(this);
     this.userAction = this.userAction.bind(this);
     this.state = {
