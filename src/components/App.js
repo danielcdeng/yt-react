@@ -27,7 +27,7 @@ class App extends React.Component {
           <Header loading={loading} locale={locale}/>
           <div className="fontSizeSmall colorDeepPink">
             <i>
-              {(pathname == '/portfolio') ? 'Note: The language switch is yet to be implemented. The State Code column view is partially done.' : ''}
+              {(pathname == '/portfolio') ? 'Note: The language switch is yet to be implemented.' : ''}
             </i>
           </div>
         </div>
