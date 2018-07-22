@@ -865,7 +865,8 @@ function base4762(locale, ticker) {
         'Like an ordinary bird which should not fly high as the big ones. ' +
         'Suitable to be in contemplation and sinking into deep thought and preparation.';
     case types.LOCALE_ZHTW:
-      return '(雷山小過) 亨通，利於貞定，' + ticker.tick.name + ' 可以小小慢慢漲，不可一下子大漲。好像一般的鳥，不宜像大鵬鳥般忽地沖天高飛。宜沈潛，大吉。';
+      return '(雷山小過) 亨通，利於貞定，' + ticker.tick.name + ' 可以小小慢慢漲，不可一下子大漲。好像一般的鳥，' +
+        '不宜像大鵬鳥般忽地沖天高飛。宜沈潛，大吉。';
   }
 }
 

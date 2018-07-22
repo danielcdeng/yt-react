@@ -9,6 +9,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+README.md_bk
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
