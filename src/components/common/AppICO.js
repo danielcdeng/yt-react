@@ -791,7 +791,7 @@ function yao4532(locale, ticker, yao) {
         case 5: return '(5th verse) ';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
-        case 2: return '(2nd verse) ';
+        case 2: return '(2nd verse) A price line of making regret vanish.';
         case 1: return '(1st verse) Seeking duration (big gain) too hastily at the beginning brings misfortune ' +
           'persistently. Nothing that would further.';
       }
@@ -802,7 +802,7 @@ function yao4532(locale, ticker, yao) {
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
-        case 2: return '(第二爻) ';
+        case 2: return '(第二爻) 一條可以使後悔消亡的價格線。';
         case 1: return '(第一爻) 若本門一開始就來個大波動(大獲利)，是為浚恒，則貞凶，无攸利。';
       }
       break;
@@ -841,7 +841,7 @@ function IC4532(locale, ticker, yao) {
       break;
     case 2:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
@@ -1109,6 +1109,89 @@ function IC5261(locale, ticker, yao) {
   }
   return obj;
 } // 5261
+
+/***** 5442 風雷益 110.001 *****/
+
+function base5442(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'INCREASE. It furthers one to undertake something. It furthers one to cross the great (dangerous) waters.';
+    case types.LOCALE_ZHTW:
+      return '(風雷益) 利有攸往，利涉大(危之)川。';
+  }
+}
+
+function yao5442(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) Working hard to rescue and save dangerous and unfortunate events. No blame. ' +
+          ticker.tick.name + ' should keep open and honest communications in order to earn the trust from the investors.';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) 努力救濟凶阨之事，无咎，但應秉持誠信，該做則做，並公告取信於眾投資人。(原文：益之用凶事，无咎。有孚中行，告公用圭。)';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC5442(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base5442(locale, ticker);
+  obj.state1b = yao5442(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 5442
 
 /***** 7126 山天大蓄 100.111 *****/
 
@@ -1735,6 +1818,7 @@ export function getICO(locale, ticker) {
     case'4762': Obj = IC4762(locale, ticker, yao); break;
     //
     case'5261': Obj = IC5261(locale, ticker, yao); break;
+    case'5442': Obj = IC5442(locale, ticker, yao); break;
     //
     case'7126': Obj = IC7126(locale, ticker, yao); break;
     case'7241': Obj = IC7241(locale, ticker, yao); break;

@@ -31,6 +31,7 @@ class TickerState extends React.Component {
             else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL2b}</b><br/><i>{icostate}</i></li>;
             else return '';
         }
+        //
         if (stat[ticker.tick.name][ticker.door.type].netp.length == 0) return '';
         else if (ticker.door.type == 'yang') {
           switch (title) {
@@ -165,6 +166,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
+  //console.log('state.market.stat = ', state.market.stat);
   return {
     //archives: state.data.archives,
     stat:     state.market.stat
