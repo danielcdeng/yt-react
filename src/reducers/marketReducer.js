@@ -274,9 +274,17 @@ export default function marketReducer(state = initReducerState.market, action) {
     case types.ON_TICKER_STATE_CODE_CLICKED:
       console.log('marketReducer, ON_TICKER_STATE_CODE_CLICKED');
       if (newState.view.filter.length > 0) {
-        newState.view.filter.forEach(ticker => { if (ticker.tick.name == action.ticker.tick.name) ticker.tick.scClicked = !ticker.tick.scClicked; });
+        newState.view.filter.forEach(ticker => {
+          if (ticker.tick.name == action.ticker.tick.name) {
+            ticker.tick.scClicked = !ticker.tick.scClicked;
+          }
+        });
       } else if (newState.view.target.length > 0) {
-        newState.view.target.forEach(ticker => { if (ticker.tick.name == action.ticker.tick.name) ticker.tick.scClicked = !ticker.tick.scClicked; });
+        newState.view.target.forEach(ticker => {
+          if (ticker.tick.name == action.ticker.tick.name) {
+            ticker.tick.scClicked = !ticker.tick.scClicked;
+          }
+        });
       }
       updateTotalStateCodeSelect(newState.view);
       break;
@@ -301,10 +309,18 @@ export default function marketReducer(state = initReducerState.market, action) {
       newState.view.scClicked = !newState.view.scClicked;
       if (newState.view.filter.length > 0) {
         newState.view.filter = JSON.parse(JSON.stringify(newState.view.filter));
-        newState.view.filter.forEach(ticker => ticker.tick.scClicked = newState.view.scClicked);
+        newState.view.filter.forEach(ticker => {
+          //if (ticker.door.type == 'yin') {
+            ticker.tick.scClicked = newState.view.scClicked;
+          //}
+        });
       } else if (newState.view.target.length > 0) {
         newState.view.target = JSON.parse(JSON.stringify(newState.view.target));
-        newState.view.target.forEach(ticker => ticker.tick.scClicked = newState.view.scClicked);
+        newState.view.target.forEach(ticker => {
+          //if (ticker.door.type == 'yin') {
+            ticker.tick.scClicked = newState.view.scClicked;
+          //}
+        });
       }
       break;
 

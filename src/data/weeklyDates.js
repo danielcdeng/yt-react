@@ -1,6 +1,6 @@
 const data = {
-  tdate: "2018.07.27",
-  fdate: "2018.07.23"
+  tdate: "2018.08.10",
+  fdate: "2018.08.06"
 };
 
 export default data;

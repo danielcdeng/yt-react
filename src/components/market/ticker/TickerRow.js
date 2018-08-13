@@ -41,6 +41,7 @@ class TickerRow extends React.Component {
       case acts.TICKER_GOOGL:  url = "http://schrts.co/YiKMyE"; break;
       case acts.TICKER_IYR:    url = "http://schrts.co/9nWEcr"; break;
       case acts.TICKER_KOSPI:  url = "http://schrts.co/8dBMjt"; break;
+      case acts.TICKER_MDSO:   url = "http://schrts.co/WJMePr"; break;
       case acts.TICKER_MSFT:   url = "http://schrts.co/78cr96"; break;
       case acts.TICKER_NASDAQ: url = "http://schrts.co/sHLHtV"; break;
       case acts.TICKER_NFLX:   url = "http://schrts.co/eawMYC"; break;

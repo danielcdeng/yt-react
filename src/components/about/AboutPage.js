@@ -63,8 +63,8 @@ class AboutPage extends React.Component {
                 <td>DAX (Germany), KOSPI (Korea), SHCOMP (China, PROC), TAIEX (Taiwan, ROC)</td>
               </tr>
               <tr>
-                <td>NASDAQ (9)</td>
-                <td>AAPL, AMZN, FB, GOOGL, MSFT, NFLX, NVDA, TQQQ, TSLA</td>
+                <td>NASDAQ (10)</td>
+                <td>AAPL, AMZN, FB, GOOGL, MDSO, MSFT, NFLX, NVDA, TQQQ, TSLA</td>
               </tr>
               <tr>
                 <td>NYSE (3)</td>
