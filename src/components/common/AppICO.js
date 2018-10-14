@@ -582,7 +582,9 @@ function yao2845(locale, ticker, yao) {
     case types.LOCALE_ENUS:
       switch (yao) {
         case 6: return '(6th verse) Lamenting and sighing, floods of tears, such a development, no mistake.';
-        case 5: return '(5th verse) ';
+        case 5: return '(5th verse) If in gathering together one has position, this brings no blame. ' +
+          'If there are some who are not yet sincerely in the work, sublime and enduring perseverance is needed. ' +
+          'Then remorse disappears.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
         case 2: return '(2nd verse) ';
@@ -592,7 +594,7 @@ function yao2845(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 悲傷嘆息，痛哭流涕，如此地步，並無有誤。';
-        case 5: return '(第五爻) ';
+        case 5: return '(第五爻) 萃有位，无咎，匪孚；元永貞，悔亡。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
         case 2: return '(第二爻) ';
@@ -1156,6 +1158,88 @@ function IC4762(locale, ticker, yao) {
   return obj;
 } // 4762
 
+/***** 4816 雷地豫 001.000 *****/
+
+function base4816(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'ENTHUSIASM. It furthers one to install helpers and to set armies marching.';
+    case types.LOCALE_ZHTW:
+      return '(雷地豫) 利建侯、行師。';
+  }
+}
+
+function yao4816(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) Persistently ill, and still does not die.';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) 貞疾，恒不死。';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC4816(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base4816(locale, ticker);
+  obj.state1b = yao4816(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = base2845(locale, ticker); obj.state2b = yao2845(locale, ticker, yao); break; // 001.000 -> 011.000
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 4816
+
 /***** 5109 風天小畜 110.111 *****/
 
 function base5109(locale, ticker) {
@@ -1262,7 +1346,8 @@ function yao5261(locale, ticker, yao) {
         case 3: return '(3rd verse) ' + ticker.tick.name + ' (he) encounters the opposing force. ' +
           'He beats the drum, then he stops. He sobs, then he sings.';
         case 2: return '(2nd verse) ';
-        case 1: return '(1st verse) ';
+        case 1: return '(1st verse) Being contemplated and prepared can bring good fortune. ' +
+          'If there are secret designs and/or unexpected events, then it would be disquieting.';
       }
       break;
     case types.LOCALE_ZHTW:
@@ -1272,7 +1357,7 @@ function yao5261(locale, ticker, yao) {
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ' + ticker.tick.name + ' 得敵，或鼓或罷，或泣或歌。';
         case 2: return '(第二爻) ';
-        case 1: return '(第一爻) ';
+        case 1: return '(第一爻) 三思有所準備則吉，有它不燕，字面意思為遇大蛇或意外而讓人不安。';
       }
       break;
   }
@@ -1311,13 +1396,13 @@ function IC5261(locale, ticker, yao) {
     case 2:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.011 -> 110.001
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 110.011 -> 110.001
       }
       break;
     case 1:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base5659(locale, ticker); obj.state2b = yao5659(locale, ticker, yao); break; // 110.011 -> 110.010
       }
       break;
   }
@@ -1406,6 +1491,89 @@ function IC5442(locale, ticker, yao) {
   }
   return obj;
 } // 5442
+
+/***** 5659 風水渙 110.010 *****/
+
+function base5659(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'DISPERSION. Success. The King arrives at his temple. It furthers one to cross the great water. ' +
+        'Perseverance furthers.';
+    case types.LOCALE_ZHTW:
+      return '(風水渙) 亨，王至於廟，利涉大川，利貞。';
+  }
+}
+
+function yao5659(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) He brings help with the strength of a horse. Good fortune.';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) 以強壯的馬來拯救，吉。';
+      }
+      break;
+  }
+}
+
+function IC5659(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base5659(locale, ticker);
+  obj.state1b = yao5659(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 5659
 
 /***** 7126 山天大蓄 100.111 *****/
 
@@ -1686,9 +1854,7 @@ function base7604(locale, ticker) {
         'a second chance. At the third time, it only proves that he is a true folly and is importunity, then lastly the ' +
         'market would stop giving him further chances. Thus, only wisdom and perseverance may turn the tide.';
     case types.LOCALE_ZHTW:
-      return '(山水蒙) 童蒙如同 ' + ticker.tick.name + ' 目前的狀況，假若他听的懂市場對他說的話，則他會成功。' +
-        '不是市場要求他，而是他要求市場接受他。起初市場已經給過他第一個徵兆，若他仍然听沒懂，可能他還有第二個機會。' +
-        '到第三次，這只是證明他是個真正的死纏爛打的蠢蛋，則市場會停止再給他機會。所以，智慧及決心才可扭轉情勢。';
+      return '(山水蒙) 非我求童蒙，而是童蒙求我。初筮告，再三瀆，瀆則不告。利貞';
   }
 }
 
@@ -1696,7 +1862,8 @@ function yao7604(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) ';
+        case 6: return '(6th verse) In punishing folly, though at the last stage, it does not further one to ' +
+          'commit transgressions and/or doing things by irregular ways. Still need to follow the prescribed order.';
         case 5: return '(5th verse) ';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) Take not a maiden who, when she sees a man of gold, would lose possession of herself. ' +
@@ -1708,7 +1875,7 @@ function yao7604(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) ';
+        case 6: return '(第六爻) 最後階段，應該走出無知蒙昧，化被動為主動，但仍不應投機取巧，仍要按部就班才成。';
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) 勿用取女，見金夫，不有躬，无攸利。';
@@ -1727,8 +1894,8 @@ function IC7604(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base8607(locale, ticker); obj.state2b = yao8607(locale, ticker, yao); break; // 100.010 -> 000.010
       }
       break;
     case 5:
@@ -2013,6 +2180,89 @@ function IC8546(locale, ticker, yao) {
   return obj;
 } // 8546
 
+/***** 8607 地水師 000.010 *****/
+
+function base8607(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'THE ARMY. The army needs perseverance and a strong and true leader, then good fortune without blame.';
+    case types.LOCALE_ZHTW:
+      return '(地水師) 貞，大丈夫，吉，无咎。';
+  }
+}
+
+function yao8607(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) The great King issues commands: Founds states, vests families with fiefs, ' +
+          'inferior people should not be employed.';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) 大君有命，開國承家，小人勿用。';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC8607(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base8607(locale, ticker);
+  obj.state1b = yao8607(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 8607
+
 /********************************************************************/
 
 export function getICO(locale, ticker) {
@@ -2032,6 +2282,7 @@ export function getICO(locale, ticker) {
     //
     case'4532': Obj = IC4532(locale, ticker, yao); break;
     case'4762': Obj = IC4762(locale, ticker, yao); break;
+    case'4816': Obj = IC4816(locale, ticker, yao); break;
     //
     case'5261': Obj = IC5261(locale, ticker, yao); break;
     case'5442': Obj = IC5442(locale, ticker, yao); break;

@@ -38,7 +38,7 @@ class AboutPage extends React.Component {
           <br/>
           <li>The pos/neg-Cycle is triggered by price rise/fall, respectively, in which it always pans out a top/bottom due to <i>Change</i>. Each Cycle might last 2-3 years and could also be short-lived.</li>
           <br/>
-          <li className="colorDeepPink">YouTiming is hosted on a shared server which cannot be customized to intercept the cient-side routing. Thus, when refreshing a page route such as <i>http://youtiming.com/portfolio</i>, you would be hit by '404 Not Found' in return. For more information, please refer to <a href="https://tylermcginnis.com/react-router-cannot-get-url-refresh/" target="_blank">Cannot Get URL Error</a> article. To reload the application, you have to go back to <i>http://www.youtiming.com</i> or the <i>Home</i> menu.</li><br/>
+          <li className="colorDeepPink">YouTiming is hosted on a shared server which cannot be customized to intercept the client-side routing. Thus, when refreshing a page route such as <i>http://youtiming.com/portfolio</i>, you would be hit by '404 Not Found' in return. For more information, please refer to <a href="https://tylermcginnis.com/react-router-cannot-get-url-refresh/" target="_blank">Cannot Get URL Error</a> article. To reload the application, you have to go back to <i>http://www.youtiming.com</i> or the <i>Home</i> menu.</li><br/>
           <li>For people who can read traditional Chinese, please join my FB group: 資本市場的易經.</li>
         </ul>
 
