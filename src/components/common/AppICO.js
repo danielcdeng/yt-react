@@ -149,7 +149,7 @@ function yao1425(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) ';
+        case 6: return '(6th verse) Innocent/surprising action brings misfortune. Nothing furthers.';
         case 5: return '(5th verse) Use no medicine in an illness. Incurred through no fault of your own. It will pass of itself.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) Undeserved misfortune. The cow that was tethered by someone is the wanderer\'s gain, ' +
@@ -160,7 +160,7 @@ function yao1425(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) ';
+        case 6: return '(第六爻) 意外之行，有災，無所利。';
         case 5: return '(第五爻) 无妄之疾，勿藥有喜。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) 无妄之災，或繫之牛，行人之得，邑人之災。';
@@ -179,16 +179,14 @@ function IC1425(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        // yang:
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        // yin:
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base2417(locale, ticker); obj.state2b = yao2417(locale, ticker, yao); break; // 111.001 -> 011.001
       }
       break;
     case 5:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBD)'; obj.state2b = '(TBD)'; break; // 111.001 -> 101.001
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 111.001 -> 101.001
       }
       break;
     case 4:
@@ -493,7 +491,7 @@ function yao2417(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '';
+        case 6: return '(6th verse) Captured, then released, the King celebrates.';
         case 5: return '';
         case 4: return '';
         case 3: return '(3rd verse) The most important thing for ' + ticker.tick.name + ' is to cling to the primary ' +
@@ -506,7 +504,7 @@ function yao2417(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '';
+        case 6: return '(第六爻) 被商紂王抓來囚禁，然後再被釋放，之後周文王在西山舉行享祀。';
         case 5: return '';
         case 4: return '';
         case 3: return '(第三爻) 對 ' + ticker.tick.name + ' 來說，最重要的是抓住主要大戰略方向並且放掉那些小的例如面子問題，' +
