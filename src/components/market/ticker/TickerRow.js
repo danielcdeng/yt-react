@@ -9,25 +9,37 @@ import TickerState from './TickerState';
 
 class TickerRow extends React.Component {
 
-  constructor(props, context) {
+  constructor (props, context) {
     super(props, context);
     this.addPlusSignIfPositive = this.addPlusSignIfPositive.bind(this);
     this.onTickerStateCodeClicked = this.onTickerStateCodeClicked.bind(this);
     this.renderStockChart = this.renderStockChart.bind(this);
   }
 
-  addPlusSignIfPositive(num) {
+  addPlusSignIfPositive (num) {
     if (num > 0) return "+" + num;
     return num;
   }
 
-  onTickerStateCodeClicked(actions, ticker) {
+  tickerRowBackgroundColor (ticker) {
+    let backgroundColor;
+    if (ticker.sess.netp === '0.0') {
+      backgroundColor = 'lightGreyBackground';
+    } else if (ticker.door.type === 'yang') {
+      backgroundColor = 'yangrowbackground';
+    } else {
+      backgroundColor = 'yinrowbackground';
+    }
+    return backgroundColor;
+  }
+
+  onTickerStateCodeClicked (actions, ticker) {
     return(event => {
       actions.onTickerStateCodeClicked(ticker);
     });
   }
 
-  renderStockChart(name) {
+  renderStockChart (name) {
     let url = "";
     switch (name) {
       case acts.TICKER_AAPL:   url = "http://schrts.co/1WQHNj"; break;
@@ -64,11 +76,11 @@ class TickerRow extends React.Component {
 
   //------------------------------------------
 
-  render() {
+  render () {
     const {actions, idx, locale, ticker} = this.props;
     return(
       <tbody>
-        <tr className={ticker.door.type == "yang" ? "yangrowbackground" : "yinrowbackground"}>
+        <tr className={this.tickerRowBackgroundColor(ticker)}>
           {/* # */}
           <td>{idx}</td>
           {/* Cycle Type */}
