@@ -53,7 +53,6 @@ class TickerRow extends React.Component {
       case acts.TICKER_GOOGL:  url = "http://schrts.co/YiKMyE"; break;
       case acts.TICKER_IYR:    url = "http://schrts.co/9nWEcr"; break;
       case acts.TICKER_KOSPI:  url = "http://schrts.co/8dBMjt"; break;
-      case acts.TICKER_MDSO:   url = "http://schrts.co/WJMePr"; break;
       case acts.TICKER_MSFT:   url = "http://schrts.co/78cr96"; break;
       case acts.TICKER_NASDAQ: url = "http://schrts.co/sHLHtV"; break;
       case acts.TICKER_NFLX:   url = "http://schrts.co/eawMYC"; break;
@@ -62,7 +61,6 @@ class TickerRow extends React.Component {
       case acts.TICKER_SLV:    url = "http://schrts.co/A8qPRU"; break;
       case acts.TICKER_SP500:  url = "http://schrts.co/htQwjW"; break;
       case acts.TICKER_TAIEX:  url = "http://schrts.co/xdnJNz"; break;
-      case acts.TICKER_TQQQ:   url = "http://schrts.co/kPBCn9"; break;
       case acts.TICKER_TRAN:   url = "http://schrts.co/mLjwVb"; break;
       case acts.TICKER_TSLA:   url = "http://schrts.co/8BRrmL"; break;
       case acts.TICKER_TSM:    url = "http://schrts.co/28mbxu"; break;

@@ -986,6 +986,88 @@ function IC4134(locale, ticker, yao) {
   return obj;
 } // 4134
 
+/***** 雷澤歸妹 4254 001.011 *****/
+
+function base4254(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'THE MARRYING MAIDEN. Undertakings bring misfortune. Nothing that would further.';
+    case types.LOCALE_ZHTW:
+      return '(雷澤歸妹) 征凶，无攸利。';
+  }
+}
+
+function yao4254(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) The present timing is not right.';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) 目前行事時機不對。';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC4254(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base4254(locale, ticker);
+  obj.state1b = yao4254(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 4254
+
 /***** 4532 雷風恒 001.110 *****/
 
 function base4532(locale, ticker) {
@@ -2278,6 +2360,7 @@ export function getICO(locale, ticker) {
     case'3421': Obj = IC3421(locale, ticker, yao); break;
     case'3756': Obj = IC3756(locale, ticker, yao); break;
     //
+    case'4254': Obj = IC4254(locale, ticker, yao); break;
     case'4532': Obj = IC4532(locale, ticker, yao); break;
     case'4762': Obj = IC4762(locale, ticker, yao); break;
     case'4816': Obj = IC4816(locale, ticker, yao); break;

@@ -96,9 +96,11 @@ class Header extends React.Component {
   owm(catActions) {
     return(
       <div style={{marginTop:"5px", fontSize:"14px"}}>
-        Other resources:&nbsp;
+        Other apps:&nbsp;
         <Link to="/weather" onClick={this.onLinkClick(actionTypes.TAB_WEATHER, catActions)}
-          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>Present and 5-Day Weather Forecast (USA only)</Link>
+          activeClassName={(this.state.reload == '/weather' || this.state.owm) ? "active" : "inactive"}>Present and 5-Day Weather Forecast (USA only)
+        </Link>
+        ,&nbsp;&nbsp;(to be added).
       </div>
     );
   }
