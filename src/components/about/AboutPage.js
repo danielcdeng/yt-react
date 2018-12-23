@@ -55,24 +55,20 @@ class AboutPage extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>Indices-1 (3)</td>
-                <td>NASDAQ (USA), SP500 (USA), TRAN (USA)</td>
+                <td>Indices (7)</td>
+                <td>DAX (Germany), KOSPI (S. Korea), NASDAQ (USA), SHCOMP (China), SP500 (USA), TAIEX (Taiwan), TRAN (USA)</td>
               </tr>
               <tr>
-                <td>Indices-2 (4)</td>
-                <td>DAX (Germany), KOSPI (Korea), SHCOMP (China, PROC), TAIEX (Taiwan, ROC)</td>
+                <td>Hightech (11)</td>
+                <td>AAPL, AMZN, BABA, CRM, FB, GOOGL, MSFT, NFLX, NVDA, TSLA, TSM</td>
               </tr>
               <tr>
-                <td>NASDAQ (10)</td>
-                <td>AAPL, AMZN, FB, GOOGL, MDSO, MSFT, NFLX, NVDA, TQQQ, TSLA</td>
+                <td>Financial (1)</td>
+                <td>XLF</td>
               </tr>
               <tr>
-                <td>NYSE (3)</td>
-                <td>BABA, CRM, TSM</td>
-              </tr>
-              <tr>
-                <td>NYSEARCA (5)</td>
-                <td>IYR, GLD, SLV, XLE, XLF</td>
+                <td>Asset (5)</td>
+                <td>GLD, IYR, SBUX, SLV, XLE</td>
               </tr>
               <tr>
                 <td>CRYPTO (1)</td>
