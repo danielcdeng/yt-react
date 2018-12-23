@@ -137,7 +137,10 @@ export default function marketReducer(state = initReducerState.market, action) {
           }
         };
       }
-      action.archive.forEach(ticker => newState.archive[ticker.tick.name].push(ticker));
+      console.log('@@@ newState = ', newState);
+      action.archive.forEach(ticker => {
+        newState.archive[ticker.tick.name].push(ticker);
+      });
       for (let idx = 0; idx < types.TICKERS_TOTAL.length; idx++) {
         const symbol = types.TICKERS_TOTAL[idx];
         const archive = newState.archive[symbol];
