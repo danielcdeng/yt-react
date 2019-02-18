@@ -404,24 +404,25 @@ function yao2349(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '';
-        case 5: return '';
-        case 4: return '';
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
         case 3: return '(3rd verse) A revolution, not a reform, would bring misfortune. But if standing still, it would ' +
           'bring danger, too. The situation is going to be very troublesome. Only three rounds of back-and-forth talks ' +
           'and negotiations for reaching the goal of reform would bring the trust-worthy result.';
-        case 2: return '';
-        case 1: return '';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) Not powerful enough. Can not have great estalishment. ' +
+          'Thus a good fortune if the foundation can be kept well.';
       }
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '';
-        case 5: return '';
-        case 4: return '';
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
         case 3: return '(第三爻) 革動之征，凶，但若又貞定不動，厲！革言三就，來回協商，才能有孚。';
-        case 2: return '';
-        case 1: return '';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) 力量不夠，無法有大做為，仍以鞏固基礎為吉。';
       }
       break;
   }
@@ -504,7 +505,7 @@ function yao2417(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) 被商紂王抓來囚禁，然後再被釋放，之後周文王在西山舉行享祀。';
+        case 6: return '(第六爻) 先是被紂王抓來囚禁，後來才被釋放，文王在西山舉行享祀。';
         case 5: return '';
         case 4: return '';
         case 3: return '(第三爻) 對 ' + ticker.tick.name + ' 來說，最重要的是抓住主要大戰略方向並且放掉那些小的例如面子問題，' +
@@ -524,8 +525,8 @@ function IC2417(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 011.001 -> 111.001
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
     case 5:
@@ -645,6 +646,88 @@ function IC2647(locale, ticker, yao) {
   }
   return obj;
 } // 2647
+
+/***** 2731 澤山咸 011.100 *****/
+
+function base2731(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'INFLUENCE. Success. Perseverance furthers. Timing characteristics: Marrying a woman brings good fortune.';
+    case types.LOCALE_ZHTW:
+      return '(澤山咸) 亨，利貞；時間性特點：娶女吉。';
+  }
+}
+
+function yao2731(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) The influence only shows itself at the big toe.';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) 咸其拇，咸感的力量只應在腳拇指。';
+      }
+      break;
+  }
+}
+
+function IC2731(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base2731(locale, ticker);
+  obj.state1b = yao2731(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = base2349(locale, ticker); obj.state2b = yao2349(locale, ticker, yao); break; // 011.100 -> 011.101
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+  }
+  return obj;
+} // 2731
 
 /***** 2845 澤地萃 011.000 *****/
 
@@ -1004,7 +1087,8 @@ function yao4134(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) ';
+        case 6: return '(6th verse) A goat butts against a hedge, it cannot go backward, it cannot go forward. ' +
+          'Nothing serves to further. If one notes the difficulty, this brings good fortune.';
         case 5: return '(5th verse) Loses "strength" under ease and carelessness, nothing to complain about.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
@@ -1014,7 +1098,7 @@ function yao4134(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) ';
+        case 6: return '(第六爻) 公羊頂撞籬笆，羊角被卡住，不能進也不能退，沒有任何好處，知艱則吉。';
         case 5: return '(第五爻) 於鬆懈安逸之下喪失了"壯"，沒啥好抱怨的。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
@@ -1034,7 +1118,7 @@ function IC4134(locale, ticker, yao) {
     case 6:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
     case 5:
@@ -1596,7 +1680,8 @@ function yao5261(locale, ticker, yao) {
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ' + ticker.tick.name + ' (he) encounters the opposing force. ' +
           'He beats the drum, then he stops. He sobs, then he sings.';
-        case 2: return '(2nd verse) ';
+        case 2: return '(2nd verse) A crane calling in the shade. Its young answers it: I have a good goblet, ' +
+          'I will share it with you.';
         case 1: return '(1st verse) Being contemplated and prepared can bring good fortune. ' +
           'If there are secret designs and/or unexpected events, then it would be disquieting.';
       }
@@ -1607,7 +1692,7 @@ function yao5261(locale, ticker, yao) {
         case 5: return '(第五爻) 有孚，攣如，无咎。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ' + ticker.tick.name + ' 得敵，或鼓或罷，或泣或歌。';
-        case 2: return '(第二爻) ';
+        case 2: return '(第二爻) 鳴鶴在陰，其子和之；我有好爵，吾與爾靡之。';
         case 1: return '(第一爻) 三思有所準備則吉，有它不燕，字面意思為遇大蛇或意外而讓人不安。';
       }
       break;
@@ -1646,8 +1731,8 @@ function IC5261(locale, ticker, yao) {
       break;
     case 2:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 110.011 -> 110.001
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base5442(locale, ticker); obj.state2b = yao5442(locale, ticker, yao); break; // 110.011 -> 110.001
       }
       break;
     case 1:
@@ -1681,7 +1766,8 @@ function yao5442(locale, ticker, yao) {
           'even on the issue such as the move of the prince\'s capital.';
         case 3: return '(3rd verse) Working hard to rescue and save dangerous and unfortunate events. No blame. ' +
           ticker.tick.name + ' should keep open and honest communications in order to earn the trust from the investors.';
-        case 2: return '(2nd verse) ';
+        case 2: return '(2nd verse) Someone does indeed increase him; ten pairs of tortoises (valuables) cannot oppose it. ' +
+          'Constant perseverance brings good fortune. The king presents him before God. Good fortune.';
         case 1: return '(1st verse) ';
       }
       break;
@@ -1691,7 +1777,7 @@ function yao5442(locale, ticker, yao) {
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) 人若中行於道，告其主公，則主公定聽從，利用為依，就算是像遷國這樣子的大事。';
         case 3: return '(第三爻) 努力救濟凶阨之事，无咎，但應秉持誠信，該做則做，並公告取信於眾投資人。(原文：益之用凶事，无咎。有孚中行，告公用圭。)';
-        case 2: return '(第二爻) ';
+        case 2: return '(第二爻) 或益之十朋之龜，弗克違，永貞，吉；王用享于帝，吉。';
         case 1: return '(第一爻) ';
       }
       break;
@@ -1934,7 +2020,8 @@ function yao7241(locale, ticker, yao) {
         case 5: return '(5th verse) Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), ' +
           'cannot oppose. Supreme good fortune.';
         case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) ';
+        case 3: return '(3rd verse) When three people journey together, their number increases by one. ' +
+          'When one man journeys alone, he finds a companion.';
         case 2: return '(2nd verse) Favorable to have perseverance on the vertical integration of ' + ticker.tick.name +
           '\'s business domain. It would be misfortune to extend oneself to different area such as that a fashion ' +
           'company buying out a telecommunication one. In a word, not only to stop decreasing the original business, ' +
@@ -1947,7 +2034,7 @@ function yao7241(locale, ticker, yao) {
         case 6: return '(第六爻) 不能以損視之，反而是益之无咎，貞吉，利有攸往，得臣無家，意思是雙方合作以壯大勢力版圖。';
         case 5: return '(第五爻) 或益 ' + ticker.tick.name + ' 以十朋之龜 (價值)，弗克違，元吉。';
         case 4: return '(第四爻) ';
-        case 3: return '(第三爻) ';
+        case 3: return '(第三爻) 三人行，則損一人，一人行，則得其友。';
         case 2: return '(第二爻) 利貞 (跨非本業則凶)，不被損而會被益之。';
         case 1: return '(第一爻) ';
       }
@@ -1973,12 +2060,6 @@ function IC7241(locale, ticker, yao) {
         case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
-    case 2:
-      switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.011 -> 110.001
-      }
-      break;
     case 4:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
@@ -1988,7 +2069,13 @@ function IC7241(locale, ticker, yao) {
     case 3:
       switch (ticker.door.type) {
         case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break; // 100.011 -> 110.001
       }
       break;
     case 1:
@@ -2056,8 +2143,8 @@ function IC7518(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = base8546(locale, ticker); obj.state2b = yao8546(locale, ticker, yao); break; // 100.110 -> 000.110
       }
       break;
     case 5:
@@ -2221,6 +2308,89 @@ function yao7752(locale, ticker, yao) {
       break;
   }
 }
+
+/***** 地天泰 8111 000.111 *****/
+
+function base8111(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'PEACE. The small departs, the great approaches. Good fortune. Success.';
+    case types.LOCALE_ZHTW:
+      return '(地天泰) 小往大來，吉亨。';
+  }
+}
+
+function yao8111(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) When ribbon grass is pulled up, the sod comes with it. Each according to his kind. ' +
+          'Undertakings bring good fortune.';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) 拔茅草的根，一拔就一整串的牽連而出，象徵出征大吉';
+      }
+      break;
+  }
+}
+
+function IC8111(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base8111(locale, ticker);
+  obj.state1b = yao8111(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 8111
 
 /***** 8219 地澤臨 000.011 *****/
 
@@ -2520,35 +2690,37 @@ export function getICO(locale, ticker) {
   let Obj;
   const yao = parseInt(ticker.door.fore.slice(4));
   switch (ticker.door.fore.slice(0,4)) {
-    case'0000': Obj = IC0000(locale, ticker); break;
+    case '0000': Obj = IC0000(locale, ticker); break;
     //
-    case'1425': Obj = IC1425(locale, ticker, yao); break;
-    case'1733': Obj = IC1733(locale, ticker, yao); break;
+    case '1425': Obj = IC1425(locale, ticker, yao); break;
+    case '1733': Obj = IC1733(locale, ticker, yao); break;
     //
-    case'2417': Obj = IC2417(locale, ticker, yao); break;
-    case'2647': Obj = IC2647(locale, ticker, yao); break;
-    case'2845': Obj = IC2845(locale, ticker, yao); break;
+    case '2417': Obj = IC2417(locale, ticker, yao); break;
+    case '2647': Obj = IC2647(locale, ticker, yao); break;
+    case '2731': Obj = IC2731(locale, ticker, yao); break;
+    case '2845': Obj = IC2845(locale, ticker, yao); break;
     //
-    case'3421': Obj = IC3421(locale, ticker, yao); break;
-    case'3756': Obj = IC3756(locale, ticker, yao); break;
+    case '3421': Obj = IC3421(locale, ticker, yao); break;
+    case '3756': Obj = IC3756(locale, ticker, yao); break;
     //
-    case'4134': Obj = IC4134(locale, ticker, yao); break;
-    case'4254': Obj = IC4254(locale, ticker, yao); break;
-    case'4451': Obj = IC4451(locale, ticker, yao); break;
-    case'4532': Obj = IC4532(locale, ticker, yao); break;
-    case'4762': Obj = IC4762(locale, ticker, yao); break;
-    case'4816': Obj = IC4816(locale, ticker, yao); break;
+    case '4134': Obj = IC4134(locale, ticker, yao); break;
+    case '4254': Obj = IC4254(locale, ticker, yao); break;
+    case '4451': Obj = IC4451(locale, ticker, yao); break;
+    case '4532': Obj = IC4532(locale, ticker, yao); break;
+    case '4762': Obj = IC4762(locale, ticker, yao); break;
+    case '4816': Obj = IC4816(locale, ticker, yao); break;
     //
-    case'5261': Obj = IC5261(locale, ticker, yao); break;
-    case'5442': Obj = IC5442(locale, ticker, yao); break;
+    case '5261': Obj = IC5261(locale, ticker, yao); break;
+    case '5442': Obj = IC5442(locale, ticker, yao); break;
     //
-    case'7126': Obj = IC7126(locale, ticker, yao); break;
-    case'7241': Obj = IC7241(locale, ticker, yao); break;
-    case'7518': Obj = IC7518(locale, ticker, yao); break;
-    case'7604': Obj = IC7604(locale, ticker, yao); break;
+    case '7126': Obj = IC7126(locale, ticker, yao); break;
+    case '7241': Obj = IC7241(locale, ticker, yao); break;
+    case '7518': Obj = IC7518(locale, ticker, yao); break;
+    case '7604': Obj = IC7604(locale, ticker, yao); break;
     //
-    case'8336': Obj = IC8336(locale, ticker, yao); break;
-    case'8546': Obj = IC8546(locale, ticker, yao); break;
+    case '8111': Obj = IC8111(locale, ticker, yao); break;
+    case '8336': Obj = IC8336(locale, ticker, yao); break;
+    case '8546': Obj = IC8546(locale, ticker, yao); break;
     //
     default: Obj = locale == types.LOCALE_ENUS ? Object.assign({},ENUS_State_Obj) : Object.assign({},ZHTW_State_Obj); break;
   }

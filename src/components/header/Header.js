@@ -18,7 +18,7 @@ class Header extends React.Component {
     this.hightech = this.hightech.bind(this);
     this.financial = this.financial.bind(this);
     this.asset = this.asset.bind(this);
-    this.crypto = this.crypto.bind(this);
+    //this.crypto = this.crypto.bind(this);
     this.info = this.info.bind(this);
     this.owm = this.owm.bind(this);
     this.loadingDots = this.loadingDots.bind(this);
@@ -32,7 +32,7 @@ class Header extends React.Component {
       hightech: false,
       financial: false,
       asset: false,
-      crypto: false,
+      //crypto: false,
       info: false,
       owm: false, // open weather map
       reload: context.location.pathname
@@ -81,12 +81,12 @@ class Header extends React.Component {
         activeClassName={(this.state.reload == "/portfolio/asset" || this.state.asset) ? "active" : "inactive"}>Asset</Link>
     );
   }
-  crypto(catActions) {
-    return(
-      <Link to="/portfolio/crypto" onClick={this.onLinkClick(actionTypes.TAB_CRYPTO, catActions)}
-        activeClassName={(this.state.reload == "/portfolio/crypto" || this.state.crypto) ? "active" : "inactive"}>Crypto</Link>
-    );
-  }
+  // crypto(catActions) {
+  //   return(
+  //     <Link to="/portfolio/crypto" onClick={this.onLinkClick(actionTypes.TAB_CRYPTO, catActions)}
+  //       activeClassName={(this.state.reload == "/portfolio/crypto" || this.state.crypto) ? "active" : "inactive"}>Crypto</Link>
+  //   );
+  // }
   info() {
     return(
       <Link to="/info" onClick={this.onLinkClick(actionTypes.TAB_ABOUT)}
@@ -121,7 +121,16 @@ class Header extends React.Component {
 
   onLinkClick(link, ca) {
     return(event => {
-      this.setState({home:false,port:false,indices:false,hightech:false,financial:false,asset:false,crypto:false,info:false,owm:false});
+      this.setState({
+        home:false,
+        port:false,
+        indices:false,
+        hightech:false,
+        financial:false,
+        asset:false,
+        //crypto:false,
+        info:false,
+        owm:false});
       console.log('Header, onLinkClick, link = ', link);
       switch(link) {
         case actionTypes.TAB_HOME:
@@ -154,11 +163,11 @@ class Header extends React.Component {
           browserHistory.push('/portfolio/asset');
           ca.onCatClick(link);
           break;
-        case actionTypes.TAB_CRYPTO:
-          this.setState({crypto: true});
-          browserHistory.push('/portfolio/crypto');
-          ca.onCatClick(link);
-          break;
+        // case actionTypes.TAB_CRYPTO:
+        //   this.setState({crypto: true});
+        //   browserHistory.push('/portfolio/crypto');
+        //   ca.onCatClick(link);
+        //   break;
         case actionTypes.TAB_ABOUT:
           this.setState({info: true});
           browserHistory.push('/info');
@@ -195,7 +204,7 @@ class Header extends React.Component {
             {this.hightech(catActions)}{" | "}
             {this.financial(catActions)}{" | "}
             {this.asset(catActions)}{" | "}
-            {this.crypto(catActions)}{" | "}
+            {/*{this.crypto(catActions)}{" | "}*/}
             {this.info(catActions)}
             &nbsp;&nbsp;
             {this.loadingDots(loading)}

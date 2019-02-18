@@ -1,5 +1,5 @@
-export const ENUS_TITLE = 'The Changes of the Stock Markets';
-export const ZHTW_TITLE = '資 本 市 場 的 易 經';
+export const ENUS_TITLE = 'The Changes of the Stock Markets Visions';
+export const ZHTW_TITLE = '資 本 市 場 的 易 相';
 //---------------------------------------------
 export const ENUS_NEG         = 'neg';
 export const ENUS_POS         = 'pos';

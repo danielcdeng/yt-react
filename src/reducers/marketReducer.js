@@ -17,7 +17,7 @@ export default function marketReducer(state = initReducerState.market, action) {
     hightech:  state.hightech,
     financial: state.financial,
     asset:     state.asset,
-    crypto:    state.crypto,
+    //crypto:    state.crypto,
     //-------------------
     archive:   state.archive,
     stat:      state.stat
@@ -55,10 +55,10 @@ export default function marketReducer(state = initReducerState.market, action) {
           newState.view = Object.assign({}, newState.asset);
           updateFilterInputBox(newState.view);
           break;
-        case types.TAB_CRYPTO:
-          newState.view = Object.assign({}, newState.crypto);
-          updateFilterInputBox(newState.view);
-          break;
+        // case types.TAB_CRYPTO:
+        //   newState.view = Object.assign({}, newState.crypto);
+        //   updateFilterInputBox(newState.view);
+        //   break;
       }
       // Backup:
       switch (viewObj.cat) {
@@ -67,7 +67,7 @@ export default function marketReducer(state = initReducerState.market, action) {
         case types.TAB_HIGHTECH:  newState.hightech  = viewObj; break;
         case types.TAB_FINANCIAL: newState.financial = viewObj; break;
         case types.TAB_ASSET:     newState.asset     = viewObj; break;
-        case types.TAB_CRYPTO:    newState.crypto    = viewObj; break;
+        //case types.TAB_CRYPTO:    newState.crypto    = viewObj; break;
       }
     } else {
       console.log('marketReducer: The view switch is not required.');
@@ -214,9 +214,9 @@ export default function marketReducer(state = initReducerState.market, action) {
       newState.asset.cat = types.TAB_ASSET.slice(0);
       newState.asset.target = newState.view.target.filter(ticker => { return types.TICKERS_ASSET.indexOf(ticker.tick.name) >= 0 ? true : false; });
       // Crypto:
-      newState.crypto = Object.assign({}, newState.view);
-      newState.crypto.cat = types.TAB_CRYPTO.slice(0);
-      newState.crypto.target = newState.view.target.filter(ticker => { return types.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
+      // newState.crypto = Object.assign({}, newState.view);
+      // newState.crypto.cat = types.TAB_CRYPTO.slice(0);
+      // newState.crypto.target = newState.view.target.filter(ticker => { return types.TICKERS_CRYPTO.indexOf(ticker.tick.name) >= 0 ? true : false; });
       break;
 
     case types.ON_TICKER_BEGIN_DATE_SORT:
@@ -332,7 +332,7 @@ export default function marketReducer(state = initReducerState.market, action) {
     case types.TAB_HIGHTECH:  console.log('marketReducer, TAB_HIGHTECH');  switchMarketView(types.TAB_HIGHTECH);  break;
     case types.TAB_FINANCIAL: console.log('marketReducer, TAB_FINANCIAL'); switchMarketView(types.TAB_FINANCIAL); break;
     case types.TAB_ASSET:     console.log('marketReducer, TAB_ASSET');     switchMarketView(types.TAB_ASSET);     break;
-    case types.TAB_CRYPTO:    console.log('marketReducer, TAB_CRYPTO');    switchMarketView(types.TAB_CRYPTO);    break;
+    //case types.TAB_CRYPTO:    console.log('marketReducer, TAB_CRYPTO');    switchMarketView(types.TAB_CRYPTO);    break;
 
     default:
       console.log('marketReducer, undefined, action.type = "' + action.type + '"');
