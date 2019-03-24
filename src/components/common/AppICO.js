@@ -568,10 +568,9 @@ function IC2417(locale, ticker, yao) {
 function base2647(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'OPPRESSION. Success, perseverance, although the great man can bring about good fortune, ' +
-        'he is not believed. Not his fault.';
+      return 'OPPRESSION, EXHAUSTING';
     case types.LOCALE_ZHTW:
-      return '(澤水困) 亨貞，大人雖吉，懷才不遇，无咎。';
+      return '澤水困';
   }
 }
 
@@ -582,7 +581,7 @@ function yao2647(locale, ticker, yao) {
         case 6: return '(6th verse) ';
         case 5: return '(5th verse) ';
         case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) A man is oppressed by stone and he has to lean on thorns and thistles. ' +
+        case 3: return 'A man is oppressed by stone and he has to lean on thorns and thistles. ' +
           'He enters his house and does not see his spouse. Misfortune.';
         case 2: return '(2nd verse) ';
         case 1: return '(1st verse) ';
@@ -593,7 +592,7 @@ function yao2647(locale, ticker, yao) {
         case 6: return '(第六爻) ';
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) ';
-        case 3: return '(第三爻) 困于石，據于蒺蔾，入于其宮，不見其妻，凶。';
+        case 3: return '困于石，據于蒺蔾，入于其宮，不見其妻，凶。';
         case 2: return '(第二爻) ';
         case 1: return '(第一爻) ';
       }
@@ -652,9 +651,9 @@ function IC2647(locale, ticker, yao) {
 function base2731(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INFLUENCE. Success. Perseverance furthers. Timing characteristics: Marrying a woman brings good fortune.';
+      return 'INFLUENCE, MUTUAL INFLUENCE';
     case types.LOCALE_ZHTW:
-      return '(澤山咸) 亨，利貞；時間性特點：娶女吉。';
+      return '澤山咸';
   }
 }
 
@@ -665,7 +664,7 @@ function yao2731(locale, ticker, yao) {
         case 6: return '(6th verse) ';
         case 5: return '(5th verse) ';
         case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) ';
+        case 3: return 'Mutual influence on one\'s thighs. If insist on his following, going forward will bring humiliation.';
         case 2: return '(2nd verse) ';
         case 1: return '(1st verse) The influence only shows itself at the big toe.';
       }
@@ -675,7 +674,7 @@ function yao2731(locale, ticker, yao) {
         case 6: return '(第六爻) ';
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) ';
-        case 3: return '(第三爻) ';
+        case 3: return '咸其股，執其隨，往吝。';
         case 2: return '(第二爻) ';
         case 1: return '(第一爻) 咸其拇，咸感的力量只應在腳拇指。';
       }
@@ -734,11 +733,9 @@ function IC2731(locale, ticker, yao) {
 function base2845(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'GATHERING TOGETHER. Success. The king approaches his temple. It furthers one to see the great man. ' +
-        'This brings success. Perseverance furthers. To bring great offerings creates good fortune. ' +
-        'It furthers one to undertake something.';
+      return 'GATHERING TOGETHER, BRINGING TOGETHER';
     case types.LOCALE_ZHTW:
-      return '(澤地萃) 亨通，有王來到宗廟，利見大人，亨，利貞。用大牲吉。利有攸往。';
+      return '澤地萃';
   }
 }
 
@@ -751,7 +748,7 @@ function yao2845(locale, ticker, yao) {
           'If there are some who are not yet sincerely in the work, sublime and enduring perseverance is needed. ' +
           'Then remorse disappears.';
         case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) Gathering together but sighs will fall in, nothing furthers. ' +
+        case 3: return 'Gathering together but sighs will fall in, nothing furthers. ' +
           'If insists on going, although seems no fault and no blame, the end result will be slight humiliation.';
         case 2: return '(2nd verse) ';
         case 1: return '(1st verse) ';
@@ -762,7 +759,7 @@ function yao2845(locale, ticker, yao) {
         case 6: return '(第六爻) 悲傷嘆息，痛哭流涕，如此地步，並無有誤。';
         case 5: return '(第五爻) 萃有位，无咎，匪孚；元永貞，悔亡。';
         case 4: return '(第四爻) ';
-        case 3: return '(第三爻) 萃如，嗟如，无攸利；若往，无咎，小吝而已。';
+        case 3: return '萃如，嗟如，无攸利；若往，无咎，小吝而已。';
         case 2: return '(第二爻) ';
         case 1: return '(第一爻) ';
       }
@@ -796,8 +793,8 @@ function IC2845(locale, ticker, yao) {
       break;
     case 3:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = base2731(locale, ticker); obj.state2b = yao2731(locale, ticker, yao); break; // 011.000 -> 011.100
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
     case 2:
@@ -1072,14 +1069,96 @@ function IC3756(locale, ticker, yao) {
   return obj;
 } // 3756
 
+/***** 火地晉 3835 101.000 *****/
+
+function base3835(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'PROGRESS, PROCEEDING FORWARD';
+    case types.LOCALE_ZHTW:
+      return '火地晉';
+  }
+}
+
+function yao3835(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return 'Progressing into the horn, no room for further progress. What is left is conquering, akthough adversity, good fortune. Being steadfast: humiliation.';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) ';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '晉勢至尖角，無法再升，維用伐邑，厲吉无咎，貞吝。';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) ';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC3835(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base3835(locale, ticker);
+  obj.state1b = yao3835(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 3835
+
 /***** 4134 雷天大壯 001.111 *****/
 
 function base4134(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'THE POWER OF THE GREAT. Riding on the trend, perseverance furthers.';
+      return 'THE POWER OF THE GREAT, GREAT STRENGTH';
     case types.LOCALE_ZHTW:
-      return '(雷天大壯) 趁勢而起，利於貞定。';
+      return '雷天大壯';
   }
 }
 
@@ -1089,7 +1168,7 @@ function yao4134(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(6th verse) A goat butts against a hedge, it cannot go backward, it cannot go forward. ' +
           'Nothing serves to further. If one notes the difficulty, this brings good fortune.';
-        case 5: return '(5th verse) Loses "strength" under ease and carelessness, nothing to complain about.';
+        case 5: return 'Lose a ram in the field, but no regret (because it will gain back in the future).';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
         case 2: return '(2nd verse) ';
@@ -1099,7 +1178,7 @@ function yao4134(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 公羊頂撞籬笆，羊角被卡住，不能進也不能退，沒有任何好處，知艱則吉。';
-        case 5: return '(第五爻) 於鬆懈安逸之下喪失了"壯"，沒啥好抱怨的。';
+        case 5: return '喪羊于易，无悔 (因為會在將來得回)。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
         case 2: return '(第二爻) ';
@@ -1328,9 +1407,9 @@ function IC4451(locale, ticker, yao) {
 function base4532(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DURATION. Smooth, no blame, perseverance furthers, it furthers one to have somewhere to go.';
+      return 'DURATION, LONG LASTING';
     case types.LOCALE_ZHTW:
-      return '(雷風恒) 亨通，无咎，利於貞定，利有攸往。';
+      return '雷風恒';
   }
 }
 
@@ -1340,10 +1419,10 @@ function yao4532(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(6th verse) ';
         case 5: return '(5th verse) ';
-        case 4: return '(4th verse) ';
+        case 4: return 'There are no birds/animals in the field.';
         case 3: return '(3rd verse) ';
-        case 2: return '(2nd verse) A price line of making regret vanish.';
-        case 1: return '(1st verse) Seeking duration (big gain) too hastily at the beginning brings misfortune ' +
+        case 2: return 'A price line of making regret vanish.';
+        case 1: return 'Seeking duration (big gain) too hastily at the beginning brings misfortune ' +
           'persistently. Nothing that would further.';
       }
       break;
@@ -1351,10 +1430,10 @@ function yao4532(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(第六爻) ';
         case 5: return '(第五爻) ';
-        case 4: return '(第四爻) ';
+        case 4: return '田无禽。';
         case 3: return '(第三爻) ';
-        case 2: return '(第二爻) 一條可以使後悔消亡的價格線。';
-        case 1: return '(第一爻) 若本門一開始就來個大波動(大獲利)，是為浚恒，則貞凶，无攸利。';
+        case 2: return '一條可以使後悔消亡的價格線。';
+        case 1: return '若本門一開始就來個大波動(大獲利)，是為浚恒，則貞凶，无攸利。';
       }
       break;
   }
@@ -1498,9 +1577,9 @@ function IC4762(locale, ticker, yao) {
 function base4816(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'ENTHUSIASM. It furthers one to install helpers and to set armies marching.';
+      return 'ENTHUSIASM, DELIGHT';
     case types.LOCALE_ZHTW:
-      return '(雷地豫) 利建侯、行師。';
+      return '雷地豫';
   }
 }
 
@@ -1508,7 +1587,7 @@ function yao4816(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) ';
+        case 6: return 'The delight has reached the end. Make a change: no default.';
         case 5: return '(5th verse) Persistently ill, and still does not die.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
@@ -1518,7 +1597,7 @@ function yao4816(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) ';
+        case 6: return '豫樂之道已走到盡頭，成就在於改變，知變而變則无咎。';
         case 5: return '(第五爻) 貞疾，恒不死。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
@@ -1537,8 +1616,8 @@ function IC4816(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = base3835(locale, ticker); obj.state2b = yao3835(locale, ticker, yao); break; // 001.000 -> 101.000
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
     case 5:
@@ -1663,11 +1742,10 @@ function IC5109(locale, ticker, yao) {
 function base5261(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INNER TRUTH. Pigs and fishes, good fortune, there are gains. ' +
-        'It furthers ' + ticker.tick.name + ' to cross the great "waters". ' +
+      return 'INNER TRUTH, INNERMOST SINCERITY' +
         'Perseverance furthers.';
     case types.LOCALE_ZHTW:
-      return '(風澤中孚) 豚魚吉，有收穫，利涉大川，利於貞定。';
+      return '風澤中孚';
   }
 }
 
@@ -1676,11 +1754,11 @@ function yao5261(locale, ticker, yao) {
     case types.LOCALE_ENUS:
       switch (yao) {
         case 6: return '(6th verse) ';
-        case 5: return '(5th verse) He possesses truth, which links others together. No blame.';
+        case 5: return 'He possesses truth, which links others together. No blame.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ' + ticker.tick.name + ' (he) encounters the opposing force. ' +
           'He beats the drum, then he stops. He sobs, then he sings.';
-        case 2: return '(2nd verse) A crane calling in the shade. Its young answers it: I have a good goblet, ' +
+        case 2: return 'A crane calling in the shade. Its young answers it: I have a good goblet, ' +
           'I will share it with you.';
         case 1: return '(1st verse) Being contemplated and prepared can bring good fortune. ' +
           'If there are secret designs and/or unexpected events, then it would be disquieting.';
@@ -1689,10 +1767,10 @@ function yao5261(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) ';
-        case 5: return '(第五爻) 有孚，攣如，无咎。';
+        case 5: return '有孚，攣如，无咎。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ' + ticker.tick.name + ' 得敵，或鼓或罷，或泣或歌。';
-        case 2: return '(第二爻) 鳴鶴在陰，其子和之；我有好爵，吾與爾靡之。';
+        case 2: return '鳴鶴在陰，其子和之，我有好爵，吾與爾靡之。';
         case 1: return '(第一爻) 三思有所準備則吉，有它不燕，字面意思為遇大蛇或意外而讓人不安。';
       }
       break;
@@ -1750,9 +1828,9 @@ function IC5261(locale, ticker, yao) {
 function base5442(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INCREASE. It furthers one to undertake something. It furthers one to cross the great (dangerous) waters.';
+      return 'INCREASING, BENEFITING';
     case types.LOCALE_ZHTW:
-      return '(風雷益) 利有攸往，利涉大(危之)川。';
+      return '風雷益';
   }
 }
 
@@ -1762,11 +1840,11 @@ function yao5442(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(6th verse) ';
         case 5: return '(5th verse) ';
-        case 4: return '(4th verse) If one walks in the middle way (Dao) and reports to the prince, he will follow, ' +
+        case 4: return 'If one walks in the middle way (Dao) and reports to the prince, he will follow, ' +
           'even on the issue such as the move of the prince\'s capital.';
         case 3: return '(3rd verse) Working hard to rescue and save dangerous and unfortunate events. No blame. ' +
           ticker.tick.name + ' should keep open and honest communications in order to earn the trust from the investors.';
-        case 2: return '(2nd verse) Someone does indeed increase him; ten pairs of tortoises (valuables) cannot oppose it. ' +
+        case 2: return 'Someone does indeed increase him; ten pairs of tortoises (valuables) cannot oppose it. ' +
           'Constant perseverance brings good fortune. The king presents him before God. Good fortune.';
         case 1: return '(1st verse) ';
       }
@@ -1775,9 +1853,9 @@ function yao5442(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(第六爻) ';
         case 5: return '(第五爻) ';
-        case 4: return '(第四爻) 人若中行於道，告其主公，則主公定聽從，利用為依，就算是像遷國這樣子的大事。';
+        case 4: return '人若中行於道，告其主公，則主公定聽從，利用為依，就算是像遷國這樣子的大事。';
         case 3: return '(第三爻) 努力救濟凶阨之事，无咎，但應秉持誠信，該做則做，並公告取信於眾投資人。(原文：益之用凶事，无咎。有孚中行，告公用圭。)';
-        case 2: return '(第二爻) 或益之十朋之龜，弗克違，永貞，吉；王用享于帝，吉。';
+        case 2: return '或益之十朋之龜，弗克違，永貞，吉；王用享于帝，吉。';
         case 1: return '(第一爻) ';
       }
       break;
@@ -2002,11 +2080,9 @@ function IC7126(locale, ticker, yao) {
 function base7241(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DECREASE comes with sincerity and brings about supreme good fortune, thus DECREASE comes without blame. ' +
-        ticker.tick.name + ' may be persevering in this, thus, it furthers ' + ticker.tick.name + ' to undertake something. ' +
-        'How is this to be carried out? ' + ticker.tick.name + ' has to seek partner(s) in order to start new chapters in business.';
+      return 'DECREASING, LOSING';
     case types.LOCALE_ZHTW:
-      return '(山澤損) 有孚誠信，本元吉利，無咎錯，可貞，利有攸往；曷以之用？' + ticker.tick.name + ' 要去尋找合作夥伴方能開啟新的篇章。';
+      return '山澤損';
   }
 }
 
@@ -2017,7 +2093,7 @@ function yao7241(locale, ticker, yao) {
         case 6: return '(6th verse) Cannot treat it as a DECREASE. On the contrary, it is a benefit, not a fault. ' +
           'Perseverance brings good fortune and it furthers ' + ticker.tick.name + ' to undertake cooperation from ' +
           'other parties in order to expand the ' + ticker.tick.name + '\'s market share and influence.';
-        case 5: return '(5th verse) Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), ' +
+        case 5: return 'Perhaps ' + ticker.tick.name + ' gets increased with ten pairs of tortoises (values), ' +
           'cannot oppose. Supreme good fortune.';
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) When three people journey together, their number increases by one. ' +
@@ -2032,7 +2108,7 @@ function yao7241(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 不能以損視之，反而是益之无咎，貞吉，利有攸往，得臣無家，意思是雙方合作以壯大勢力版圖。';
-        case 5: return '(第五爻) 或益 ' + ticker.tick.name + ' 以十朋之龜 (價值)，弗克違，元吉。';
+        case 5: return '或益之十朋之龜，弗克違，元吉。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) 三人行，則損一人，一人行，則得其友。';
         case 2: return '(第二爻) 利貞 (跨非本業則凶)，不被損而會被益之。';
@@ -2186,13 +2262,9 @@ function IC7518(locale, ticker, yao) {
 function base7604(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'YOUTHFUL FOLLY (like ' + ticker.tick.name + '\'s present situation) who listens to the market would have ' +
-        'success. It is not the market/economy who seeks the young fool, it is the young fool who seeks the market/economy ' +
-        'to accept him. At the first sign, the market did inform him. If he doesn\'t get the first point, he mey be given ' +
-        'a second chance. At the third time, it only proves that he is a true folly and is importunity, then lastly the ' +
-        'market would stop giving him further chances. Thus, only wisdom and perseverance may turn the tide.';
+      return 'YOUTHFUL FOLLY, CHILDHOOD';
     case types.LOCALE_ZHTW:
-      return '(山水蒙) 非我求童蒙，而是童蒙求我。初筮告，再三瀆，瀆則不告。利貞';
+      return '山水蒙';
   }
 }
 
@@ -2200,11 +2272,10 @@ function yao7604(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) In punishing folly, though at the last stage, it does not further one to ' +
-          'commit transgressions and/or doing things by irregular ways. Still need to follow the prescribed order.';
+        case 6: return 'Punishing the ignorant. Not favorable to treat like a foe. Favorable to actively prevent further mischief.';
         case 5: return '(5th verse) ';
         case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) Take not such a maiden: If she sees a man of gold and would lose possession of herself, ' +
+        case 3: return 'Take not such a maiden: If she sees a man of gold and would lose possession of herself, ' +
           'then she has nothing furthers.';
         case 2: return '(2nd verse) With wisdom, he turns around the fools with good fortune. ' +
           'It is like he marries a good woman who delivers son(s) to manage the house in good order.';
@@ -2213,10 +2284,10 @@ function yao7604(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) 最後階段，應該走出無知蒙昧，化被動為主動，但仍不應投機取巧，仍要按部就班才成。';
+        case 6: return '應該走出無知蒙昧，為了打破童蒙的無知，一切應化為主動。';
         case 5: return '(第五爻) ';
         case 4: return '(第四爻) ';
-        case 3: return '(第三爻) 勿用取女：若見金夫變得不有躬，則此女无攸利。';
+        case 3: return '勿用取女：若見金夫變得不有躬，則此女无攸利。';
         case 2: return '(第二爻) 他用智慧包蒙，吉，如同娶了一個吉婦，得子克家。';
         case 1: return '(第一爻) ';
       }
@@ -2314,9 +2385,9 @@ function yao7752(locale, ticker, yao) {
 function base8111(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'PEACE. The small departs, the great approaches. Good fortune. Success.';
+      return 'PEACE, ADVANCE';
     case types.LOCALE_ZHTW:
-      return '(地天泰) 小往大來，吉亨。';
+      return '地天泰';
   }
 }
 
@@ -2329,7 +2400,7 @@ function yao8111(locale, ticker, yao) {
         case 4: return '(4th verse) ';
         case 3: return '(3rd verse) ';
         case 2: return '(2nd verse) ';
-        case 1: return '(1st verse) When ribbon grass is pulled up, the sod comes with it. Each according to his kind. ' +
+        case 1: return 'When ribbon grass is pulled up, the sod comes with it. Each according to his kind. ' +
           'Undertakings bring good fortune.';
       }
       break;
@@ -2340,7 +2411,7 @@ function yao8111(locale, ticker, yao) {
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) ';
         case 2: return '(第二爻) ';
-        case 1: return '(第一爻) 拔茅草的根，一拔就一整串的牽連而出，象徵出征大吉';
+        case 1: return '拔茅草的根，一拔就一整串的牽連而出，象徵出征大吉。';
       }
       break;
   }
@@ -2518,14 +2589,9 @@ function IC8336(locale, ticker, yao) {
 function base8546(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'PUSHING UPWARD has supreme success because the foundation is smooth and good. ' +
-        'However, is ' + ticker.tick.name + ' being managed by a great CEO (company) or President (country)? ' +
-        'If yes, then fear not, ' + ticker.tick.name + ' should departure or march toward the ' +
-        'south where there is good fortune (i.e., "south" means to further draw down the product price and make ' +
-        'it more affordable).';
+      return 'PUSHING UPWARD, RISING';
     case types.LOCALE_ZHTW:
-      return '(地風升) 本元亨通，雖然如此，目前 ' + ticker.tick.name + ' 是否被一位大人所掌管？若是，對於目前局勢，勿恤，' +
-        '南征吉 ("南"指的是降低商品售價，使其更加平價近人)。';
+      return '地風升';
   }
 }
 
@@ -2533,10 +2599,10 @@ function yao8546(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) Pushing upward in darkness (or darkness is being pushed upward). ' +
+        case 6: return 'Pushing upward in darkness (or darkness is being pushed upward). ' +
           'It prompts one to be unremittingly cautious, disciplinary and/or persevering the right way of investment.';
         case 5: return '';
-        case 4: return '';
+        case 4: return 'The king offers him at the sacred Mount Ch\'i. Good fortune. No blame.';
         case 3: return '';
         case 2: return '';
         case 1: return '';
@@ -2544,12 +2610,12 @@ function yao8546(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) 冥升，利于不息之貞。註：貞字在此處有 小心，紀律，堅持投資正道的意義。';
+        case 6: return '冥升，利于不息之貞。註：貞字在此處有 小心，紀律，堅持投資正道的意義。';
         case 5: return '';
-        case 4: return '';
+        case 4: return '王用亨于岐山，吉，无咎。';
         case 3: return '';
         case 2: return '';
-        case 1: return '(第一爻) ';
+        case 1: return '';
       }
       break;
   }
@@ -2575,8 +2641,8 @@ function IC8546(locale, ticker, yao) {
       break;
     case 4:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
-        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = base4532(locale, ticker); obj.state2b = yao4532(locale, ticker, yao); break; // 000.110 -> 001.110
+        case types.TICKER_CYCLE2: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
       }
       break;
     case 3:
@@ -2606,9 +2672,9 @@ function IC8546(locale, ticker, yao) {
 function base8607(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'THE ARMY. The army needs perseverance and a strong and true leader, then good fortune without blame.';
+      return 'THE ARMY, MULTITUDE';
     case types.LOCALE_ZHTW:
-      return '(地水師) 貞，大丈夫，吉，无咎。';
+      return '地水師';
   }
 }
 
@@ -2616,23 +2682,23 @@ function yao8607(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) The great King issues commands: Founds states, vests families with fiefs, ' +
+        case 6: return 'The great King issues commands: Founds states, vests families with fiefs, ' +
           'inferior people should not be employed.';
-        case 5: return '(5th verse) ';
-        case 4: return '(4th verse) ';
-        case 3: return '(3rd verse) ';
-        case 2: return '(2nd verse) ';
-        case 1: return '(1st verse) ';
+        case 5: return ' ';
+        case 4: return ' ';
+        case 3: return ' ';
+        case 2: return ' ';
+        case 1: return ' ';
       }
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) 大君有命，開國承家，小人勿用。';
-        case 5: return '(第五爻) ';
-        case 4: return '(第四爻) ';
-        case 3: return '(第三爻) ';
-        case 2: return '(第二爻) ';
-        case 1: return '(第一爻) ';
+        case 6: return '大君有命，開國承家，小人勿用。';
+        case 5: return ' ';
+        case 4: return ' ';
+        case 3: return ' ';
+        case 2: return ' ';
+        case 1: return ' ';
       }
       break;
   }
@@ -2702,6 +2768,7 @@ export function getICO(locale, ticker) {
     //
     case '3421': Obj = IC3421(locale, ticker, yao); break;
     case '3756': Obj = IC3756(locale, ticker, yao); break;
+    case '3835': Obj = IC3835(locale, ticker, yao); break;
     //
     case '4134': Obj = IC4134(locale, ticker, yao); break;
     case '4254': Obj = IC4254(locale, ticker, yao); break;

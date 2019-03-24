@@ -42,31 +42,19 @@ class TickerRow extends React.Component {
   renderStockChart (name) {
     let url = "";
     switch (name) {
-      case acts.TICKER_AAPL:   url = "http://schrts.co/UpEpGwxD"; break;
-      case acts.TICKER_AMZN:   url = "http://schrts.co/efASQkrW"; break;
-      // case acts.TICKER_BABA:   url = "http://schrts.co/bcQDapKR"; break;
-      // case acts.TICKER_BTC:    url = "http://schrts.co/XzwRzZKC"; break;
-      case acts.TICKER_CRM:    url = "http://schrts.co/GFFeRppx"; break;
-      // case acts.TICKER_DAX:    url = "http://schrts.co/xJNkGNMb"; break;
-      // case acts.TICKER_FB:     url = "http://schrts.co/pQAZKKqg"; break;
-      case acts.TICKER_GLD:    url = "http://schrts.co/HRhyyRTD"; break;
-      // case acts.TICKER_GOOGL:  url = "http://schrts.co/asCniaTa"; break;
-      case acts.TICKER_IYR:    url = "http://schrts.co/QfGCekkw"; break;
-      // case acts.TICKER_KOSPI:  url = "http://schrts.co/eYKAcYej"; break;
-      // case acts.TICKER_MSFT:   url = "http://schrts.co/QxGjbvrC"; break;
-      case acts.TICKER_NASDAQ: url = "http://schrts.co/InjCavDB"; break;
-      // case acts.TICKER_NFLX:   url = "http://schrts.co/WjwrzACE"; break;
-      // case acts.TICKER_NVDA:   url = "http://schrts.co/heZYscni"; break;
-      // case acts.TICKER_SBUX:   url = "http://schrts.co/QXGCyEmv"; break;
-      case acts.TICKER_SHCOMP: url = "http://schrts.co/TipzwywJ"; break;
-      case acts.TICKER_SLV:    url = "http://schrts.co/mVebEUsJ"; break;
-      case acts.TICKER_SP500:  url = "http://schrts.co/TJnvxUuZ"; break;
-      case acts.TICKER_TAIEX:  url = "http://schrts.co/iJvHBvDW"; break;
-      case acts.TICKER_TRAN:   url = "http://schrts.co/jATNcVVk"; break;
-      // case acts.TICKER_TSLA:   url = "http://schrts.co/WwwgsSeS"; break;
-      // case acts.TICKER_TSM:    url = "http://schrts.co/SCIpYiDX"; break;
-      // case acts.TICKER_XLE:    url = "http://schrts.co/RcQsarwG"; break;
-      case acts.TICKER_XLF:    url = "http://schrts.co/DGjcavzQ"; break;
+      case acts.TICKER_AAPL:   url = 'http://schrts.co/KYKcjKAp'; break;
+      case acts.TICKER_AMZN:   url = 'http://schrts.co/uCEGMzgM'; break;
+      case acts.TICKER_CRM:    url = 'http://schrts.co/GqkqnVbV'; break;
+      case acts.TICKER_GLD:    url = 'http://schrts.co/EkMBqerA'; break;
+      case acts.TICKER_IYR:    url = 'http://schrts.co/zbTYNxYf'; break;
+      case acts.TICKER_NASDAQ: url = 'http://schrts.co/BkfMdeUG'; break;
+      case acts.TICKER_SHCOMP: url = 'http://schrts.co/KZJSetFJ'; break;
+      case acts.TICKER_SLV:    url = 'http://schrts.co/ANjTFyCM'; break;
+      case acts.TICKER_SP500:  url = 'http://schrts.co/ZYEKHxPv'; break;
+      case acts.TICKER_TAIEX:  url = 'http://schrts.co/ajybMZJk'; break;
+      case acts.TICKER_TQQQ:   url = 'http://schrts.co/cIwNBaxN'; break;
+      case acts.TICKER_TRAN:   url = 'http://schrts.co/XmawxQUk'; break;
+      case acts.TICKER_XLF:    url = 'http://schrts.co/zmQkQBTq'; break;
     }
     // console.log('Market: ' + name);
     // console.log('Stock chart url: ' + url);
