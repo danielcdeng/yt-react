@@ -161,14 +161,14 @@ class MarketPage extends React.Component {
               </th>
 
               {/* Cycle Type column */}
-              <th width="8%"><a onClick={this.userAction("Cycle", actions, view)}>Cycle<br/>Type</a></th>
+              <th width="8%"><a onClick={this.userAction("Cycle", actions, view)}>Vision<br/>Type</a></th>
 
               {/* Stock Ticker */}
               <th width="10%">Stock<br/>Ticker</th>
 
-              {/* State Code */}
+              {/* Vision Code */}
               <th width="11%">
-                State<br/>
+                Vision<br/>
                 Code&nbsp;<input type="checkbox" checked={scClicked} onClick={this.userAction("scClicked", actions, view)}/>
               </th>
 

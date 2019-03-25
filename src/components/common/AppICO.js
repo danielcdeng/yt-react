@@ -24,15 +24,15 @@ function getDefault(locale) {
 
 function sameAs1a(locale) {
   switch (locale) {
-    case types.LOCALE_ENUS: return 'Same as 1a.';
-    case types.LOCALE_ZHTW: return '与 1a 同';
+    case types.LOCALE_ENUS: return 'Same as 1.';
+    case types.LOCALE_ZHTW: return '与 1 同';
   }
 }
 
 function sameAs1b(locale) {
   switch (locale) {
-    case types.LOCALE_ENUS: return 'Same as 1b.';
-    case types.LOCALE_ZHTW: return '与 1b 同';
+    case types.LOCALE_ENUS: return ''; // 'Same as 1b.';
+    case types.LOCALE_ZHTW: return ''; // '与 1b 同';
   }
 }
 
@@ -124,7 +124,7 @@ function IC0000(locale, ticker) {
   let obj;
   if (locale == types.LOCALE_ENUS) {                      // enus
     obj = Object.assign({}, ENUS_State_Obj);
-    obj.state1a = 'Changing Image finding begins on ' + ticker.tick.name + ' (' + ticker.tick.titl + ')';
+    obj.state1a = 'Vision begins...';
   } else if (locale == types.LOCALE_ZHTW) {               // zhtw
     obj = Object.assign({}, ZHTW_State_Obj);
     obj.state1a += '易象起算 ' + ticker.tick.name + ' (' + ticker.tick.titl + ') ...';
@@ -733,7 +733,7 @@ function IC2731(locale, ticker, yao) {
 function base2845(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'GATHERING TOGETHER, BRINGING TOGETHER';
+      return 'GATHERING TOGETHER, BRINGING TOGETHER.';
     case types.LOCALE_ZHTW:
       return '澤地萃';
   }
@@ -1742,10 +1742,9 @@ function IC5109(locale, ticker, yao) {
 function base5261(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INNER TRUTH, INNERMOST SINCERITY' +
-        'Perseverance furthers.';
+      return 'INNER TRUTH, INNERMOST SINCERITY.';
     case types.LOCALE_ZHTW:
-      return '風澤中孚';
+      return '風澤中孚。';
   }
 }
 
@@ -1828,9 +1827,9 @@ function IC5261(locale, ticker, yao) {
 function base5442(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INCREASING, BENEFITING';
+      return 'INCREASING, BENEFITING.';
     case types.LOCALE_ZHTW:
-      return '風雷益';
+      return '風雷益。';
   }
 }
 
@@ -1913,10 +1912,9 @@ function IC5442(locale, ticker, yao) {
 function base5659(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DISPERSION. Success. The King arrives at his temple. It furthers one to cross the great water. ' +
-        'Perseverance furthers.';
+      return 'DISPERSION.';
     case types.LOCALE_ZHTW:
-      return '(風水渙) 亨，王至於廟，利涉大川，利貞。';
+      return '風水渙。';
   }
 }
 
@@ -1996,11 +1994,9 @@ function IC5659(locale, ticker, yao) {
 function base7126(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'THE TAMING POWER OF THE GREAT. Perseverance furthers ' + ticker.tick.name +
-        ' to move forward. Not eating at home (meaning to seek out for new resources and/or partners) ' +
-        'brings in good fortune, which furthers ' + ticker.tick.name + ' to cross great "waters".';
+      return 'THE TAMING POWER OF THE GREAT.';
     case types.LOCALE_ZHTW:
-      return '(山天大畜) 利貞，不家食(意指出外尋找新資源、夥伴)，吉，利涉大"川"。';
+      return '山天大畜。';
   }
 }
 
@@ -2080,9 +2076,9 @@ function IC7126(locale, ticker, yao) {
 function base7241(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DECREASING, LOSING';
+      return 'DECREASING, LOSING.';
     case types.LOCALE_ZHTW:
-      return '山澤損';
+      return '山澤損。';
   }
 }
 
@@ -2262,9 +2258,9 @@ function IC7518(locale, ticker, yao) {
 function base7604(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'YOUTHFUL FOLLY, CHILDHOOD';
+      return 'YOUTHFUL FOLLY, CHILDHOOD.';
     case types.LOCALE_ZHTW:
-      return '山水蒙';
+      return '山水蒙。';
   }
 }
 
@@ -2346,12 +2342,9 @@ function IC7604(locale, ticker, yao) {
 function base7752(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'KEEPING STILL. ' + ticker.tick.name + ' is searching the next right business/direction. Currently, ' +
-        ticker.tick.name + ' is dangling on the past old business/direction. No blame. (Original: Keeping his back ' +
-        'still, he no longer feels his body. He goes into his courtyard and does not see his people. No blame.)';
+      return 'KEEPING STILL.';
     case types.LOCALE_ZHTW:
-      return '(艮為山) ' + ticker.tick.name + ' 在尋找下一個對的商業或方向，目前 ' + ticker.tick.name + ' 在原來的商業或方向' +
-        '上面懸了，這是無咎的 (原文：艮其背，不獲其身，行其庭，不見其人，无咎)。';
+      return '艮為山。';
   }
 }
 
@@ -2385,9 +2378,9 @@ function yao7752(locale, ticker, yao) {
 function base8111(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'PEACE, ADVANCE';
+      return 'PEACE, ADVANCE.';
     case types.LOCALE_ZHTW:
-      return '地天泰';
+      return '地天泰。';
   }
 }
 
@@ -2468,10 +2461,9 @@ function IC8111(locale, ticker, yao) {
 function base8219(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'APPROACH has supreme success. Perseverance furthers. When the eighth month of the Chinese Farmer Calendar ' +
-        'approaches (i.e., a month in Autumn, timing for harvest), watch for any precursors leading to the misfortune.';
+      return 'APPROACH.';
     case types.LOCALE_ZHTW:
-      return '(地澤臨) 本元亨通，利於貞定，當臨近于農曆八月，注意凶之前兆。';
+      return '地澤臨。';
   }
 }
 
@@ -2505,10 +2497,9 @@ function yao8219(locale, ticker, yao) {
 function base8336(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'DARKENING OF THE LIGHT. In adversity (negative), if ' + ticker.tick.name + ' could still hold the perseverance, ' +
-        'it would be beneficial.';
+      return 'DARKENING OF THE LIGHT.';
     case types.LOCALE_ZHTW:
-      return '(地火明夷) 艱難中若 ' + ticker.tick.name + ' 仍能有貞定，則利。';
+      return '地火明夷。';
   }
 }
 
@@ -2589,9 +2580,9 @@ function IC8336(locale, ticker, yao) {
 function base8546(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'PUSHING UPWARD, RISING';
+      return 'PUSHING UPWARD, RISING.';
     case types.LOCALE_ZHTW:
-      return '地風升';
+      return '地風升。';
   }
 }
 
@@ -2672,9 +2663,9 @@ function IC8546(locale, ticker, yao) {
 function base8607(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'THE ARMY, MULTITUDE';
+      return 'THE ARMY, MULTITUDE.';
     case types.LOCALE_ZHTW:
-      return '地水師';
+      return '地水師。';
   }
 }
 

@@ -19,16 +19,16 @@ class TickerState extends React.Component {
       case types.LOCALE_ENUS:
         switch (title) {
           case 'LABEL1B':
-            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL1b}</b><br/><i>{icostate}</i></li>;
-            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL1b}</b><br/><i>{icostate}</i></li>;
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <span><b>{Const.ENUS_LABEL1b}</b><br/><i>{icostate}</i></span>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <span><b>{Const.ZHTW_LABEL1b}</b><br/><i>{icostate}</i></span>;
             else return '';
           case 'LABEL2A':
-            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL2a}</b><br/><i>{icostate}</i></li>;
-            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL2a}</b><br/><i>{icostate}</i></li>;
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <div><b>{Const.ENUS_LABEL2a}</b><br/><i>{icostate}</i></div>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <div><b>{Const.ZHTW_LABEL2a}</b><br/><i>{icostate}</i></div>;
             else return '';
           case 'LABEL2B':
-            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <li><b>{Const.ENUS_LABEL2b}</b><br/><i>{icostate}</i></li>;
-            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <li><b>{Const.ZHTW_LABEL2b}</b><br/><i>{icostate}</i></li>;
+            if (locale == types.LOCALE_ENUS && icostate.length > 0)      return <span><b>{Const.ENUS_LABEL2b}</b><i>{icostate}</i></span>;
+            else if (locale == types.LOCALE_ZHTW && icostate.length > 0) return <span><b>{Const.ZHTW_LABEL2b}</b><i>{icostate}</i></span>;
             else return '';
         }
         //
@@ -101,7 +101,8 @@ class TickerState extends React.Component {
     switch (locale) {
       case types.LOCALE_ENUS:
         label1a = Const.ENUS_LABEL1a;
-        label2a = Const.ENUS_LABEL2a; label2b = Const.ENUS_LABEL2b;
+        label2a = Const.ENUS_LABEL2a;
+        label2b = Const.ENUS_LABEL2b;
         statData = Const.ENUS_STAT_DATA;
         if (ticker.door.type == 'yang') {
           seaEnd = Const.ENUS_YANG_TOPMON;
@@ -111,7 +112,8 @@ class TickerState extends React.Component {
         break;
       case types.LOCALE_ZHTW:
         label1a = Const.ZHTW_LABEL1a;
-        label2a = Const.ZHTW_LABEL2a; label2b = Const.ZHTW_LABEL2b;
+        label2a = Const.ZHTW_LABEL2a;
+        label2b = Const.ZHTW_LABEL2b;
         statData = Const.ZHTW_STAT_DATA;
         if (ticker.door.type == 'yang') {
           seaEnd = Const.ZHTW_YANG_TOPMON;
@@ -127,12 +129,13 @@ class TickerState extends React.Component {
       <tr>
         <td colSpan={4}>
           <h4>{ticker.door.fore} {this.getYiXiang(locale)}:</h4>
-          <ul>
-            <li><b>{label1a}</b><br/><i>{ico.state1a}</i></li>
+          <div>
+            <b>{label1a}</b><br/><i>{ico.state1a}</i>
             {this.getElement("LABEL1B", locale, stat, ticker, ico.state1b)}
+            <br/>
             {this.getElement("LABEL2A", locale, stat, ticker, ico.state2a)}
             {this.getElement("LABEL2B", locale, stat, ticker, ico.state2b)}
-          </ul>
+          </div>
         </td>
         <td colSpan={5}>
           {this.getElement("STATDATA", locale, stat, ticker)}
