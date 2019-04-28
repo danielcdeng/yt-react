@@ -137,11 +137,9 @@ function IC0000(locale, ticker) {
 function base1425(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'INNOCENCE. The foundation is sound and smooth. Beneficial to have further perseverance. ' +
-        'If someone is not as he should be and/or not doing the right thing, he would have misfortune and ' +
-        'it does not further him to undertake anything.';
+      return 'INNOCENCE, WITHOUT FALSEHOOD.';
     case types.LOCALE_ZHTW:
-      return '(天雷无妄) 本元亨通，利於貞定；若其人不正，則會有眚，不利有攸往。';
+      return '天雷无妄。';
   }
 }
 
@@ -481,10 +479,9 @@ function IC2349(locale, ticker, yao) {
 function base2417(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'FOLLOWING. ' + ticker.tick.name + ' continues to be a follower, eventually brings supreme success. ' +
-        'Perseverance furthers. No blame.';
+      return 'FOLLOWING.';
     case types.LOCALE_ZHTW:
-      return '(澤雷隨) 隨之，' + ticker.tick.name + ' 繼續做個追隨者，最終會有極大的成功來到。';
+      return '澤雷隨。';
   }
 }
 
@@ -493,7 +490,7 @@ function yao2417(locale, ticker, yao) {
     case types.LOCALE_ENUS:
       switch (yao) {
         case 6: return '(6th verse) Captured, then released, the King celebrates.';
-        case 5: return '';
+        case 5: return '(5th verse) Sincere and truthful in an excellent situation: good fortune.';
         case 4: return '';
         case 3: return '(3rd verse) The most important thing for ' + ticker.tick.name + ' is to cling to the primary ' +
           'strategic directions and let go the little ones such as "faces" issue. Through FOLLOWING, ' +
@@ -506,7 +503,7 @@ function yao2417(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 先是被紂王抓來囚禁，後來才被釋放，文王在西山舉行享祀。';
-        case 5: return '';
+        case 5: return '(第六爻) 孚于嘉，吉。';
         case 4: return '';
         case 3: return '(第三爻) 對 ' + ticker.tick.name + ' 來說，最重要的是抓住主要大戰略方向並且放掉那些小的例如面子問題，' +
           '則能在隨勢當中而有所求得；於此時機，利於不妄動而貞定泰然處之。';
@@ -531,7 +528,7 @@ function IC2417(locale, ticker, yao) {
       break;
     case 5:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
@@ -562,6 +559,88 @@ function IC2417(locale, ticker, yao) {
   }
   return obj;
 } // 2417
+
+/***** 2528 澤風大過 011.110 *****/
+
+function base2528(locale, ticker) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      return 'Great Exceeding.';
+    case types.LOCALE_ZHTW:
+      return '澤風大過。';
+  }
+}
+
+function yao2528(locale, ticker, yao) {
+  switch (locale) {
+    case types.LOCALE_ENUS:
+      switch (yao) {
+        case 6: return '(6th verse) ';
+        case 5: return '(5th verse) ';
+        case 4: return '(4th verse) ';
+        case 3: return '(3rd verse) Ridgepole sags to the breaking point, misfortune.';
+        case 2: return '(2nd verse) ';
+        case 1: return '(1st verse) ';
+      }
+      break;
+    case types.LOCALE_ZHTW:
+      switch (yao) {
+        case 6: return '(第六爻) ';
+        case 5: return '(第五爻) ';
+        case 4: return '(第四爻) ';
+        case 3: return '(第三爻) 棟梁弯到断裂点，凶。';
+        case 2: return '(第二爻) ';
+        case 1: return '(第一爻) ';
+      }
+      break;
+  }
+}
+
+function IC2528(locale, ticker, yao) {
+  let obj;
+  obj = getDefault(locale);
+  obj.state1a = base2528(locale, ticker);
+  obj.state1b = yao2528(locale, ticker, yao);
+  switch (yao) {
+    case 6:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 5:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 4:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 3:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 2:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+    case 1:
+      switch (ticker.door.type) {
+        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+      }
+      break;
+  }
+  return obj;
+} // 2528
 
 /***** 2647 澤水困 011.010 *****/
 
@@ -1239,9 +1318,9 @@ function IC4134(locale, ticker, yao) {
 function base4254(locale, ticker) {
   switch (locale) {
     case types.LOCALE_ENUS:
-      return 'THE MARRYING MAIDEN. Undertakings bring misfortune. Nothing that would further.';
+      return 'MARRYING MAIDEN, TIMING ORDER.';
     case types.LOCALE_ZHTW:
-      return '(雷澤歸妹) 征凶，无攸利。';
+      return '雷澤歸妹，時程之序。';
   }
 }
 
@@ -1251,7 +1330,7 @@ function yao4254(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(6th verse) ';
         case 5: return '(5th verse) ';
-        case 4: return '(4th verse) ';
+        case 4: return '(4th verse, a metaphor) The marrying maiden draws out the allotted time. A late marriage comes in due course.';
         case 3: return '(3rd verse) The present timing is not right.';
         case 2: return '(2nd verse) ';
         case 1: return '(1st verse) ';
@@ -1261,7 +1340,7 @@ function yao4254(locale, ticker, yao) {
       switch (yao) {
         case 6: return '(第六爻) ';
         case 5: return '(第五爻) ';
-        case 4: return '(第四爻) ';
+        case 4: return '(第四爻，比喻) 女出嫁雖過了適龄，但後面仍有機會。';
         case 3: return '(第三爻) 目前行事時機不對。';
         case 2: return '(第二爻) ';
         case 1: return '(第一爻) ';
@@ -1290,7 +1369,7 @@ function IC4254(locale, ticker, yao) {
       break;
     case 4:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
@@ -1837,7 +1916,7 @@ function yao5442(locale, ticker, yao) {
   switch (locale) {
     case types.LOCALE_ENUS:
       switch (yao) {
-        case 6: return '(6th verse) ';
+        case 6: return '(6th verse) No increase, but possibly with a strike. If not keeping the foundation steady: misfortune.';
         case 5: return '(5th verse) ';
         case 4: return 'If one walks in the middle way (Dao) and reports to the prince, he will follow, ' +
           'even on the issue such as the move of the prince\'s capital.';
@@ -1850,7 +1929,7 @@ function yao5442(locale, ticker, yao) {
       break;
     case types.LOCALE_ZHTW:
       switch (yao) {
-        case 6: return '(第六爻) ';
+        case 6: return '(第六爻) 莫益之，可能或擊之；若立心之基本無恒，凶。';
         case 5: return '(第五爻) ';
         case 4: return '人若中行於道，告其主公，則主公定聽從，利用為依，就算是像遷國這樣子的大事。';
         case 3: return '(第三爻) 努力救濟凶阨之事，无咎，但應秉持誠信，該做則做，並公告取信於眾投資人。(原文：益之用凶事，无咎。有孚中行，告公用圭。)';
@@ -1869,7 +1948,7 @@ function IC5442(locale, ticker, yao) {
   switch (yao) {
     case 6:
       switch (ticker.door.type) {
-        case types.TICKER_CYCLE1: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
+        case types.TICKER_CYCLE1: obj.state2a = sameAs1a(locale); obj.state2b = sameAs1b(locale); break;
         case types.TICKER_CYCLE2: obj.state2a = '(TBA)'; obj.state2b = '(TBA)'; break;
       }
       break;
@@ -2107,7 +2186,7 @@ function yao7241(locale, ticker, yao) {
         case 5: return '或益之十朋之龜，弗克違，元吉。';
         case 4: return '(第四爻) ';
         case 3: return '(第三爻) 三人行，則損一人，一人行，則得其友。';
-        case 2: return '(第二爻) 利貞 (跨非本業則凶)，不被損而會被益之。';
+        case 2: return '(第二爻) 利貞守本業，因為征伐得凶；弗損，益之。';
         case 1: return '(第一爻) ';
       }
       break;
@@ -2753,6 +2832,7 @@ export function getICO(locale, ticker) {
     case '1733': Obj = IC1733(locale, ticker, yao); break;
     //
     case '2417': Obj = IC2417(locale, ticker, yao); break;
+    case '2528': Obj = IC2528(locale, ticker, yao); break;
     case '2647': Obj = IC2647(locale, ticker, yao); break;
     case '2731': Obj = IC2731(locale, ticker, yao); break;
     case '2845': Obj = IC2845(locale, ticker, yao); break;

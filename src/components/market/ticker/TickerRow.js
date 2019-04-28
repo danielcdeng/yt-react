@@ -43,7 +43,7 @@ class TickerRow extends React.Component {
     let url = "";
     switch (name) {
       case acts.TICKER_AAPL:   url = 'http://schrts.co/KYKcjKAp'; break;
-      case acts.TICKER_AMZN:   url = 'http://schrts.co/uCEGMzgM'; break;
+      case acts.TICKER_AMZN:   url = 'http://schrts.co/bKtjKfXt'; break;
       case acts.TICKER_CRM:    url = 'http://schrts.co/GqkqnVbV'; break;
       case acts.TICKER_GLD:    url = 'http://schrts.co/EkMBqerA'; break;
       case acts.TICKER_IYR:    url = 'http://schrts.co/zbTYNxYf'; break;
