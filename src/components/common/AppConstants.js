@@ -1,4 +1,4 @@
-export const ENUS_TITLE = 'The Visions of Buyers and Sellers';
+export const ENUS_TITLE = 'The Ancient Visions of Buyers and Sellers';
 export const ZHTW_TITLE = '股 市 易 相';
 //---------------------------------------------
 export const ENUS_NEG         = 'Sellers'; // 'neg';

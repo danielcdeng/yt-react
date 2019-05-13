@@ -503,7 +503,7 @@ function yao2417(locale, ticker, yao) {
     case types.LOCALE_ZHTW:
       switch (yao) {
         case 6: return '(第六爻) 先是被紂王抓來囚禁，後來才被釋放，文王在西山舉行享祀。';
-        case 5: return '(第六爻) 孚于嘉，吉。';
+        case 5: return '(第五爻) 孚于嘉，吉。';
         case 4: return '';
         case 3: return '(第三爻) 對 ' + ticker.tick.name + ' 來說，最重要的是抓住主要大戰略方向並且放掉那些小的例如面子問題，' +
           '則能在隨勢當中而有所求得；於此時機，利於不妄動而貞定泰然處之。';
